@@ -54,7 +54,10 @@ app.use('/api/publication',(req, res, next) =>
     ];
 res.status(200).json(publication);
 });
-
+//Execution des routes
+// app.use("/images", express.static(path.join(__dirname, 'images'))); 
+// app.use("/api/sauces", sauceRoutes);
+// app.use("/api/auth", userRoutes);
 
 
 module.exports = app;

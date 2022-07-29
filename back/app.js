@@ -49,7 +49,6 @@ app.use('/api/publication',(req, res, next) =>
         imageUrl: '',
         date: '',
         userId: 'qlkdozoal',
-
         }
     ];
 res.status(200).json(publication);

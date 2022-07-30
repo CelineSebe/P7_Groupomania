@@ -7,8 +7,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 //importer les routes
 // const sauceRoutes = require('./routes/sauce');
-// const userRoutes = require('./routes/user');
-// const path = require('path');
+const userRoutes = require('./routes/user');
+const path = require('path');
 
 //importer HELMET
 const helmet = require("helmet");
@@ -39,24 +39,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/publication',(req, res, next) => 
-{
-    const publication =
-    [
-        {
-        _id: 'sfgkgk',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ',
-        imageUrl: '',
-        date: '',
-        userId: 'qlkdozoal',
-        }
-    ];
-res.status(200).json(publication);
-});
 //Execution des routes
 // app.use("/images", express.static(path.join(__dirname, 'images'))); 
 // app.use("/api/sauces", sauceRoutes);
-// app.use("/api/auth", userRoutes);
+app.use("/api/auth", userRoutes);
 
 
 module.exports = app;

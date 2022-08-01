@@ -88,7 +88,7 @@ exports.deletePubli = (req, res, next) =>
 };
 
 //Controller GET renvoie toutes les publications
-exports.getAllPubli = (req, res, next) =>
+exports.getAllPublis = (req, res, next) =>
 {
     Publi.find()
         .then((publis) =>

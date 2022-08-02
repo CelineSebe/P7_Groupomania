@@ -4,13 +4,16 @@ const router = express.Router();
 
 //importer middleware
 const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
 
 //importer controller
  const publiCtrl = require('../controllers/publi');
 
  router.get('/', auth, publiCtrl.getAllPublis);
- router.post('/', auth, publiCtrl.createPubli);
+ router.post('/', auth, multer, publiCtrl.createPubli);
  router.get('/:id', auth, publiCtrl.findOnePubli);
- router.put('/:id', auth, publiCtrl.modifyPubli);
+ router.put('/:id', auth, multer, publiCtrl.modifyPubli);
  router.delete('/:id', auth, publiCtrl.deletePubli);
  router.post('/:id', auth, publiCtrl.likeDislike);
+
+ module.exports = router;

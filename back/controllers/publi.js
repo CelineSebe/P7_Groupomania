@@ -1,6 +1,6 @@
 const Publi = require('../models/Publi');
 const fs = require('fs');
-const { STATUS_CODES } = require('http');
+// const { STATUS_CODES } = require('http');
 
 //Controller POST pour créer une publication
 exports.createPubli = (req, res, next) =>
@@ -23,7 +23,7 @@ exports.findOne = (req, res, next) =>
 {
     Publi.findOne
     ({
-        _id: req.paramas.idd
+        _id: req.params.id
     })
     .then(
         (publi) =>
@@ -33,7 +33,7 @@ exports.findOne = (req, res, next) =>
     .catch(
         (error) => 
         {
-            res.staus(404).json
+            res.status(404).json
             ({
                 error: error
             });
@@ -110,7 +110,7 @@ exports.getAllPublis = (req, res, next) =>
 
 exports.likeDislike = (req, res, next) =>
 {
-    const publisObject = {...req.body};
+    const publiObject = {...req.body};
         let like = req.body.like;
         let userId = req.body.userId;
         let publiId = req.params.id;

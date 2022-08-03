@@ -1,44 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Profil from './pages/Profil';
-import SignupLogin from './pages/SignupLogin';
+import Login from './pages/Login';
 import Error from './pages/Error';
-// import Header from './components/Header/index.js';
-// import Footer from './components/Footer/index.js';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// const GlobalStyle = createGlobalStyle`
-//     * {
-//       font-family: 'Lato', sans-serif;
-//     }
-//     body {
-//       width: auto;
-//       margin: auto;
-//     }
-// `
+const GlobalStyle = createGlobalStyle`
+    * {
+      font-family: 'Lato', sans-serif;
+    }
+    body {
+      width: auto;
+      margin: auto;
+    }
+`
 
 root.render(
   <React.StrictMode>
+    < GlobalStyle />
     <Router>
-      <Routes>
-          <Route exact path="/"
-            element= {<Home />}
-          />
-          <Route path="/SignupLogin"
-            element= { <SignupLogin/> }
-          />
-          <Route path="/Profil"
-            element= {<Profil />}
-          />
-          <Route path="/Error"
-            element= {<Error />}
-          />
-      </Routes>
+        <Header />
+        <Routes>
+            <Route exact path="/"
+              element= {<Home />}
+            />
+            <Route path="/Login"
+              element= { <Login/> }
+            />
+            <Route path="/Profil"
+              element= {<Profil />}
+            />
+            <Route
+              element= {<Error />}
+            />
+        </Routes>
+        <Footer />
     </Router>
   </React.StrictMode>
 )

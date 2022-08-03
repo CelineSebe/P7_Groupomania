@@ -1,13 +1,13 @@
 import React from 'react';
 
 function Home() {
-  const JSX = (
+  const feed = (
     <div>
-      <h1> Page d'accueil</h1>
+      <h1> Fil d'actualités </h1>
     </div>
     );
 
-    return JSX
+    return feed
 }
 
 export default Home;

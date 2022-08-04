@@ -3,7 +3,7 @@ import React from 'react-dom'
 function Error() {
 
     const NotFound = (
-    <div className='container'>
+    <div>
         <h1> Not Found </h1>
     </div>
     )

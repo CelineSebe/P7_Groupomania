@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Profil from './pages/Profil';
 import Login from './pages/Login';
-import Error from './pages/Error';
+import Error from './components/Error';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import reportWebVitals from './reportWebVitals';
@@ -15,10 +15,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const GlobalStyle = createGlobalStyle`
     * {
       font-family: 'Lato', sans-serif;
+      box-sizing: border-box;
     }
     body {
-      width: auto;
-      margin: auto;
+      width: 100%;
     }
 `
 
@@ -37,7 +37,7 @@ root.render(
             <Route path="/Profil"
               element= {<Profil />}
             />
-            <Route
+            <Route path="*"
               element= {<Error />}
             />
         </Routes>
@@ -51,3 +51,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+

@@ -15,10 +15,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const GlobalStyle = createGlobalStyle`
     * {
       font-family: 'Lato', sans-serif;
-      box-sizing: border-box;
+      // box-sizing: border-box;
     }
     body {
       width: 100%;
+      height: 100%;
     }
 `
 

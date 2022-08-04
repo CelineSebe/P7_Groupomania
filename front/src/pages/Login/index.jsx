@@ -8,8 +8,8 @@ function SignupLogin(){
     return(
         <div>
             <h1> Welcome back </h1>
-            <Link to="*"> Se connecter {signOrLogin} </Link>
-            <Link to="*"> S'inscrire {signOrLogin} </Link>
+            <Link to="*" style={{ textDecoration: 'none', color: 'black'}}> Se connecter {signOrLogin} </Link>
+            <Link to="*" style={{ textDecoration: 'none', color:'black'}}> S'inscrire {signOrLogin} </Link>
         </div>
     );
 

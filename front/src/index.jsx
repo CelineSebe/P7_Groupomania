@@ -14,35 +14,31 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const GlobalStyle = createGlobalStyle`
     * {
+      margin: 0px;
       font-family: 'Lato', sans-serif;
-      // box-sizing: border-box;
+      box-sizing: border-box;
     }
-    body {
-      width: 100%;
-      height: 100%;
-    }
+
 `
 
 root.render(
   <React.StrictMode>
     < GlobalStyle />
     <Router>
-        <Header />
         <Routes>
             <Route exact path="/"
-              element= {<Home />}
+              element= { <div><Header /><Home /> <Footer /></div> }
             />
             <Route path="/Login"
               element= { <Login/> }
             />
             <Route path="/Profil"
-              element= {<Profil />}
+              element= {<div><Header /><Profil /><Footer /></div>}
             />
             <Route path="*"
-              element= {<Error />}
+              element= {<div><Header /><Error /><Footer /></div>}
             />
         </Routes>
-        <Footer />
     </Router>
   </React.StrictMode>
 )

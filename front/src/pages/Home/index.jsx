@@ -1,66 +1,55 @@
-import React from 'react';
-import DefaultImage from '../../assets/profile.jpg'
-import PropTypes from 'prop-types'
+import React from 'react'
+// import DefaultImage from '../../assets/profile.jpg'
+import styled from 'styled-components'
+import Publi from '../../components/Publi/index'
+// import Profil from '../Profil/index'
+// import Header from '../../components/Header'
+// import Footer from '../../components/Footer'
+// import PropTypes from 'prop-types'
+
+const Page = styled.div`
+display: flex;
+flex-direction: column;
+`
+
+const FeedContainer= styled.div`
+display: inline-flex;
+justify-content: space-around;
+background-color: #F4F3F3;
+
+       `
+
 
 function Home() {
-  const feed = (
-    <div>
-      <h1> Fil d'actualités </h1>
-    </div>
+  
+  return (
+  <Page >
+    <FeedContainer >
+      <div className='ProfilContainer'>
+        <h1> Profil </h1>
+        <div className='Profil'>
+        </div>
+      </div>
+      <div className='PostContainer'>
+        <h1> Fil d'actualités </h1>
+        <div className='Publi'>
+          <Publi />
+          <Publi />
+          <Publi />
+          <Publi />
+        </div>
+      </div>
+      <div className='VideoContainer'>
+        <h1> Features videos </h1>
+        <div className='Video'>  
+        </div>
+      </div>
+      </FeedContainer>
+    </Page>
     );
-
-    return feed
 }
 
-const feedProfiles = [
-  {
-    name: 'Jane Doe',
-    jobTitle: 'Devops',
-    picture: DefaultImage,
-  },
-  {
-    name: 'John Doe',
-    jobTitle: 'Developpeur frontend',
-    picture: DefaultImage,
-  },
-  {
-    name: 'Jeanne Biche',
-    jobTitle: 'Développeuse Fullstack',
-    picture: DefaultImage,
-  }, 
-]
 
-function feed() {
-  return (
-      <div>
-          <h1>Utilisateurs 👩‍💻👨‍💻👩‍💻</h1>
-          {feedProfiles.map((profile, index) => (
-              <Card
-                  key={`${profile.name}-${index}`}
-                  jobTitle={profile.jobTitle}
-                  image={profile.image}
-                  description={profile.description}
-              />
-          ))}
-      </div>
-  )
-}
-
-function Card({ image, description, jobTitle }) {
-  return (
-      <div style={{ display: 'flex', flexDirection: 'column', padding: 15 }}>
-          <span>{jobTitle}</span>
-          <img src={image} alt="post" height={80} width={80} />
-          <span>{description}</span>
-      </div>
-  )
-}
-
-Card.propTypes = {
-  jobTitle: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-}
 
 
 export default Home

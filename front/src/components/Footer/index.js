@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const NavContainer= styled.nav`
+const NavContainer= styled.footer`
         display:flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
-        align-items: flex-end;
+        align-items: center;
 `
 const LinkContainer= styled.a `
         &:hover{
@@ -17,12 +17,15 @@ const CopyrightStyle = styled.div`
         flex-direction: row;
         justify-content: center;
 `
-
 const FooterContainer= styled.div`
         display: flex;
         flex-direction: column;
-        height: 150px;
-`
+        justify-content: space-around;
+        align-items: center;
+        background-color: #4E5166;
+        height: 180px;
+        box-shadow: 0px -8px 50px 1px grey;
+        `
 
 function Footer () {
     return (
@@ -35,7 +38,7 @@ function Footer () {
                     <Link to="*" style={{ textDecoration: 'none', color: 'black'}}> Contact </Link>
                 </LinkContainer>
             </NavContainer>
-            <CopyrightStyle>Copyright © 2022 Groupomania</CopyrightStyle>
+            <CopyrightStyle styl={{ }}>Copyright © 2022 Groupomania</CopyrightStyle>
         </FooterContainer>
     )
 }

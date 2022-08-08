@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import {createRoot} from "react-dom/client";
 import { createGlobalStyle } from 'styled-components'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -7,10 +8,10 @@ import Profil from './pages/Profil';
 import Login from './pages/Login';
 import Error from './components/Error';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root')
+const root = createRoot(rootElement);
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -18,29 +19,32 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Lato', sans-serif;
       box-sizing: border-box;
     }
-
+   
+  
 `
 
 root.render(
+
   <React.StrictMode>
     < GlobalStyle />
     <Router>
         <Routes>
             <Route exact path="/"
-              element= { <div><Header /><Home /> <Footer /></div> }
+              element= { <div><Header /><Home /></div> }
             />
             <Route path="/Login"
               element= { <Login/> }
             />
             <Route path="/Profil"
-              element= {<div><Header /><Profil /><Footer /></div>}
+              element= {<div><Header /><Profil /></div>}
             />
             <Route path="*"
-              element= {<div><Header /><Error /><Footer /></div>}
+              element= {<div><Header /><Error /></div>}
             />
         </Routes>
     </Router>
   </React.StrictMode>
+
 )
 
 

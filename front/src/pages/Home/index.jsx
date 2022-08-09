@@ -2,7 +2,8 @@ import React from 'react'
 // import DefaultImage from '../../assets/profile.jpg'
 import styled from 'styled-components'
 import Publi from '../../components/Publi/index'
-import Profil from '../Profil/index'
+import ProfilInfo from '../../components/ProfilInfo/index'
+import Header from '../../components/Header'
 // import PropTypes from 'prop-types'
 
 const FeedContainer= styled.div`
@@ -49,12 +50,13 @@ padding: 5px;
 function Home() {
   
   return (
-
+  <>
+    <Header />
     <FeedContainer >
       <ProfilContainer style= {{height: "80vh"}} >
         <h1> Profil </h1>
         <div className='Profil'>
-          < Profil />
+          < ProfilInfo />
         </div>
       </ProfilContainer>
       <PostContainer>
@@ -70,6 +72,7 @@ function Home() {
         </div>
       </TrendContainer>
       </FeedContainer>
+    </>
     );
 }
 

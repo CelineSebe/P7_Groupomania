@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import Profil from './pages/Profil';
 import Login from './pages/Login';
 import Error from './components/Error';
-import Header from './components/Header';
 import reportWebVitals from './reportWebVitals';
 
 const rootElement = document.getElementById('root')
@@ -19,8 +18,6 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Lato', sans-serif;
       box-sizing: border-box;
     }
-   
-  
 `
 
 root.render(
@@ -30,16 +27,16 @@ root.render(
     <Router>
         <Routes>
             <Route exact path="/"
-              element= { <div><Header /><Home /></div> }
-            />
-            <Route path="/Login"
               element= { <Login/> }
+                />
+            <Route path="/Home"
+              element= { <Home /> }
             />
             <Route path="/Profil"
-              element= {<div><Header /><Profil /></div>}
+              element= {<Profil />}
             />
             <Route path="*"
-              element= {<div><Header /><Error /></div>}
+              element= {<Error />}
             />
         </Routes>
     </Router>

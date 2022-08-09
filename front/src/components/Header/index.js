@@ -10,15 +10,16 @@ const NavLink = styled.nav`
     align-items: center;
     background-color: #4E5166;
     height: 100px;
-    box-shadow: 0px 8px 50px 2px grey;
+    box-shadow: 0px 8px 3px 2px grey 0.5;
     opacity: 70%;
-    
+    font-style: "Lato";
+    font-size: 22px;
 `
 const ImgHeader = styled.img `
     height: 80px;
     `
 const NavContent = styled.p`
-    padding: 37px 15px;
+    padding: 37px 40px;
     color: white;
     &:hover{
         cursor: pointer;
@@ -29,12 +30,13 @@ const ContainerLink = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+    padding-right: 20px;
     `
 const LogOutButton = styled.button `
     background-color: #FFD7D7;
     height: 50px;
     border-radius: 6px;
+    font-size: 20px;
     &:hover{
         cursor: pointer;
     }
@@ -45,11 +47,11 @@ const LogOutButton = styled.button `
 function Header(){
     return (
         <NavLink>
-            <Link to="/">
+            <Link to="/Home">
                 <ImgHeader src={logo} alt="logo entreprise"/>
             </Link>
             <ContainerLink>
-                <Link to="/" style={{ textDecoration: 'none'}}>
+                <Link to="/Home" style={{ textDecoration: 'none'}}>
                     <NavContent>
                         Home
                     </NavContent>
@@ -59,7 +61,7 @@ function Header(){
                         Profil
                     </NavContent>
                 </Link>
-                <Link to="/Login">
+                <Link to="/">
                     <LogOutButton>
                         Log out
                     </LogOutButton>

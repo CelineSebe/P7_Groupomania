@@ -1,14 +1,13 @@
 import React from 'react-dom'
-
-
+import Header from '../../components/Header'
+import ProfilInfo from '../../components/ProfilInfo'
 
 function Profil(){
     return(
-    <div>
-        <div className="container">
-            <h1 style={{fontSize: '18px'}}> Céline Sèbe </h1>
-        </div>
-    </div>
+    <>
+    <Header />
+    <ProfilInfo />
+    </>
     )
 }
 

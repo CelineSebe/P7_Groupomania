@@ -15,7 +15,7 @@ const root = createRoot(rootElement);
 const GlobalStyle = createGlobalStyle`
     * {
       margin: 0px;
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
       box-sizing: border-box;
     }
 `

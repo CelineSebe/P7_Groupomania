@@ -2,45 +2,67 @@ import { Link } from 'react-router-dom'
 // import PropTypes from 'prop_types'
 import styled from 'styled-components'
 import logo from '../../assets/Logos/icon-left-font-monochrome-white.svg'
+import colors from '../../utils/style/colors'
 
 const NavLink = styled.nav`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    background-color: #4E5166;
+    background: linear-gradient(to right top, #4e519f, white);
     height: 100px;
     box-shadow: 0px 8px 3px 2px grey 0.5;
     opacity: 70%;
     font-style: "Lato";
-    font-size: 22px;
+    padding: 3px;
 `
 const ImgHeader = styled.img `
-    height: 80px;
+    height: 30px;
     `
-const NavContent = styled.p`
-    padding: 37px 40px;
-    color: white;
-    &:hover{
-        cursor: pointer;
-        border-bottom: solid 3px;
-    }
-    `
+
 const ContainerLink = styled.div`
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    padding-right: 20px;
+    font-size: 18px;
     `
-const LogOutButton = styled.button `
-    background-color: #FFD7D7;
-    height: 50px;
-    border-radius: 6px;
-    font-size: 20px;
+
+const NavContent = styled.p`
+    padding: 38px 40px;
+    color: white;
     &:hover{
         cursor: pointer;
-    }
+        border-bottom: solid 3px #FFF;
+    }`
+
+const ContainerButton = styled.div `
+    position: absolute;
+    right: 40px;
 `
+const AccountButton = styled.button`
+    background-color: white;
+    border-color: ${colors.primary};
+    color: ${colors.primary};
+    height: 45px;
+    width: 120px;
+    border-radius: 6px;
+    margin: 30px;
+    font-size: 14px;
+    &:hover{
+        cursor: pointer;
+        background-color: ${colors.secondary};
+    }`
+
+const LogOutButton = styled.button`
+    background-color: white;
+    border-color: ${colors.primary};
+    color: ${colors.primary};
+    height: 45px;
+    width: 120px;
+    border-radius: 6px;
+    font-size: 14px;
+    &:hover{
+        cursor: pointer;
+        background-color: ${colors.secondary};
+    }`
 // function LogOutClick(){
 //     window.location = './Login'
 //  }
@@ -61,12 +83,17 @@ function Header(){
                         Profil
                     </NavContent>
                 </Link>
-                <Link to="/">
-                    <LogOutButton>
-                        Log out
-                    </LogOutButton>
-                </Link>
             </ContainerLink>
+            <ContainerButton>
+                <Link to="/">
+                        <AccountButton>
+                            ACCOUNT
+                        </AccountButton>
+                        <LogOutButton>
+                            LOGOUT
+                        </LogOutButton>     
+                </Link>
+            </ContainerButton>
         </NavLink>
     )
 }

@@ -23,8 +23,8 @@ opacity: 80%;
 const Logo = styled.img`
     width: 150px;
     position: absolute;
-    top: 30px;
-    left: 160px;
+    top: 10px;
+    left: 150px;
 `
 const ConnectContent = styled.div`
         display: flex;   

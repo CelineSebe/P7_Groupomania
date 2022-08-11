@@ -4,6 +4,12 @@ import styled from 'styled-components'
 import logo from '../../assets/Logos/icon-left-font-monochrome-white.svg'
 import colors from '../../utils/style/colors'
 
+const HeaderContainer = styled.header`
+  position: fixed;
+  top:0px;
+  width: 100%;
+  margin-bottom: 10px;
+  `
 const NavLink = styled.nav`
     display: flex;
     flex-direction: row;
@@ -68,6 +74,7 @@ const LogOutButton = styled.button`
 //  }
 function Header(){
     return (
+    <HeaderContainer>
         <NavLink>
             <Link to="/Home">
                 <ImgHeader src={logo} alt="logo entreprise"/>
@@ -95,6 +102,7 @@ function Header(){
                 </Link>
             </ContainerButton>
         </NavLink>
+    </HeaderContainer>
     )
 }
 

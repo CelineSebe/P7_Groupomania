@@ -7,6 +7,7 @@ function Profil(){
     <>
     <Header />
     <ProfilInfo />
+    
     </>
     )
 }

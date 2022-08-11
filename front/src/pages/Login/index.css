@@ -6,12 +6,20 @@ ul {
 
 li {
     padding:10px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
+    width: 160px;
+    text-align: center;
     margin: 0 10px;
-    background-color: #FFD7D7;
+    background-color: white;
 }
 li:hover{
     cursor: pointer;
-    background-color: white;
+    background-color: #FFD7D7;
 }
+
+.active-btn{
+    background-color: #FFD7D7;
+}
+
+
 

@@ -23,7 +23,7 @@ width: 50vh;
 opacity: 95%;
 `
 const Logo = styled.img`
-width: 150px;
+width: 170px;
 position: absolute;
 top: 10px;
 left: 550px;
@@ -39,6 +39,7 @@ height: 500px;
 width: 500px;
 padding: 20px;
 `
+
 
 function SignupLogin () {
     // const { signOrLogin } = useParams () 
@@ -63,8 +64,8 @@ function SignupLogin () {
                 </Link>
                 <ConnectContent>
                         <ul>
-                            <li onClick={handleModals} id="register">S'inscrire</li>
-                            <li onClick={handleModals} id="login">Se connecter</li>
+                            <li onClick={handleModals} id="register" className={signUpModal ? "active-btn" : null}>S'inscrire</li>
+                            <li onClick={handleModals} id="login" className={signInModal ? "active-btn" : null}>Se connecter</li>
                         </ul>
                         {signUpModal && < SignUp />}
                         {signInModal && < SignIn />}

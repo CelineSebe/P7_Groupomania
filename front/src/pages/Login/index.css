@@ -10,7 +10,7 @@ li {
     width: 160px;
     text-align: center;
     margin: 0 10px;
-    background-color: white;
+    background-color:#FFD7D7 ;
 }
 li:hover{
     cursor: pointer;
@@ -18,8 +18,14 @@ li:hover{
 }
 
 .active-btn{
-    background-color: #FFD7D7;
+    background-color:white ;
 }
+input{
+    border-radius: 5px;
+    border: solid 2px #FFD7D7;
+    width: 300px;
+}
+
 
 
 

@@ -1,6 +1,7 @@
 //importer le package HTTP de node.js pour créerserveur
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser');
 
 //importer variable environnement
 const dotenv = require("dotenv");
@@ -22,7 +23,8 @@ app.use(helmet());
 //connexion à la base de donnée du serveur
 mongoose.connect(`mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@${process.env.DB_USERNAME}.${process.env.DB_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
-    useUnifiedTopology: true })
+    useUnifiedTopology: true,
+  })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 

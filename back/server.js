@@ -3,6 +3,10 @@ const http = require('http');
 //Importer app.js
 const app = require('./app');
 
+var cors = require('cors');
+
+app.use(cors()); // Use this after the variable declaration
+
 //Paramétrer le port avec set de Express
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -15,7 +19,7 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 
 //Gestionnaire d'erreurs

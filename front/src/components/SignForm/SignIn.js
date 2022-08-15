@@ -55,18 +55,22 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = (e) => {
+    function handleLogin (e) {
         e.preventDefault();
         const emailError = document.querySelector('.email.error');
         const passwordError = document.querySelector('.password.error');
+        console.log(email, password);
         axios({
-            method: "post",
-            url: `${process.env.REACT_APP_API_URL}api/user/login`,
-            withCredentials: true,
+            method: 'post',
+            url: `${process.env.REACT_APP_API_URL}api/login`,
+            headers: {
+                "Content-Type": "application/json",
+            },
             data: {
                 email,
                 password,
             },
+            
         })
         .then((res) => {
             console.log(res);
@@ -77,12 +81,12 @@ const SignIn = () => {
                 window.location ='/';
             }
         })
-        .catch((err) => {
-            console.log(err);
+        .catch((error) => {
+            console.log(error.response);
         })
     }
     return (
-        <div>
+        
             <Signin>
                 <h1 style={{ fontSize: 26, textAlign:"center"}}> Welcome back! </h1>
                 <form action="" onSubmit={handleLogin} id="sign-up-form">
@@ -91,31 +95,33 @@ const SignIn = () => {
                         type="text" 
                         name="email" 
                         id="email" 
+                        autoComplete='off'
                         onChange ={(e) => setEmail(e.target.value)} 
                         value={email} 
                     />
-                        <div className='email error'></div>
+                    <div className='email error'></div>
                     <label htmlFor="password"> Mot de passe </label>
                     <input  type="password" 
                             name="password" 
-                            id="password" 
+                            id="password"
+                            autoComplete='off' 
                             onChange={(e) => setPassword(e.target.value)} 
                             value={password}/>
-                        <div className='password error'></div>
+                    <div className='password error'></div>
                     <Checkbox style={{display:"inline-flex",flexDirection: "row",alignItems:"center"}}>
-                        <input type="checkbox" id="accepted" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 30}}/>
+                        <input autoComplete="on" type="checkbox" id="accepted" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 30}}/>
                             <label htmlFor="accepted" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 300}}>J'accepte les conditions générales</label>
                     </Checkbox>
 
                     <FormSubmit>
                         <HideButton>
-                            <button id="connectAccount" style={{border: "none", backgroundColor: "white"}}></button>
+                            <input type="submit" id="connectAccount" autoComplete='off' style={{border: "none", backgroundColor: "white"}}/>
                         </HideButton>
                             <LabelForButton htmlFor="connectAccount" value ="Se connecter">Se connecter</LabelForButton>
                     </FormSubmit>
                 </form>
             </Signin>
-        </div>
+        
     );
 };
 

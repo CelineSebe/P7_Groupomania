@@ -57,20 +57,20 @@ const SignUp = () => {
             <Signup>
             <h1 style={{ fontSize: 26, textAlign:"center"}}> Welcome ! </h1>
                 <form>
-                    <label htmlFor='identifiant'> Identifiant 
-                    <input type="text" id='identifiant' ></input></label>
-                    <label htmlFor='password'> Mot de passe 
-                    <input type="password" id='password' ></input></label>
-                    <label htmlFor="confirmation"> Confirmer le mot de passe 
-                    <input type="password" id="confirmation" ></input></label>
+                    <label htmlFor='identifiant'> Identifiant </label>
+                    <input type="text" id='identifiant' autoComplete='off'></input>
+                    <label htmlFor='password'> Mot de passe </label>
+                    <input type="password" id='password' autoComplete='off' ></input>
+                    <label htmlFor="confirmation"> Confirmer le mot de passe </label>
+                    <input type="password" id="confirmation" autoComplete='off' ></input>
 
                     <Checkbox style={{display:"inline-flex",flexDirection: "row",alignItems:"center"}}>
-                        <input type="checkbox" id="accepted" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 30}}/>
+                        <input type="checkbox" id="accepted" autoComplete="off" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 30}}/>
                             <label htmlFor="accepted" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 300}}>J'accepte les conditions générales</label>
                     </Checkbox>
                     <FormSubmit>
                         <HideButton>
-                            <button id="createAccount" style={{border: "none", backgroundColor: "white"}}></button>
+                            <input type="submit" id="createAccount" autoComplete='off' style={{border: "none", backgroundColor: "white"}}/>
                         </HideButton>
                             <LabelForButton htmlFor="createAccount">Créer mon compte</LabelForButton>
                     </FormSubmit>

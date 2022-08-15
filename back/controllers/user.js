@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
+// On importe le package fs (file system) de Node
+const fs = require("fs");
 
 exports.signup = (req, res, next) => 
 {

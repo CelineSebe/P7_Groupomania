@@ -62,7 +62,7 @@ const SignIn = () => {
         console.log(email, password);
         axios({
             method: 'post',
-            url: `${process.env.REACT_APP_API_URL}api/login`,
+            url: `${process.env.REACT_APP_API_URL}api/auth/login`,
             headers: {
                 "Content-Type": "application/json",
             },

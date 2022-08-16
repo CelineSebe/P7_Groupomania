@@ -1,7 +1,7 @@
 import  React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import axios from 'react';
+import axios from 'axios';
 
 const Signup = styled.div`
 

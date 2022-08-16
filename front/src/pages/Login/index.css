@@ -10,15 +10,15 @@ li {
     width: 160px;
     text-align: center;
     margin: 0 10px;
-    background-color:#FFD7D7 ;
+    background-color:white ;
 }
 li:hover{
     cursor: pointer;
-    background-color: #FFD7D7;
+    background-color:#FFD7D7;
 }
 
 .active-btn{
-    background-color:white ;
+    background-color: #FFD7D7  ;
 }
 input{
     border-radius: 5px;

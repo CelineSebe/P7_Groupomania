@@ -1,6 +1,6 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
-import {createRoot} from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { createGlobalStyle } from 'styled-components'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Error from './components/Error';
 // import reportWebVitals from './reportWebVitals';
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 const GlobalStyle = createGlobalStyle`

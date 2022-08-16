@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import axios from 'axios';
 
-
 const Signin = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 width: 300px;
-height: 150px;
-line-height: 40px;
-margin-top:80px;`
+height: 330px;
+line-height: 30px;
+`
 
 const Checkbox = styled.div`
 height: 20px;
@@ -54,10 +53,14 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    
+
     async function handleLogin (e) {
         e.preventDefault();
         const emailError = document.querySelector('.email.error');
         const passwordError = document.querySelector('.password.error');
+
+        
         console.log(email, password);
         await axios({
             method: 'post',
@@ -68,14 +71,13 @@ const SignIn = () => {
             data: {
                 email,
                 password,
-            },
-            
+            }, 
         })
         .then((res) => {
             console.log(res);
-            if(res.data.errors) {
-                emailError.innerHTML = res.data.errors.email;
-                passwordError.innerHTML = res.data.errors.password;
+            if(res.data.error) {
+                emailError.innerHTML = res.data.error;
+                passwordError.innerHTML = res.data.error;
             } else {
                 window.location ='/Home';
             }
@@ -87,7 +89,7 @@ const SignIn = () => {
     return (
         
             <Signin>
-                <h1 style={{ fontSize: 26, textAlign:"center"}}> Welcome back! </h1>
+                <h1 style={{ fontSize: 26, textAlign:"center", padding: 20}}> Welcome back! </h1>
                 <form action="" onSubmit={handleLogin} id="sign-up-form">
                     <label htmlFor="email"> Email </label>
                     <input 
@@ -95,27 +97,33 @@ const SignIn = () => {
                         name="email" 
                         id="email" 
                         autoComplete='off'
+                        style={{height: 28}}
                         onChange ={(e) => setEmail(e.target.value)} 
                         value={email} 
                     />
-                    <div className='email error'></div>
+                    <div className="email error"></div>
+                    <br />
                     <label htmlFor="password"> Mot de passe </label>
                     <input  type="password" 
                             name="password" 
                             id="password"
                             autoComplete='off' 
+                            style={{height: 28}}
                             onChange={(e) => setPassword(e.target.value)} 
                             value={password}/>
-                    <div className='password error'></div>
+                    <div className="password error"></div>
+                    <br />
                     <Checkbox style={{display:"inline-flex",flexDirection: "row",alignItems:"center"}}>
                         <input autoComplete="on" 
                                type="checkbox" 
                                id="accepted" 
                                style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 30}}/>
-                            <label htmlFor="accepted" 
-                                   style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 300}}>
+                        <label htmlFor="accepted" 
+                               style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 300}}>
                                 <span>J'accepte les <a href ="/" target="_blank" rel="noopener noreferrer">
                                 conditions générales</a></span></label>
+                                <div className="accepted error"></div>
+                                <br />
                     </Checkbox>
 
                     <FormSubmit>

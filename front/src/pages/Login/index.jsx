@@ -10,22 +10,20 @@ import SignIn from '../../components/SignForm/SignIn';
 const ConnectionForm = styled.div`
 display: flex;
 flex-direction: column;
+justify-content: center;
 background-color: ${colors.secondary};
 align-items: center;
 height:100vh;
 `
 
 const LogoContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
 position: absolute;
 opacity: 95%;
 `
 const Logo = styled.img`
 width: 170px;
+padding: 10px 0px;
 position:relative;
-top: 40px;
 left: 30px;
 `
 const ConnectContent = styled.div`
@@ -37,7 +35,6 @@ border-radius: 8px;
 color: black;
 height: 550px;
 width: 500px;
-padding: 15px;
 `
 
 
@@ -55,7 +52,6 @@ function SignupLogin () {
             setSignUpModal(false);
         }       
     }
-
     return(
         <ConnectionForm>
             <LogoContainer>

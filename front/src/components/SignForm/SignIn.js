@@ -9,7 +9,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 width: 300px;
-height: 100px;
+height: 150px;
 line-height: 40px;
 margin-top:80px;`
 
@@ -17,7 +17,6 @@ const Checkbox = styled.div`
 height: 20px;
 width: 300px;
 margin: 20px 0px;
-padding: 0%;
 line-height: 20px;
 font-size: smaller;
 `
@@ -55,12 +54,12 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleLogin (e) {
+    async function handleLogin (e) {
         e.preventDefault();
         const emailError = document.querySelector('.email.error');
         const passwordError = document.querySelector('.password.error');
         console.log(email, password);
-        axios({
+        await axios({
             method: 'post',
             url: `${process.env.REACT_APP_API_URL}api/auth/login`,
             headers: {
@@ -78,7 +77,7 @@ const SignIn = () => {
                 emailError.innerHTML = res.data.errors.email;
                 passwordError.innerHTML = res.data.errors.password;
             } else {
-                window.location ='/';
+                window.location ='/Home';
             }
         })
         .catch((error) => {
@@ -109,8 +108,14 @@ const SignIn = () => {
                             value={password}/>
                     <div className='password error'></div>
                     <Checkbox style={{display:"inline-flex",flexDirection: "row",alignItems:"center"}}>
-                        <input autoComplete="on" type="checkbox" id="accepted" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 30}}/>
-                            <label htmlFor="accepted" style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 300}}>J'accepte les conditions générales</label>
+                        <input autoComplete="on" 
+                               type="checkbox" 
+                               id="accepted" 
+                               style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 30}}/>
+                            <label htmlFor="accepted" 
+                                   style={{display:"inline-flex",flexDirection: "row", justifyContent:"center", width: 300}}>
+                                <span>J'accepte les <a href ="/" target="_blank" rel="noopener noreferrer">
+                                conditions générales</a></span></label>
                     </Checkbox>
 
                     <FormSubmit>

@@ -1,47 +1,29 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
 import { createRoot } from "react-dom/client";
-import { createGlobalStyle } from 'styled-components'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Profil from './pages/Profil';
-import Login from './pages/Login';
-import Error from './components/Error';
+import App from './App';
+
 // import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { applyMiddleware, legacy_createStore } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+//dev tools
+import { composeWithDevTools } from 'redux-devtools-extension';
+import logger from 'redux-logger';
+
+const store = legacy_createStore(
+  rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
+)
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
-const GlobalStyle = createGlobalStyle`
-    * {
-      margin: 0px;
-      font-family: "Lato", sans-serif;
-      box-sizing: border-box;
-    }
-`
 
 root.render(
-
-  <React.StrictMode>
-    < GlobalStyle />
-    <Router>
-        <Routes>
-            <Route exact path="/"
-              element= { <Login/> }
-                />
-            <Route path="/Home"
-              element= { <Home /> }
-            />
-            <Route path="/Profil"
-              element= {<Profil />}
-            />
-            <Route path="*"
-              element= {<Error />}
-            />
-        </Routes>
-    </Router>
-  </React.StrictMode>
-
+  <Provider store={store}>
+    <App />
+  </Provider>
 )
 
 

@@ -82,6 +82,7 @@ const SignUp = () => {
           method: "post",
           url: `${process.env.REACT_APP_API_URL}api/auth/signup`,
           data: {
+            pseudo,
             email,
             password,
           }

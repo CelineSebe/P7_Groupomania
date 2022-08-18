@@ -5,20 +5,22 @@ import { IdContext } from "./components/AppContext";
 import { useDispatch } from 'react-redux';
 import { getUser } from "./actions/user.actions";
 
+
 const App = () => {
     const [id, setId] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchToken = async () => {
+            
             await axios({
                 method: "get",
-                url: `${process.env.REACT_APP_API_URL}`,
+                url: `${process.env.REACT_APP_API_URL}api/auth/`,
             })
             .then((res) => {
                 setId (res.data);
             })
-            .catch((err) => console.log("No token"));
+            .catch((err) => console.log(err));
         };
         fetchToken();
 

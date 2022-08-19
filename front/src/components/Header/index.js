@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../../assets/Logos/icon-left-font-monochrome-white.svg'
 import colors from '../../utils/style/colors'
+import '../../pages/Login/index';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -14,7 +15,7 @@ const NavLink = styled.nav`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background: linear-gradient(to right top, #4e519f, white);
+    background: linear-gradient(to right top, #4E5166, white);
     height: 100px;
     box-shadow: 0px 8px 3px 2px grey 0.5;
     opacity: 70%;
@@ -43,19 +44,19 @@ const ContainerButton = styled.div `
     position: absolute;
     right: 40px;
 `
-const AccountButton = styled.button`
-    background-color: white;
-    border-color: ${colors.primary};
-    color: ${colors.primary};
-    height: 45px;
-    width: 120px;
-    border-radius: 6px;
-    margin: 30px;
-    font-size: 14px;
-    &:hover{
-        cursor: pointer;
-        background-color: ${colors.secondary};
-    }`
+// const AccountButton = styled.button`
+//     background-color: white;
+//     border-color: ${colors.primary};
+//     color: ${colors.primary};
+//     height: 45px;
+//     width: 120px;
+//     border-radius: 6px;
+//     margin: 30px;
+//     font-size: 14px;
+//     &:hover{
+//         cursor: pointer;
+//         background-color: ${colors.secondary};
+//     }`
 
 const LogOutButton = styled.button`
     background-color: white;
@@ -90,12 +91,14 @@ function Header(){
                         Profil
                     </NavContent>
                 </Link>
+                <Link to="/Trending" style={{ textDecoration: 'none'}}>
+                    <NavContent>
+                        Trending
+                    </NavContent>
+                </Link>
             </ContainerLink>
             <ContainerButton>
                 <Link to="/">
-                        <AccountButton>
-                            ACCOUNT
-                        </AccountButton>
                         <LogOutButton>
                             LOGOUT
                         </LogOutButton>     

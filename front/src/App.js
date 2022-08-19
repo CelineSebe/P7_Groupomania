@@ -10,22 +10,22 @@ const App = () => {
     const [id, setId] = useState(null);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const fetchToken = async () => {
+    // useEffect(() => {
+    //     const fetchToken = async (id) => {
             
-            await axios({
-                method: "get",
-                url: `${process.env.REACT_APP_API_URL}api/auth/`,
-            })
-            .then((res) => {
-                setId (res.data);
-            })
-            .catch((err) => console.log(err));
-        };
-        fetchToken();
+    //         await axios({
+    //             method: "get",
+    //             url: `${process.env.REACT_APP_API_URL}`,
+    //         })
+    //         .then((res) => {
+    //             setId (res.data);
+    //         })
+    //         .catch((err) => console.log(err));
+    //     };
+    //     fetchToken();
 
-        if(id) dispatch(getUser(id))
-    }, [id]);
+    //     if(id) dispatch(getUser(id))
+    // }, [id]);
 
     return (
         <IdContext.Provider value={id}>

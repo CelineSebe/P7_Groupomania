@@ -2,6 +2,8 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import { createRoot } from "react-dom/client";
 import App from './App';
+import './index.css';
+import './utils/style/colors'
 
 // import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
@@ -12,6 +14,7 @@ import rootReducer from './reducers';
 //dev tools
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
+import colors from './utils/style/colors';
 
 const store = legacy_createStore(
   rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))

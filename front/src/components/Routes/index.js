@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Login from '../../pages/Login';
-import Error from '../Error';
+import Trending from '../..//pages/Trending';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -20,17 +20,17 @@ const routes = () => {
     < GlobalStyle />
       <Router>
           <Routes>
-              <Route exact path="/"
-                element= { <Login/> }
+              <Route path="/"
+                exact element= { <Login/> }
                   />
               <Route path="/Home"
-                element= { <Home /> }
+                exact element= { <Home /> }
               />
               <Route path="/Profil"
-                element= {<Profil />}
+                exact element= {<Profil />}
               />
-              <Route path="*"
-                element= {<Error />}
+              <Route path="/Trending"
+                exact element= {<Trending />}
               />
           </Routes>
       </Router>

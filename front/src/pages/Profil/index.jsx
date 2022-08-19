@@ -10,6 +10,7 @@ function Profil (){
     
     return(
     <div className='profil-page'>
+        <Header />
         {id ? (
             <UpdateProfil />
         ) : (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Route, Routes } from 'react-router-dom';
+import PrivateRoute from '../../pages/PrivateRoute';
 import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Login from '../../pages/Login';
@@ -16,25 +17,24 @@ const GlobalStyle = createGlobalStyle`
 
 const routes = () => {
     return (
-    <React.StrictMode>
-    < GlobalStyle />
-      <Router>
+
+    < GlobalStyle > 
           <Routes>
               <Route path="/"
                 exact element= { <Login/> }
                   />
-              <Route path="/Home"
+              <PrivateRoute path="/Home"
                 exact element= { <Home /> }
               />
-              <Route path="/Profil"
+              <PrivateRoute path="/Profil"
                 exact element= {<Profil />}
               />
-              <Route path="/Trending"
+              <PrivateRoute path="/Trending"
                 exact element= {<Trending />}
               />
           </Routes>
-      </Router>
-    </React.StrictMode>
+    </GlobalStyle>
+    
     );
 };
 

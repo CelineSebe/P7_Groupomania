@@ -5,35 +5,26 @@ import App from './App';
 import './index.css';
 import './utils/style/colors'
 
-// import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import { applyMiddleware, legacy_createStore } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+// import { Provider } from 'react-redux';
+// import {configureStore} from '@reduxjs/toolkit';
+// import allReducers from './reducers';
 
-//dev tools
-import { composeWithDevTools } from 'redux-devtools-extension';
-import logger from 'redux-logger';
-import colors from './utils/style/colors';
 
-const store = legacy_createStore(
-  rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
-)
+// import colors from './utils/style/colors';
+
+// const store = configureStore(
+//  {reducer: allReducers}
+// )
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 
 root.render(
-  <Provider store={store}>
+  <React.StrictMode>
     <App />
-  </Provider>
+  </React.StrictMode>
 )
 
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
 
 

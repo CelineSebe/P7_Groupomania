@@ -1,36 +1,23 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
+import React from 'react';
 import Routes from "./components/Routes";
-import { IdContext } from "./components/AppContext";
-import { useDispatch } from 'react-redux';
-import { getUser } from "./actions/user.actions";
-
+import useFindUser from './components/useFindUser';
+import { UserContext } from './components/UserContext';
 
 const App = () => {
-    const [id, setId] = useState(null);
-    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     const fetchToken = async (id) => {
-            
-    //         await axios({
-    //             method: "get",
-    //             url: `${process.env.REACT_APP_API_URL}`,
-    //         })
-    //         .then((res) => {
-    //             setId (res.data);
-    //         })
-    //         .catch((err) => console.log(err));
-    //     };
-    //     fetchToken();
-
-    //     if(id) dispatch(getUser(id))
-    // }, [id]);
-
+    const {
+        user,
+        setUser,
+        isLoading
+    } = useFindUser();
+    
     return (
-        <IdContext.Provider value={id}>
-            <Routes />
-        </IdContext.Provider>
+        <React.StrictMode>
+            <UserContext.Provider value={{ user, setUser, isLoading}}>
+                <Routes />
+            </UserContext.Provider>
+        </React.StrictMode>
     );
 };
 

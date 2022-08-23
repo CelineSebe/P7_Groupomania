@@ -39,7 +39,7 @@ width: 500px;
 
 
 function SignupLogin (props) {
-    // const { signOrLogin } = useParams () 
+   
     const [signUpModal, setSignUpModal] = useState(true);
     const [signInModal, setSignInModal] = useState(false);
 

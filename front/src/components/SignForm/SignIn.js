@@ -53,14 +53,11 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    
-
     async function handleLogin (e) {
         e.preventDefault();
         const emailError = document.querySelector('.email.error');
         const passwordError = document.querySelector('.password.error');
 
-        
         console.log(email, password);
         await axios({
             method: 'post',

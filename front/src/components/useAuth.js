@@ -10,11 +10,16 @@ export default function useAuth() {
 
     //set user
     const setUserContext = async () => {
-        return await axios.get('api/auth/user').then(res => {         
+        return await axios
+        .get (`${process.env.REACT_APP_API_URL}api/auth/user`)
+        
+        .then (res => {         
             setUser(res.data.currentUser);  
-            history.push('/home');                     
-            }).catch((err) => {
-            setError(err.response.data);
+            history
+        .push ('/home');                     
+            })
+        .catch ((err) => {
+            setError(error.response.data);
         })
     }
 
@@ -22,7 +27,7 @@ export default function useAuth() {
     const registerUser = async (data) => {
         console.log(data);
         const { username, email, password} = data;
-            return axios.post(`api/auth/signup`, {
+            return axios.post(`${process.env.REACT_APP_API_URL}api/auth/signup`, {
                   username,
                   email,
                   password,
@@ -35,10 +40,10 @@ export default function useAuth() {
             })
         };
 
-    //login user 
+    // login user 
     const loginUser = async (data) => {
         const { username, password } = data;
-            return axios.post('api/auth/login', {
+            return axios.post(`${process.env.REACT_APP_API_URL}api/auth/login`, {
                 username,
                 password,
             }).then(async () => {

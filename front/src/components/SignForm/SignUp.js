@@ -77,7 +77,7 @@ const SignUp = () => {
           if (!accepted.checked)
           acceptedError.innerHTML = "Veuillez valider les conditions générales";
       }else {
-        console.log(axios);
+
         await axios({
           method: "post",
           url: `${process.env.REACT_APP_API_URL}api/auth/signup`,
@@ -88,7 +88,7 @@ const SignUp = () => {
           }
         })
         .then((res) => {
-          console.log(res); 
+          
           if (res.data.errors){
             pseudoError.innerHTML = res.data.errors.pseudo;
             emailError.innerHTML = res.data.errors.email;

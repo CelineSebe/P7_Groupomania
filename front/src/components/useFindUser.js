@@ -6,18 +6,19 @@ export default function useFindUser() {
     const [user, setUser] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
-    useEffect(() =>{
+    useEffect (() =>{
         async function findUser() {
-        await axios.get('api/auth/user')
-        .then(res => {
+        await axios
+        .get `${process.env.REACT_APP_API_URL}api/auth/user`
+        .then (res => {
             setUser(res.data.currentUser);
             setLoading(false);
-        }).catch(err => {
+        })
+        .catch (err => {
             //console.log(err);
             setLoading(false);
         });
         }
-        
         findUser();  
     }, []);
     

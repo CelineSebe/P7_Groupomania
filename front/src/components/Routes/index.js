@@ -1,42 +1,42 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components'
-import { BrowserRouter as Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 import PrivateRoute from '../../pages/PrivateRoute';
+import useFindUser from '../useFindUser';
 import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Login from '../../pages/Login';
-import Trending from '../..//pages/Trending';
+import Trending from '../../pages/Trending';
 
-const GlobalStyle = createGlobalStyle`
-    * {
-      margin: 0px;
-      font-family: "Lato", sans-serif;
-      box-sizing: border-box;
-    }
-`
 
-const routes = () => {
+
+function Routing () {
+
+  const { user, setUser, isLoading } = useFindUser();
+
     return (
+      <Router>
 
-    < GlobalStyle > 
-          <Routes>
+          <UserContext.Provider value={{ user, setUser, isLoading }}>
+            <Routes>
               <Route path="/"
                 exact element= { <Login/> }
                   />
-              <PrivateRoute path="/Home"
+              <Route path="/Home"
                 exact element= { <Home /> }
               />
-              <PrivateRoute path="/Profil"
+              <Route path="/Profil"
                 exact element= {<Profil />}
               />
-              <PrivateRoute path="/Trending"
+              <Route path="/Trending"
                 exact element= {<Trending />}
               />
-          </Routes>
-    </GlobalStyle>
-    
+            </Routes>
+          </UserContext.Provider>
+      </Router>
     );
 };
 
-export default routes;
+export default Routing;
 

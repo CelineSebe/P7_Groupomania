@@ -6,7 +6,6 @@ import colors from '../../utils/style/colors'
 import '../../pages/Login/index';
 
 
-
 const HeaderContainer = styled.header`
   position: fixed;
   top:0px;
@@ -27,7 +26,7 @@ const NavLink = styled.nav`
     {
         display: flex;
         justify-content: center;
-        align-items: space-around;
+        align-items: space-between;
     }
     @media screen and (max-width: 730px)
     {
@@ -36,12 +35,15 @@ const NavLink = styled.nav`
 `
 const ImgHeader = styled.img `
     height: 30px;
-    margin: 0px 20px;
+    margin: 0px 40px;
     @media screen and (max-width: 1023px)
     {
         display: flex;
         justify-content: center;
         align-items: space-around;
+    }
+    @media screen and (max-width: 730px){
+        margin: 0px 10px;
     }
     `
 
@@ -112,7 +114,7 @@ function Header(){
             <ContainerLink>
                 <Link to="/Home" style={{ textDecoration: 'none'}}>
                     <NavContent >
-                    <i class="fa-solid fa-house"></i>
+                    <i className="fa-solid fa-house"></i>
                     </NavContent>
                 </Link>
                 <Link to="/Profil" style={{ textDecoration: 'none'}}>
@@ -122,14 +124,14 @@ function Header(){
                 </Link>
                 <Link to="/Trending" style={{ textDecoration: 'none'}}>
                     <NavContent>
-                    <i class="fa-solid fa-rocket"></i>
+                    <i className="fa-solid fa-rocket"></i>
                     </NavContent>
                 </Link>
             </ContainerLink>
             <ContainerButton>
                 <Link to="/">
                         <LogOutButton>
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <i className="fa-solid fa-right-from-bracket"></i>
                         </LogOutButton>     
                 </Link>
             </ContainerButton>

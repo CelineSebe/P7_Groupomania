@@ -8,7 +8,7 @@ export default function useLogout() {
         try {
            await axios({
                 method: 'GET',
-                url: `${process.env.REACT_APP_API_URL}auth/logout`,
+                url: `${process.env.REACT_APP_API_URL}api/auth/logout`,
             }).then(res => { 
                 console.log(res); 
                 history.push('/');

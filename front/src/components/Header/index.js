@@ -5,6 +5,8 @@ import logo from '../../assets/Logos/icon-left-font-monochrome-white.svg'
 import colors from '../../utils/style/colors'
 import '../../pages/Login/index';
 
+
+
 const HeaderContainer = styled.header`
   position: fixed;
   top:0px;
@@ -21,24 +23,46 @@ const NavLink = styled.nav`
     opacity: 70%;
     font-style: "Lato";
     padding: 3px;
+    @media screen and (max-width: 1023px)
+    {
+        display: flex;
+        justify-content: center;
+        align-items: space-around;
+    }
+    @media screen and (max-width: 730px)
+    {
+        justify-content: flex-start;
+    }
 `
 const ImgHeader = styled.img `
     height: 30px;
+    margin: 0px 20px;
+    @media screen and (max-width: 1023px)
+    {
+        display: flex;
+        justify-content: center;
+        align-items: space-around;
+    }
     `
 
 const ContainerLink = styled.div`
     display: flex;
     justify-content: space-around;
-    font-size: 18px;
     `
 
 const NavContent = styled.p`
     padding: 38px 40px;
     color: white;
+    font-size: medium;
     &:hover{
         cursor: pointer;
         border-bottom: solid 3px #FFF;
-    }`
+    }
+    @media screen and (max-width: 1023px)
+    {
+        padding: 38px 20px;
+    }
+`
 
 const ContainerButton = styled.div `
     position: absolute;
@@ -65,11 +89,16 @@ const LogOutButton = styled.button`
     height: 45px;
     width: 120px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: larger;
     &:hover{
         cursor: pointer;
         background-color: ${colors.secondary};
-    }`
+    }
+    @media screen and (max-width: 1023px) {
+        width: 60px;
+        
+    }
+    `
 // function LogOutClick(){
 //     window.location = './Login'
 //  }
@@ -82,25 +111,25 @@ function Header(){
             </Link>
             <ContainerLink>
                 <Link to="/Home" style={{ textDecoration: 'none'}}>
-                    <NavContent>
-                        Home
+                    <NavContent >
+                    <i class="fa-solid fa-house"></i>
                     </NavContent>
                 </Link>
                 <Link to="/Profil" style={{ textDecoration: 'none'}}>
                     <NavContent>
-                        Profil
+                        <i className="fa-solid fa-user"></i>
                     </NavContent>
                 </Link>
                 <Link to="/Trending" style={{ textDecoration: 'none'}}>
                     <NavContent>
-                        Trending
+                    <i class="fa-solid fa-rocket"></i>
                     </NavContent>
                 </Link>
             </ContainerLink>
             <ContainerButton>
                 <Link to="/">
                         <LogOutButton>
-                            LOGOUT
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </LogOutButton>     
                 </Link>
             </ContainerButton>

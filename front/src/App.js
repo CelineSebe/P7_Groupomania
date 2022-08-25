@@ -1,9 +1,8 @@
 // import axios from 'axios';
-import React from 'react';
+
 import Routes from "./components/Routes";
-import useFindUser from './components/useFindUser';
 import { createGlobalStyle } from 'styled-components';
-import { UserContext } from './components/UserContext';
+
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -15,12 +14,11 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
     
+
     return (
         <>
-        <GlobalStyle />
-        <React.StrictMode>      
+            <GlobalStyle />     
             <Routes />
-        </React.StrictMode>
         </>
     );
 };

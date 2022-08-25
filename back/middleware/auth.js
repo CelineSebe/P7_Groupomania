@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+// const User = require('../models/User');
 
 module.exports = (req, res, next) => {
     try {
@@ -10,6 +11,6 @@ module.exports = (req, res, next) => {
         };
         next();
     } catch(error){
-        res.status(401).json('No token');
+        res.status(401).json('token error');
     }
 };

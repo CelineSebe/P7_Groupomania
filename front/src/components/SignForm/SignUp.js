@@ -84,7 +84,7 @@ const SignUp = () => {
           data: {
             pseudo,
             email,
-            password,
+            password
           }
         })
         .then((res) => {

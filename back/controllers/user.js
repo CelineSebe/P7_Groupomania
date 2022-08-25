@@ -6,9 +6,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
-// On importe le package fs (file system) de Node
-const fs = require("fs");
-
 exports.signup = (req, res, next) => 
 {
     bcrypt.hash(req.body.password, 10)
@@ -32,7 +29,7 @@ exports.login = (req, res, next) => {
         {
             if (user === null) 
             {
-                res.status(401).json({ message: 'Paire login/mot de passe incorrecte'});
+                res.status(401).json({ message: 'user = null'});
             }else 
             {
                 bcrypt.compare(req.body.password, user.password)
@@ -48,7 +45,7 @@ exports.login = (req, res, next) => {
                             userId: user._id,
                             token: jwt.sign
                             (
-                                { userId: user.id },
+                                { userId: user._id },
                                 `${process.env.APP_SECRET}`,
                                 { expiresIn: '24H' }
                             )
@@ -66,4 +63,12 @@ exports.login = (req, res, next) => {
             res.status(500).json({ error })
         });
  };
+
+ exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+});
+    res.status(200).send('user is logged out');
+};
 

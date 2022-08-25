@@ -67,8 +67,8 @@ const SignIn = () => {
             },
             data: {
                 email,
-                password,
-            }, 
+                password
+            },
         })
         .then((res) => {
             console.log(res);

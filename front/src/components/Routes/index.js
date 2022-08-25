@@ -1,39 +1,49 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { UserContext } from '../UserContext';
-import PrivateRoute from '../../pages/PrivateRoute';
-import useFindUser from '../useFindUser';
+// import { UserContext } from '../UserContext';
+import PrivateRoute from '../PrivateRoute';
+// import useFindUser from '../useFindUser';
 import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Login from '../../pages/Login';
 import Trending from '../../pages/Trending';
+import Error from '../Error';
 
 
 
 function Routing () {
 
-  const { user, setUser, isLoading } = useFindUser();
+  // const { user, setUser, isLoading } = useFindUser();
 
     return (
       <Router>
-
-          <UserContext.Provider value={{ user, setUser, isLoading }}>
+          {/* <UserContext.Provider value={{ user, setUser, isLoading }}> */}
             <Routes>
-              <Route path="/"
-                exact element= { <Login/> }
+              <Route exact path="/"
+                element= { <Login/> }
                   />
-              <Route path="/Home"
-                exact element= { <Home /> }
+              <Route exact path="/Home" element=
+                {
+                  // <PrivateRoute>
+                    <Home/>
+                  // </PrivateRoute>
+                }
+              />   
+              <Route exact path="/Profil" element= 
+                {
+                // <PrivateRoute>
+                  <Profil />
+                // </PrivateRoute>
+                }
               />
-              <Route path="/Profil"
-                exact element= {<Profil />}
+              <Route exact path="/Trending"
+                element= {<Trending />}
               />
-              <Route path="/Trending"
-                exact element= {<Trending />}
+              <Route exact path="*"
+                element= {<Error />}
               />
             </Routes>
-          </UserContext.Provider>
+          {/* </UserContext.Provider> */}
       </Router>
     );
 };

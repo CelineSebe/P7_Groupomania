@@ -15,7 +15,6 @@ background-color: ${colors.secondary};
 align-items: center;
 height:100vh;
 `
-
 const LogoContainer = styled.div`
 position: absolute;
 opacity: 95%;
@@ -36,7 +35,6 @@ color: black;
 height: 550px;
 width: 500px;
 `
-
 
 function SignupLogin (props) {
    

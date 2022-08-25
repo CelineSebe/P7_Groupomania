@@ -3,27 +3,30 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 
 const CardContainer =styled.li`
-height: 100vh;
+display: flex;
+justify-content: center;
+width: 80%;
+height: max-content;
 border: solid 2px ${colors.secondary};
-margin: 20px;
+margin: 20px 5px;
 border-radius: 10px;
 
 `
 
 const Card = ( {post} ) => {
-    // const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(true);
     // const userData = useSelector((state) => state.usersReducer);
 
     return (
         
         <CardContainer >
-            {/* {isLoading ? (
+            {isLoading ? (
                 <i className='fas fa-spinner fa-spin'></i>
                ) : (
                <>
-                    <userData />
+                    
                </>
-                )} */}
+                )}
         </CardContainer>
     );
 };

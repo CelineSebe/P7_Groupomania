@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import colors from '../../utils/style/colors';
+// import colors from '../../utils/style/colors';
 import axios from 'axios';
+import AuthContext from '../../store/authContext';
+// import { useContext } from 'react';
+// import AuthForm from './AuthForm';
+import Button from '../Button';
+// import Test from '../Test';
 
 const Signin = styled.div`
 display: flex;
@@ -29,6 +34,7 @@ const FormSubmit = styled.div`
   }
 `
 const HideButton = styled.div`
+display:none;
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -36,22 +42,27 @@ const HideButton = styled.div`
   position: absolute;
   z-index: -1;
 `
-const LabelForButton = styled.label`
-  width: 200px;
-  padding: 10px 0px;
-  text-align: center;
-  font-size: 18px;
-  border-radius: 100px;
-  border: 1px solid ${colors.secondary};
-  &:hover {
-    cursor: pointer;
-    background-color: ${colors.secondary};
-  }
-`
+// const LabelForButton = styled.label`
+//   width: 200px;
+//   padding: 10px 0px;
+//   text-align: center;
+//   font-size: 18px;
+//   border-radius: 100px;
+//   border: 1px solid ${colors.secondary};
+//   &:hover {
+//     cursor: pointer;
+//     background-color: ${colors.secondary};
+//   }
+// `
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [data, setData] = useState();
+    const [isLogin, setIsLogin] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     async function handleLogin (e) {
         e.preventDefault();
@@ -59,30 +70,77 @@ const SignIn = () => {
         const passwordError = document.querySelector('.password.error');
 
         console.log(email, password);
-        await axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_API_URL}api/auth/login`,
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: {
-                email,
-                password
-            },
-        })
-        .then((res) => {
-            console.log(res);
-            if(res.data.error) {
-                emailError.innerHTML = res.data.error;
-                passwordError.innerHTML = res.data.error;
-            } else {
+        // await axios({
+        //     method: 'post',
+        //     url: `${process.env.REACT_APP_API_URL}api/auth/login`,
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     data: {
+        //         email,
+        //         password
+        //     },
+        // })
+        // .then((res) => {
+        //     console.log(res);
+        //     if(res.data.error) {
+        //         emailError.innerHTML = res.data.error;
+        //         passwordError.innerHTML = res.data.error;
+        //     } else {
+                
+        //         window.location ='/Home';
+        //     }
+        // })
+        // .catch((error) => {
+        //     console.log(error.response);
+        // })
+        
+        // se connecter pour récupérer l'userId et le token
+
+        const fetchHandler = async() => {
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+        const dataResponse = await response.json();
+
+        setIsLoading(true);
+
+            if(response.ok){
                 window.location ='/Home';
+                console.log("dataresponse");
+                console.log(dataResponse);
+
+                setData(dataResponse);
+
+                console.log("token");
+                console.log(dataResponse.token);
+                AuthContext.login(dataResponse.token);
+
+            }else{
+                setError(
+                    {
+                        title: "echec de l'authentification",
+                        message: dataResponse.error,
+                    });
+                    emailError.innerHTML = response.data.error;
+                    passwordError.innerHTML = response.data.error;              
             }
-        })
-        .catch((error) => {
-            console.log(error.response);
-        })
-    }
+        }catch{ 
+                console.log("-->error");  
+                console.log(error);
+        }};
+        fetchHandler();
+
+    };
     return (
         
             <Signin>
@@ -124,13 +182,18 @@ const SignIn = () => {
                     </Checkbox>
 
                     <FormSubmit>
-                        <HideButton>
+                        {/* <HideButton>
                             <input type="submit" id="connectAccount" autoComplete='off' style={{border: "none", backgroundColor: "white"}}/>
-                        </HideButton>
-                            <LabelForButton htmlFor="connectAccount" value ="Se connecter">Se connecter</LabelForButton>
+                        </HideButton> */}
+                            {/* <LabelForButton htmlFor="connectAccount" value ="Se connecter">Se connecter</LabelForButton> */}
+                            <Button 
+                            type={"submit"}
+                            onClick={() => {}}> Se connecter </Button>
                     </FormSubmit>
                 </form>
+                
             </Signin>
+        
         
     );
 };

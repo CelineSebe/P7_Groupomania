@@ -16,7 +16,7 @@ border-radius: 10px;
 const index = () => {
     return (
         <TrendingContainer>
-            
+            <h1 style={{fontSize: '18px', textAlign:"center", padding:"5px"}}> Trending</h1>
         </TrendingContainer>
     );
 };

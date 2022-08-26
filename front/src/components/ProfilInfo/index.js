@@ -18,7 +18,7 @@ function ProfilInfo(){
     return(
     <>
         <ProfilContainer>
-            <h1 style={{fontSize: '18px'}}> </h1>
+            <h1 style={{fontSize: '18px', padding:5}}> Profil </h1>
         </ProfilContainer>
 
     </>

@@ -5,6 +5,7 @@ import logo from '../../assets/Logos/icon-left-font-monochrome-black.png'
 import colors from '../../utils/style/colors'
 import SignUp from '../../components/SignForm/SignUp';
 import SignIn from '../../components/SignForm/SignIn';
+import Test from '../../components/Test';
 
 
 const ConnectionForm = styled.div`
@@ -51,7 +52,11 @@ function SignupLogin (props) {
         }       
     }
     return(
+        <>
+        <Test />
+        
         <ConnectionForm>
+            
             <LogoContainer>
                 <Logo src={logo} alt="logo entreprise"/>
                 <ConnectContent>
@@ -64,6 +69,7 @@ function SignupLogin (props) {
                 </ConnectContent>
             </LogoContainer>
         </ConnectionForm>
+        </>
     );
 }
 

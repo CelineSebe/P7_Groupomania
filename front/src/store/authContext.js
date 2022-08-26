@@ -5,17 +5,27 @@ import { createContext, useState } from "react";
 //stockage des données: token, userId etc
 
 const defaultValue = {
-    token: ""
-}
+    token: "",
+    login: () =>{},
+};
 
 const AuthContext = createContext(defaultValue);
 
 //le context provider pour wrapper app.js
 export const AuthContextProvider = (props => {
-    const [token, useToken] = useState(null)
 
+    // stokage du token
+    const [token, setToken] = useState(null)
+
+    //fonction pour mettre à jour le token
+    const loginHandler = (token) => {
+    setToken(token);
+    }
+
+    // valeurs du contexte
     const contextValue = {
         token: token,
+        login: loginHandler,
     }
 
     return(

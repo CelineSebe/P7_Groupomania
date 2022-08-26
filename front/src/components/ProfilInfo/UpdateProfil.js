@@ -1,6 +1,6 @@
 import React from 'react';
 
-const index = () => {
+const UpdateProfil = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default UpdateProfil;

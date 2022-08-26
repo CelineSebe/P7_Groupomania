@@ -1,7 +1,8 @@
 import  React, { useState } from 'react';
 import styled from 'styled-components';
-import colors from '../../utils/style/colors';
+// import colors from '../../utils/style/colors';
 import axios from 'axios';
+import Button from '../Button';
 
 const Signup = styled.div`
 
@@ -11,7 +12,7 @@ justify-content: center;
 width: 300px;
 height: 370px;
 line-height: 20px;
-font-size: 18px;;
+font-size: 16px;
 
 `
 const Checkbox = styled.div`
@@ -25,31 +26,30 @@ font-size: smaller;`
 const FormSubmit = styled.div`
   display: flex;
   justify-content: center;
-  line-height: 50px;;
   &:hover {
     cursor: pointer;
   }
 `
-const HideButton = styled.div`
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-`
-const LabelForButton = styled.label`
-  width: 200px;
-  padding: 10px 0px;
-  text-align: center;
-  font-size: 18px;
-  border-radius: 100px;
-  border: 1px solid ${colors.secondary};
-  &:hover {
-    cursor: pointer;
-    background-color: ${colors.secondary};
-  }
-`
+// const HideButton = styled.div`
+//   width: 0.1px;
+//   height: 0.1px;
+//   opacity: 0;
+//   overflow: hidden;
+//   position: absolute;
+//   z-index: -1;
+// `
+// const LabelForButton = styled.label`
+//   width: 200px;
+//   padding: 10px 0px;
+//   text-align: center;
+//   font-size: 18px;
+//   border-radius: 100px;
+//   border: 1px solid ${colors.secondary};
+//   &:hover {
+//     cursor: pointer;
+//     background-color: ${colors.secondary};
+//   }
+// `
 
 const SignUp = () => {
   const [pseudo, setPseudo] = useState('');
@@ -110,7 +110,8 @@ const SignUp = () => {
                           id='Pseudo' 
                           autoComplete='off' 
                           onChange={(e) => setPseudo(e.target.value)} 
-                          value={pseudo}/>
+                          value={pseudo} 
+                          style={{height: 24}}/>
                     <div className="pseudo error"></div>  
                     <br />
                     <label htmlFor='Email'> Email </label>
@@ -118,7 +119,8 @@ const SignUp = () => {
                             id='Email' 
                             autoComplete='off' 
                             onChange={(e) => setEmail(e.target.value)} 
-                            value={email}/>
+                            value={email}
+                            style={{height: 24}}/>
                     <div className="email error"></div>
                     <br />
                     <label htmlFor='password'> Mot de passe </label>
@@ -126,7 +128,8 @@ const SignUp = () => {
                             id='password' 
                             autoComplete='off' 
                             onChange={(e) => setPassword(e.target.value)} 
-                            value={password}/>
+                            value={password}
+                            style={{height: 24}}/>
                     <div className="password error"></div>
                     <br />
                     <label htmlFor="ControlPassword"> Confirmer le mot de passe </label>
@@ -134,7 +137,8 @@ const SignUp = () => {
                             id="ControlPassword" 
                             autoComplete='off' 
                             onChange={(e) => setControlPassword(e.target.value)} 
-                            value={ControlPassword} />
+                            value={ControlPassword} 
+                            style={{height: 24}}/>
                     <div className="passwordConfirm error" style={{color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />
                     <Checkbox style={{display:"inline-flex",flexDirection: "row",alignItems:"center"}}>
@@ -148,10 +152,14 @@ const SignUp = () => {
                     <div className="accepted error" style={{color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />                   
                     <FormSubmit>
-                        <HideButton>
+                        {/* <HideButton>
                             <input type="submit" value="Valider l'inscription" id="createAccount" autoComplete='off' style={{border: "none", backgroundColor: "white"}}/>
-                        </HideButton>
-                            <LabelForButton htmlFor="createAccount">Créer mon compte</LabelForButton>
+                        </HideButton> */}
+                            {/* <LabelForButton htmlFor="createAccount">Créer mon compte</LabelForButton> */}
+                            <Button 
+                            type={"submit"}
+                            onClick={ () => {} } 
+                            > Créer mon compte </Button>
                     </FormSubmit>
                 </form>                            
             </Signup>

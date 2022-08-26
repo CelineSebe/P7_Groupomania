@@ -11,11 +11,11 @@
 
 // export default PrivateRoute
 
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
-const Private = (Component) => {
-    const auth = false; //your logic
+// const Private = (Component) => {
+//     const auth = false; //your logic
 
-    return auth ? <Component /> : <Navigate to="/" />
-}
-export default Private;
+//     return auth ? <Component /> : <Navigate to="/" />
+// }
+// export default Private;

@@ -63,7 +63,7 @@ const SignUp = () => {
 //utilisation du contexte
 const authCont = useContext(AuthContext);
 console.log("authCont.token");
-console.log(authCont.login)
+console.log(authCont.token)
 
   async function handleRegister (e) {
       e.preventDefault();

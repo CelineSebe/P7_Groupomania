@@ -1,15 +1,16 @@
-import  React, { useState } from 'react';
+import  React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 // import colors from '../../utils/style/colors';
 import axios from 'axios';
 import Button from '../Button';
+import AuthContext from '../../store/authContext';
 
 const Signup = styled.div`
 
 display: flex;
 flex-direction: column;
 justify-content: center;
-width: 300px;
+max-width: 300px;
 height: 370px;
 line-height: 20px;
 font-size: 16px;
@@ -51,12 +52,18 @@ const FormSubmit = styled.div`
 //   }
 // `
 
+
+
 const SignUp = () => {
   const [pseudo, setPseudo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [ControlPassword, setControlPassword] = useState(''); 
 
+//utilisation du contexte
+const authCont = useContext(AuthContext);
+console.log("authCont.token");
+console.log(authCont.login)
 
   async function handleRegister (e) {
       e.preventDefault();
@@ -69,6 +76,20 @@ const SignUp = () => {
 
     passwordConfirmError.innerHTML = "";
     acceptedError.innerHTML = "";
+
+  //   if (setEmail().length === 0 || setPassword().length === 0)
+  //   {
+  //     return
+  //   }
+    
+  //   const regExEmail = (value) =>
+  //   {
+  //     return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+  //   }
+
+  // if(!regExEmail(setEmail)){
+  //     return;
+  // }
 
       if (password !== ControlPassword || !accepted.checked){
           if (password !== ControlPassword)

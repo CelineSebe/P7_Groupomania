@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 // import colors from '../../utils/style/colors';
 import axios from 'axios';
 import AuthContext from '../../store/authContext';
-// import { useContext } from 'react';
-// import AuthForm from './AuthForm';
+import Test from '../Test';
 import Button from '../Button';
-// import Test from '../Test';
+
 
 const Signin = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
-width: 300px;
+max-width: 300px;
 height: 330px;
 line-height: 30px;
 `
@@ -24,8 +23,6 @@ margin: 20px 0px;
 line-height: 20px;
 font-size: smaller;
 `
-
-
 const FormSubmit = styled.div`
   display: flex;
   justify-content: center;
@@ -33,27 +30,6 @@ const FormSubmit = styled.div`
     cursor: pointer;
   }
 `
-const HideButton = styled.div`
-display:none;
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-`
-// const LabelForButton = styled.label`
-//   width: 200px;
-//   padding: 10px 0px;
-//   text-align: center;
-//   font-size: 18px;
-//   border-radius: 100px;
-//   border: 1px solid ${colors.secondary};
-//   &:hover {
-//     cursor: pointer;
-//     background-color: ${colors.secondary};
-//   }
-// `
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -64,10 +40,37 @@ const SignIn = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
+
+//utilisation du contexte
+const authCont = useContext(AuthContext);
+console.log("authCont.token");
+console.log(authCont.login)
+
     async function handleLogin (e) {
         e.preventDefault();
         const emailError = document.querySelector('.email.error');
         const passwordError = document.querySelector('.password.error');
+        const acceptedError = document.querySelector('.accepted.error');
+        
+        // emailError.innerHTML = data.error;
+        //         passwordError.innerHTML = data.error;
+        
+        // if (setEmail().length === 0 || setError().length === 0){
+        //     return
+        // }
+        // const regExEmail = (value) =>{
+        //     return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+        // }
+
+        // if(!regExEmail(setEmail)){
+        //     return;
+        // }
+
+        // if (!acceptedError.checked)
+        // {
+        //     return acceptedError.innerHTML = "Veuillez valider les conditions générales";
+        // }
+         
 
         console.log(email, password);
         // await axios({
@@ -112,10 +115,10 @@ const SignIn = () => {
 
         const dataResponse = await response.json();
 
-        setIsLoading(true);
+        setIsLoading(false);
 
             if(response.ok){
-                window.location ='/Home';
+        
                 console.log("dataresponse");
                 console.log(dataResponse);
 
@@ -123,26 +126,28 @@ const SignIn = () => {
 
                 console.log("token");
                 console.log(dataResponse.token);
-                AuthContext.login(dataResponse.token);
+                authCont.login(dataResponse.token, dataResponse.userId);
 
             }else{
+                
                 setError(
                     {
                         title: "echec de l'authentification",
                         message: dataResponse.error,
                     });
-                    emailError.innerHTML = response.data.error;
-                    passwordError.innerHTML = response.data.error;              
+                             
             }
         }catch{ 
                 console.log("-->error");  
-                console.log(error);
+                console.log(error);   
+                
         }};
         fetchHandler();
-
-    };
-    return (
         
+    }
+    return (
+        <>
+        <Test />
             <Signin>
                 <h1 style={{ fontSize: 26, textAlign:"center", padding: 20}}> Welcome back! </h1>
                 <form action="" onSubmit={handleLogin} id="sign-up-form">
@@ -193,7 +198,7 @@ const SignIn = () => {
                 </form>
                 
             </Signin>
-        
+            </>
         
     );
 };

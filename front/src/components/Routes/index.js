@@ -1,14 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { UserContext } from '../UserContext';
-import PrivateRoute from '../PrivateRoute';
+// import PrivateRoute from '../PrivateRoute';
 // import useFindUser from '../useFindUser';
 import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Login from '../../pages/Login';
 import Trending from '../../pages/Trending';
-import Error from '../Error';
-
+import Error from '../../components/Error/index'
 
 
 function Routing () {
@@ -37,7 +36,11 @@ function Routing () {
                 }
               />
               <Route exact path="/Trending"
-                element= {<Trending />}
+                element= {
+                  // <PrivateRoute>
+                    <Trending />
+                  // </PrivateRoute>
+                  }
               />
               <Route exact path="*"
                 element= {<Error />}

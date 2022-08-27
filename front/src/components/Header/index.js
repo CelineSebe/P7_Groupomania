@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import logo from '../../assets/Logos/icon-left-font-monochrome-white.svg'
 import colors from '../../utils/style/colors'
 import '../../pages/Login/index';
+import { useContext } from 'react';
+import AuthContext from '../../store/authContext';
 
 
 const HeaderContainer = styled.header`
@@ -105,7 +107,14 @@ const LogOutButton = styled.button`
 //     window.location = './Login'
 //  }
 function Header(){
+
+const AuthCont = useContext(AuthContext);
+
+const isLoggedIn = AuthCont.isLoggedIn;
+
+
     return (
+        
     <HeaderContainer>
         <NavLink>
             <Link to="/Home">
@@ -130,7 +139,7 @@ function Header(){
             </ContainerLink>
             <ContainerButton>
                 <Link to="/">
-                        <LogOutButton>
+                        <LogOutButton onClick={AuthCont.logout}>
                             <i className="fa-solid fa-right-from-bracket"></i>
                         </LogOutButton>     
                 </Link>

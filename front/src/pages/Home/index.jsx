@@ -6,6 +6,8 @@ import ProfilInfo from '../../components/ProfilInfo/index'
 import Header from '../../components/Header'
 import TrendingInfo from '../../components/TrendingInfo'
 import Card from '../../components/Publi/Card'
+import { useContext } from 'react'
+import AuthContext from '../../store/authContext'
 
 // import PropTypes from 'prop-types'
 
@@ -94,7 +96,8 @@ margin: 25px 40px;
 
 
 function Home() {
-  
+
+
   return (
   <> 
     <Header/>

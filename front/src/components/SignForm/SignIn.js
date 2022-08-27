@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 // import colors from '../../utils/style/colors';
-import axios from 'axios';
 import AuthContext from '../../store/authContext';
 import Test from '../Test';
 import Button from '../Button';
-
+import Home from '../../pages/Home'
 
 const Signin = styled.div`
 display: flex;
@@ -43,8 +43,8 @@ const SignIn = () => {
 
 //utilisation du contexte
 const authCont = useContext(AuthContext);
-console.log("authCont.token");
-console.log(authCont.login)
+console.log("authCont.login");
+console.log(authCont)
 
     async function handleLogin (e) {
         e.preventDefault();
@@ -145,9 +145,11 @@ console.log(authCont.login)
         fetchHandler();
         
     }
+
+   
     return (
-        <>
-        <Test />
+        
+
             <Signin>
                 <h1 style={{ fontSize: 26, textAlign:"center", padding: 20}}> Welcome back! </h1>
                 <form action="" onSubmit={handleLogin} id="sign-up-form">
@@ -191,14 +193,15 @@ console.log(authCont.login)
                             <input type="submit" id="connectAccount" autoComplete='off' style={{border: "none", backgroundColor: "white"}}/>
                         </HideButton> */}
                             {/* <LabelForButton htmlFor="connectAccount" value ="Se connecter">Se connecter</LabelForButton> */}
+                        <Link to="/Home">
                             <Button 
                             type={"submit"}
-                            onClick={() => {}}> Se connecter </Button>
+                            onClick={authCont.login}> Se connecter </Button>
+                        </Link>
                     </FormSubmit>
                 </form>
                 
             </Signin>
-            </>
         
     );
 };

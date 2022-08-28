@@ -23,7 +23,7 @@ const Button = (props) => {
             onClick={props.onClick} 
             style={{border:"none", backgroundColor:"inherit", fontSize: 16, cursor:"inherit"}}
             >
-                {props.children}
+                {props.children}  
             </button>
         </ButtonStyle>
     );

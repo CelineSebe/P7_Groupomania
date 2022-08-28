@@ -2,9 +2,9 @@ import React from 'react'
 // import DefaultImage from '../../assets/profile.jpg'
 import styled from 'styled-components'
 // import Publi from '../../components/Publi/index'
-import ProfilInfo from '../../components/ProfilInfo/index'
+import ProfilInfo from '../../components/ProfilInfo/ProfilInfo'
 import Header from '../../components/Header'
-import TrendingInfo from '../../components/TrendingInfo'
+import TrendingInfo from '../../components/TrendingInfo/TrendingInfo'
 import Card from '../../components/Publi/Card'
 import { useContext } from 'react'
 import AuthContext from '../../store/authContext'
@@ -42,9 +42,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
 text-align: center;
-width: 15%;
+width: 300px;
 height: 60vh;
-margin: 25px 40px;
+margin: 25px 10px;
   @media screen and (max-width: 1023px)
   {
     height:150px;
@@ -65,7 +65,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 width:70%;
-margin: 25px 0px;
+margin: 25px 30px;
 @media screen and (max-width: 1023px){
   height: 80vh;
   margin: 5px 25px;
@@ -76,14 +76,15 @@ margin: 25px 0px;
     }
 }
 `
-const TrendContainer = styled.div `
-display: flex;
+const Container = styled.div `
+display: none;
 flex-direction: column;
 align-items: center;
-width: 15%;
+width: 300px;
 height: 50vh;
-margin: 25px 40px;
+margin: 25px 50px;
 @media screen and (max-width: 1023px){
+  display:flex;
   height:150px;
     font-size: 8px;
     margin: 10px;
@@ -96,6 +97,9 @@ margin: 25px 40px;
 
 
 function Home() {
+  // const authCont = useContext(AuthContext);
+  // const isLoggedIn = authCont.isLoggedIn;
+
 
 
   return (
@@ -116,9 +120,9 @@ function Home() {
             <Card />
         </PostContainer>
         
-        <TrendContainer>
+        <Container>
             <TrendingInfo />
-        </TrendContainer>
+        </Container>
       </FeedContainer>
     </>
 </>

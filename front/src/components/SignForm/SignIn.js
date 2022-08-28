@@ -149,7 +149,7 @@ console.log(authCont)
    
     return (
         
-
+        <>
             <Signin>
                 <h1 style={{ fontSize: 26, textAlign:"center", padding: 20}}> Welcome back! </h1>
                 <form action="" onSubmit={handleLogin} id="sign-up-form">
@@ -202,6 +202,7 @@ console.log(authCont)
                 </form>
                 
             </Signin>
+            </>
         
     );
 };

@@ -50,10 +50,11 @@ function Routing () {
                   // </PrivateRoute>
                   }
               />}
-            
+            {!isLoggedIn &&
               <Route exact path="*"
                 element= {<Error />}
               />
+            }
             
           </Routes>
           

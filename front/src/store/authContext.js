@@ -34,13 +34,15 @@ const loginHandler = (token, userId, admin) => {
     setUserId(userId);
     setAdmin(admin);
     localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("admin", admin);
     }
 
 //pour se déconnecter (faire passer le token à null)
 const logoutHandler = () => {
     setToken(null);
     setUserId(null);
-    setAdmin(null)
+    setAdmin(null);
     //supprimer la donnée dans le local storage
     localStorage.clear();
   };

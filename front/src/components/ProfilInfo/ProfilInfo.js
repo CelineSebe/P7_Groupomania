@@ -1,7 +1,6 @@
 import React from 'react-dom'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-// import User from '../../../../back/models/User'
 
 const ProfilContainer = styled.div`
 border-color: ${colors.secondary};
@@ -16,7 +15,7 @@ margin: 20px;
 }
 `
 
-function ProfilInfo(){
+function ProfilInfo(props){
 
 
     return(
@@ -26,7 +25,7 @@ function ProfilInfo(){
                 {{textAlign:"center", 
                 padding: 20, 
                 fontSize: '24px', 
-                padding:20}}> Profil 
+                }}> Profil
             </h1>
         </ProfilContainer>
 

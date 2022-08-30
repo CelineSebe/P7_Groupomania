@@ -5,16 +5,15 @@ import axios from 'axios';
 import Button from '../Button';
 import AuthContext from '../../store/authContext';
 
-const Signup = styled.div`
 
+const Signup = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 max-width: 300px;
 height: 370px;
-line-height: 20px;
+line-height: 18px;
 font-size: 16px;
-
 `
 const Checkbox = styled.div`
 height: 20px;
@@ -31,28 +30,6 @@ const FormSubmit = styled.div`
     cursor: pointer;
   }
 `
-// const HideButton = styled.div`
-//   width: 0.1px;
-//   height: 0.1px;
-//   opacity: 0;
-//   overflow: hidden;
-//   position: absolute;
-//   z-index: -1;
-// `
-// const LabelForButton = styled.label`
-//   width: 200px;
-//   padding: 10px 0px;
-//   text-align: center;
-//   font-size: 18px;
-//   border-radius: 100px;
-//   border: 1px solid ${colors.secondary};
-//   &:hover {
-//     cursor: pointer;
-//     background-color: ${colors.secondary};
-//   }
-// `
-
-
 
 const SignUp = () => {
   const [pseudo, setPseudo] = useState('');
@@ -60,10 +37,13 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [ControlPassword, setControlPassword] = useState(''); 
 
+ 
 //utilisation du contexte
 const authCont = useContext(AuthContext);
-console.log("authCont.token");
-console.log(authCont.token)
+console.log("authCont");
+console.log(authCont)
+
+// console.log(email, password);
 
   async function handleRegister (e) {
       e.preventDefault();
@@ -74,39 +54,38 @@ console.log(authCont.token)
       const passwordConfirmError = document.querySelector('.passwordConfirm.error');
       const acceptedError = document.querySelector('.accepted.error');
 
+    pseudoError.innerHTML="";
+    emailError.innerHTML="";
+    passwordError.innerHTML="";
     passwordConfirmError.innerHTML = "";
     acceptedError.innerHTML = "";
 
-  //   if (setEmail().length === 0 || setPassword().length === 0)
-  //   {
-  //     return
-  //   }
-    
-  //   const regExEmail = (value) =>
-  //   {
-  //     return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
-  //   }
-
-  // if(!regExEmail(setEmail)){
-  //     return;
-  // }
-
-      if (password !== ControlPassword || !accepted.checked){
+      if (password !== ControlPassword || !accepted.checked 
+          || pseudo.length === 0 || email.length === 0 || password.length === 0){
           if (password !== ControlPassword)
           passwordConfirmError.innerHTML ="Les mots de passe ne correspondent pas";
 
           if (!accepted.checked)
           acceptedError.innerHTML = "Veuillez valider les conditions générales";
-      }else {
 
+          if(pseudo.length === 0 )
+          pseudoError.innerHTML = "Veuillez remplir le champs requis";
+    
+          if( email.length === 0 )
+          emailError.innerHTML = "Veuillez remplir le champs requis";
+   
+          if( password.length === 0 )
+          passwordError.innerHTML = "Veuillez remplir les informations requises";
+      }else {
+        
         await axios({
           method: "post",
           url: `${process.env.REACT_APP_API_URL}api/auth/signup`,
-          data: {
+          data: ({
             pseudo,
             email,
-            password
-          }
+            password,
+          })
         })
         .then((res) => {
           
@@ -119,6 +98,8 @@ console.log(authCont.token)
         .catch((err) => console.log(err));
       }
   };
+      
+    
  
     return (
         <>
@@ -133,7 +114,7 @@ console.log(authCont.token)
                           onChange={(e) => setPseudo(e.target.value)} 
                           value={pseudo} 
                           style={{height: 24}}/>
-                    <div className="pseudo error"></div>  
+                    <div className="pseudo error" style={{color:"red", fontSize:12, fontWeight:"bold"}}></div>  
                     <br />
                     <label htmlFor='Email'> Email </label>
                     <input type="email" 
@@ -142,7 +123,7 @@ console.log(authCont.token)
                             onChange={(e) => setEmail(e.target.value)} 
                             value={email}
                             style={{height: 24}}/>
-                    <div className="email error"></div>
+                    <div className="email error" style={{color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />
                     <label htmlFor='password'> Mot de passe </label>
                     <input type="password" 
@@ -151,7 +132,7 @@ console.log(authCont.token)
                             onChange={(e) => setPassword(e.target.value)} 
                             value={password}
                             style={{height: 24}}/>
-                    <div className="password error"></div>
+                    <div className="password error" style={{color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />
                     <label htmlFor="ControlPassword"> Confirmer le mot de passe </label>
                     <input type="password" 
@@ -172,15 +153,11 @@ console.log(authCont.token)
                     </Checkbox>
                     <div className="accepted error" style={{color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />                   
-                    <FormSubmit>
-                        {/* <HideButton>
-                            <input type="submit" value="Valider l'inscription" id="createAccount" autoComplete='off' style={{border: "none", backgroundColor: "white"}}/>
-                        </HideButton> */}
-                            {/* <LabelForButton htmlFor="createAccount">Créer mon compte</LabelForButton> */}
-                            <Button 
-                            type={"submit"}
-                            onClick={ () => {} } 
-                            > Créer mon compte </Button>
+                    <FormSubmit>  
+                      
+                      <Button type={"submit"} onClick={ () => {} } >
+                        Créer mon compte 
+                      </Button>
                     </FormSubmit>
                 </form>                            
             </Signup>

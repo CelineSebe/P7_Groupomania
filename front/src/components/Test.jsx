@@ -17,10 +17,6 @@ const isLoggedIn = authCont.isLoggedIn;
         {isLoggedIn && <p> Votre token: {authCont.token}</p>}
         {isLoggedIn && <p> Votre userId: {authCont.userId} </p>}
         {isLoggedIn && <Button onClick={authCont.logout}> "Se déconnecter" </Button>}
-
-
-
-
         </>
     )
 }

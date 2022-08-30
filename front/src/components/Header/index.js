@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-// import PropTypes from 'prop_types'
 import styled from 'styled-components'
 import logo from '../../assets/Logos/icon-left-font-monochrome-white.svg'
 import colors from '../../utils/style/colors'
@@ -72,19 +71,7 @@ const ContainerButton = styled.div `
     position: absolute;
     right: 40px;
 `
-// const AccountButton = styled.button`
-//     background-color: white;
-//     border-color: ${colors.primary};
-//     color: ${colors.primary};
-//     height: 45px;
-//     width: 120px;
-//     border-radius: 6px;
-//     margin: 30px;
-//     font-size: 14px;
-//     &:hover{
-//         cursor: pointer;
-//         background-color: ${colors.secondary};
-//     }`
+
 
 const LogOutButton = styled.button`
     background-color: white;
@@ -103,14 +90,11 @@ const LogOutButton = styled.button`
         
     }
     `
-// function LogOutClick(){
-//     window.location = './Login'
-//  }
+
 function Header(){
 
 const AuthCont = useContext(AuthContext);
 
-const isLoggedIn = AuthCont.isLoggedIn;
 
 
     return (

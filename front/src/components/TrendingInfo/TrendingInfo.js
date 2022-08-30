@@ -27,5 +27,4 @@ function TrendingInfo () {
     );
 };
 
-
 export default TrendingInfo

@@ -34,8 +34,9 @@ height: 50%;
 `
 
 
-function Profil (){
+function Profil (props){
 //  const authCont = useContext(AuthContext)
+console.log(props);
 
 
     return(
@@ -43,12 +44,14 @@ function Profil (){
         <Header />
 				<ProfilPage>
 
-                <h1> Profil de</h1>
-                <ProfilInfoContainer>
-                        <UpdateProfil />
-                    
-                        <ProfilInfo />
-                </ProfilInfoContainer>
+                <h1> Bienvenue {props.user} !</h1>
+                
+                    <ProfilInfoContainer>
+                            <UpdateProfil />
+                        
+                            <ProfilInfo/>
+                    </ProfilInfoContainer>
+                    <p> Nous sommes le {props.date}</p>
                 </ProfilPage>
 
         </>

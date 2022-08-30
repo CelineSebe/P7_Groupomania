@@ -5,9 +5,7 @@ import styled from 'styled-components'
 import ProfilInfo from '../../components/ProfilInfo/ProfilInfo'
 import Header from '../../components/Header'
 import TrendingInfo from '../../components/TrendingInfo/TrendingInfo'
-import Card from '../../components/Publi/Card'
-import { useContext } from 'react'
-import AuthContext from '../../store/authContext'
+import Thread from '../../components/Thread'
 
 // import PropTypes from 'prop-types'
 
@@ -76,7 +74,7 @@ margin: 25px 30px;
     }
 }
 `
-const Container = styled.div `
+const TrendContainer = styled.div `
 display: none;
 flex-direction: column;
 align-items: center;
@@ -96,7 +94,7 @@ margin: 25px 50px;
 `
 
 
-function Home() {
+function Home(props) {
   // const authCont = useContext(AuthContext);
   // const isLoggedIn = authCont.isLoggedIn;
 
@@ -105,27 +103,22 @@ function Home() {
   return (
   <> 
     <Header/>
-    <>
       <FeedContainer >
+
         <ProfilContainer > 
-          
-            < ProfilInfo />
+            < ProfilInfo/>
         </ProfilContainer>
 
         <PostContainer>
-          <h1> Fil d'actu</h1>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+          < Thread />
         </PostContainer>
         
-        <Container>
+        <TrendContainer>
             <TrendingInfo />
-        </Container>
-      </FeedContainer>
-    </>
-</>
+        </TrendContainer>
+
+      </FeedContainer> 
+  </>
     );
 }
 

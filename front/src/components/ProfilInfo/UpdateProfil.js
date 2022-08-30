@@ -14,8 +14,8 @@ margin: 20px;
 const UpdateProfil = () => {
     return (
         <ProfilContainer>
-			<h1 style={{fontSize:"24px", padding:20, textAlign: "center"}}> Photo de profil </h1>
-            
+			<h1 style={{fontSize:"24px", padding:20, textAlign: "center"}}> 
+			Photo de profil </h1>           
         </ProfilContainer>
     );
 };

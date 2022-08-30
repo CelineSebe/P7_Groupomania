@@ -5,7 +5,7 @@ import logo from '../../assets/Logos/icon-left-font-monochrome-black.png'
 import colors from '../../utils/style/colors'
 import SignUp from '../../components/SignForm/SignUp';
 import SignIn from '../../components/SignForm/SignIn';
-
+import Test from '../../components/Test'
 
 
 const ConnectionForm = styled.div`
@@ -54,15 +54,15 @@ function SignupLogin (props) {
     return(
         <>
 
-        
+        <Test />
         <ConnectionForm>
             
             <LogoContainer>
                 <Logo src={logo} alt="logo entreprise"/>
                 <ConnectContent>
                     <ul>
-                        <li onClick={handleModals} id="register" className={signUpModal ? "active-btn" : null}>S'inscrire</li>
-                        <li onClick={handleModals} id="login" className={signInModal ? "active-btn" : null}>Se connecter</li>
+                        <li onClick={handleModals} id="register" className={signUpModal ? "active-btn" : null}>S'inscrire</li>
+                        <li onClick={handleModals} id="login" className={signInModal ? "active-btn" : null}>Se connecter</li>
                     </ul>
                         {signUpModal && < SignUp />}
                         {signInModal && < SignIn />}

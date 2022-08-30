@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../components/Publi/Card';
 import styled from 'styled-components'
+import CreatePubli from './CreatePubli';
 
 
 const ThreadContainer = styled.div`
@@ -19,6 +20,7 @@ const Thread = () => {
     return (
         <ThreadContainer>
             <h1 style={{textAlign: "center"}}> Fil d'actu</h1>
+            <CreatePubli />
             <Card user={dataUser.user} date={dataUser.date}/>
             <Card user={dataUser.user} date={dataUser.date}/>
            

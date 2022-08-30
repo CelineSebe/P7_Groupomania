@@ -33,20 +33,28 @@ const Card = ( props ) => {
     return (
         
         <CardContainer >
-            {!isLoading ? (
-                <i className='fas fa-spinner fa-spin'></i>
-               ) : (
+            {/* {!isLoading ? ( */}
+                <Head>
+                        <img src="" alt=""/>
+                        <p style={{padding: 4, fontSize:16}}>Publication de {props.user}</p>
+                        <p style={{padding: 4, fontSize:10}}> Le {props.date}</p>
+                    </Head>
+                    <Main>
+                    <i className='fas fa-spinner fa-spin'></i>
+                    </Main>
+                
+               {/* ) : ( */}
                <>
-                    <Head>
+                    {/* <Head>
                         <img src="" alt=""/>
                         <p style={{padding: 4, fontSize:16}}>Publication de {props.user}</p>
                         <p style={{padding: 4, fontSize:10}}> Le {props.date}</p>
                     </Head>
                     <Main>
                         <h2> Test </h2>
-                    </Main>
+                    </Main> */}
                </>
-                )}
+                {/* )} */}
         </CardContainer>
     );
 };

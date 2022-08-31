@@ -23,8 +23,8 @@ function ProfilInfo(props){
         <ProfilContainer>
             <h1 style=
                 {{textAlign:"center", 
-                padding: 20, 
-                fontSize: '24px', 
+                padding: 5, 
+                fontSize: '15px', 
                 }}> Profil
             </h1>
         </ProfilContainer>

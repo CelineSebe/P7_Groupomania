@@ -20,8 +20,8 @@ function TrendingInfo () {
     return (
         <TrendingContainer>
             <h1 style=
-                {{fontSize: '24px', 
-                padding:20}}> Tendances
+                {{fontSize: '15px', 
+                padding:5}}> Tendances
             </h1>      
         </TrendingContainer>
     );

@@ -3,10 +3,9 @@ import Card from '../components/Publi/Card';
 import styled from 'styled-components'
 import CreatePubli from './CreatePubli';
 import InfiniteScroll from 'react-infinite-scroller';
-
+import Loading from '../components/Loading'
 
 const ThreadContainer = styled.div`
-  
     width: 70%;
     margin: 0px;
 @media screen and (max-width: 1023px){
@@ -29,7 +28,7 @@ const Thread = () => {
                         pageStart={0}
                         loadMore={Card}
                         hasMore={true}
-                        loader={<div className="loader" key={0}>Loading ...</div>}
+                        loader={<div className="loader" key={0}><Loading/></div>}
                 >
                     {<Card/> }
                     {<Card/> }

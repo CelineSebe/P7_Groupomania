@@ -38,8 +38,6 @@ function Profil (props){
 let userId = JSON.parse(localStorage.getItem('userId'));
 let token= JSON.parse(localStorage.getItem('token'))
 
-console.log(token);
-console.log(userId)
 
 
 

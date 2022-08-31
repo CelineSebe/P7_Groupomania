@@ -14,7 +14,7 @@ display: flex;
 justify-content: center;
 align-items: flex-start;
 position: fixed;
-top:100px;
+top:60px;
 padding: 5px;
 width: 100%;
 height: 100vh;
@@ -45,9 +45,9 @@ height: 60vh;
 margin: 25px 10px;
   @media screen and (max-width: 1023px)
   {
-    height:150px;
+    height:20px;
     font-size: 8px;
-    margin: 10px;
+    margin: 0px;
     &:nth-child(1)
     {
         order: 1;
@@ -63,10 +63,10 @@ display: flex;
 flex-direction: column;
 align-items: center;
 width:70%;
-margin: 25px 30px;
+margin: 10px 30px;
 @media screen and (max-width: 1023px){
   height: 80vh;
-  margin: 5px 25px;
+  margin: 0px 25px;
   width: 100%;
     &:nth-child(2)
     {
@@ -83,9 +83,9 @@ height: 50vh;
 margin: 25px 50px;
 @media screen and (max-width: 1023px){
   display:flex;
-  height:150px;
+  height:20px;
     font-size: 8px;
-    margin: 10px;
+    margin: 0px;
 &:nth-child(3)
 {
     order: 2;

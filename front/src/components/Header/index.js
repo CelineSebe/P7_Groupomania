@@ -18,7 +18,7 @@ const NavLink = styled.nav`
     flex-direction: row;
     align-items: center;
     background: linear-gradient(to right top, #4E5166, white);
-    height: 100px;
+    height: 60px;
     box-shadow: 0px 8px 3px 2px grey 0.5;
     opacity: 70%;
     font-style: "Lato";
@@ -54,7 +54,7 @@ const ContainerLink = styled.div`
     `
 
 const NavContent = styled.p`
-    padding: 38px 40px;
+    padding: 19px 40px;
     color: white;
     font-size: medium;
     &:hover{

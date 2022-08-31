@@ -9,10 +9,10 @@ const ContainerCreatePubli = styled.div`
 display: flex;
 flex-direction: column;
 background-color: white;
-height: 180px;
+height: 120px;
 width: 100%;
-border-radius: 25px;
-margin: 20px 0;
+border-radius: 20px;
+margin: 10px 0;
 /* border: solid 2px ${colors.secondary}; */
 
 `
@@ -20,7 +20,7 @@ const ContainerPublication = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-height: 60%;
+height: 50%;
 width: 100%;
 `
 
@@ -30,7 +30,7 @@ width: 100%;
 `
 const FormStyle = styled.form`
 border-bottom: solid 2px ${colors.secondary};
-margin:40px;
+margin:15px;
 `
 
 const InputStyleDescription= styled.input`
@@ -66,7 +66,8 @@ display: flex;
 justify-content: space-around;
 align-items: flex-start;
 height:50px;
-padding-left: 50px;
+padding-left: 100px;
+padding-top: 10px;
 `
 
 const ButtonPost = styled.button`
@@ -74,8 +75,8 @@ const ButtonPost = styled.button`
     background-color: white;
     border-color: blueviolet;
     color: blueviolet;
-    height: 45px;
-    width: 120px;
+    height: 35px;
+    width: 60px;
     border-radius: 6px;
     font-size: larger;
     &:hover{
@@ -195,7 +196,7 @@ const PreviewImg = styled.div`
                                     }}
                             />
                         </HideButton>
-                            <Button type="addPicture" onClick={() => {}}>
+                            <Button type="addPicture" onClick={() => {}} style={{with: 20}}>
                                 Add image
                             </Button>       
                         <label htmlFor="imgInput" alt="Dossier" src="" >  

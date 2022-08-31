@@ -15,10 +15,7 @@ const ProfilInfoContainer = styled.div`
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
-  
- 
 }
-
 `
 const ProfilPage = styled.div`
 
@@ -36,7 +33,15 @@ height: 50%;
 
 function Profil (props){
 //  const authCont = useContext(AuthContext)
-console.log(props);
+// console.log(props);
+
+let userId = JSON.parse(localStorage.getItem('userId'));
+let token= JSON.parse(localStorage.getItem('token'))
+
+console.log(token);
+console.log(userId)
+
+
 
 
     return(
@@ -44,14 +49,13 @@ console.log(props);
         <Header />
 				<ProfilPage>
 
-                <h1> Bienvenue {props.user} !</h1>
+                {/* <h1> Bienvenue {props.user} !</h1> */}
                 
                     <ProfilInfoContainer>
                             <UpdateProfil />
-                        
                             <ProfilInfo/>
                     </ProfilInfoContainer>
-                    <p> Nous sommes le {props.date}</p>
+                    {/* <p> Nous sommes le {props.date}</p> */}
                 </ProfilPage>
 
         </>

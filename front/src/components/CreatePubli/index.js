@@ -148,7 +148,7 @@ const PreviewImg = styled.div`
  const CreatePubli = ({setApiCalled}) => {
 
     const [description, setDescription] = useState('');
-    const [imagePubli, setImagePubli] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
    
 
     const Post = (e) =>
@@ -162,20 +162,28 @@ const PreviewImg = styled.div`
 
         const data = new FormData()
         data.append('descriptionInput', description)
-        data.append('imagePubli', imagePubli)
+        data.append('imageUrl', imageUrl)
        
-        
         const token = JSON.parse(localStorage.getItem('token'));
-        const headers =
-            {
-            Authorization: `Bearer ${token}`
-            }
+        // const userId =JSON.parse(localStorage.getItem("userId"));
+
+        // const headers =
+        //     {
+        //     Authorization: `Bearer ${token}`
+        //     }
     
         console.log(token);
-        axios
-            .post('http://localhost:5000/api/publis', data,{
-                header: headers,
-            })
+        axios({
+            method:"post",
+            url: `${process.env.REACT_APP_API_URL}api/publis`,
+            header: {
+                "Authorization": `Bearer ${token}`
+                },
+            data: ({
+                description,
+                imageUrl,
+            }),
+        })
             .then((res) => console.log(res))
             .then(function(value){
                 setApiCalled(true)
@@ -186,7 +194,7 @@ const PreviewImg = styled.div`
             descriptionInput.value = ''
         
             removeSelectedImage()
-            setImagePubli(undefined)
+            setImageUrl(undefined)
           }
         
           const [selectedImage, setSelectedImage] = useState('')
@@ -199,7 +207,7 @@ const PreviewImg = styled.div`
         
           const removeSelectedImage = () => {
             setSelectedImage()
-            setImagePubli(undefined)
+            setImageUrl(undefined)
           }
     
 
@@ -236,8 +244,8 @@ const PreviewImg = styled.div`
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => {
-                                    const imagePubli = e.target.files[0]
-                                    setImagePubli(imagePubli)
+                                    const imageUrl = e.target.files[0]
+                                    setImageUrl(imageUrl)
                                     imageChange(e)
                                     }}
                             />

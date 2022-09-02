@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import assets from '../../assets/profile.jpg';
+import assets from '../../assets/user-solid.svg';
 import {
   MDBCard,
   MDBCardBody,
@@ -53,11 +53,10 @@ width: 100%;
 height: auto;
 border-radius: 15px;;
 &:hover{
-    /* background-color: #F8F8F8; */
+    background-color: #F8F8F8;
     cursor: pointer;
 }
 `
-
 
 
  const Card = ( props ) => {
@@ -93,8 +92,8 @@ border-radius: 15px;;
                                 </MDBCardText>
                             </div>
                             <span style={{display: "flex",justifyContent:"space-around", alignItems:"center",padding: "10px"}}>
-                                <MDBBtn href='#'>Like</MDBBtn>
-                                <MDBBtn href='#'>Commenter</MDBBtn>
+                                <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-thumbs-up" /><i class="fa-solid fa-thumbs-up" /></MDBBtn>
+                                <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-comments" /></MDBBtn>
                             </span>
                         </MDBCardBody>
                     </MDBCard>

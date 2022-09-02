@@ -3,8 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import Button from '../../components/Button/index';
-import assets from '../../assets/profile.jpg';
+// import Button from '../../components/Button/index';
+import assets from '../../assets/user-solid.svg';
+
 
 const ContainerCreatePubli = styled.div`
 display: flex;
@@ -79,64 +80,75 @@ padding-top: 0px;
 const ButtonPost = styled.button`
 
 background-color: white;
-    border-color: blueviolet;
-    color: blueviolet;
-    height: 35px;
-    width: 60px;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-top: 10px;
-    &:hover{
+border-color: blueviolet;
+color: blueviolet;
+height: 35px;
+width: 60px;
+border-radius: 6px;
+font-size: 14px;
+margin-top: 10px;
+    &:hover
+    {
         cursor: pointer;
-        background-color: ${colors.secondary};
+        background-color: white;
+        border: none;
     }
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 1023px) 
+    {
         width: 60px;  
     }
 `
-const Hide = styled.div`
-    display:none;
+const Hide= styled.div`
+    width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 `
 // const AddButton = styled.div`
 // width: 10%;
 // height: 50%;
 // `
 
-const ButtonAdd = styled.button`
-
-background-color: white;
-    border-color: ${colors.primary};
-    color:${colors.primary};
-    height: 35px;
-    width: 60px;
-    border-radius: 15px;
-    font-size: 14px;
-    margin-top: 10px;
-    margin-right: 80px;
-    &:hover{
-        cursor: pointer;
-        background-color: ${colors.secondary};
-    }
-    @media screen and (max-width: 1023px) {
-        width: 60px;
-        
+const ButtonAdd = styled.label`
+background-color: ${colors.secondary};
+border-color: ${colors.primary};
+color:${colors.primary};
+height: 35px;
+width: 60px;
+border-radius: 15px;
+font-size: 14px;
+margin-top: 10px;
+margin-right: 80px;
+display: flex;
+justify-content: center;
+align-items: center;
+&:hover{
+    cursor: pointer;
+    background-color: white;
+}
+@media screen and (max-width: 1023px) {
+    width: 60px;       
     }
 `
 
 const ButtonDelete = styled.button`
 background-color: white;
-    border-color: ${colors.primary};
-    color: ${colors.primary};
-    margin: 10px 5px;
-    height: 35px;
-    width: 40px;
-    border-radius: 6px;
-    font-size: larger;
+border-color: ${colors.primary};
+color: ${colors.primary};
+margin: 10px 5px;
+height: 35px;
+width: 40px;
+border-radius: 6px;
+font-size: larger;
     &:hover{
-        cursor: pointer;
-        background-color: ${colors.secondary};
+    cursor: pointer;
+    background-color: ${colors.secondary};
     }
-   `
+`
+
+
 const PreviewImgContainer = styled.div`
 `
 const PreviewImgDiv = styled.div`
@@ -145,11 +157,12 @@ const PreviewImg = styled.div`
 `
 
  
- const CreatePubli = ({setApiCalled}) => {
+const CreatePubli = ({setApiCalled}) => {
 
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
-   
+    const token = JSON.parse(localStorage.getItem('token'));
+    const userId = JSON.parse(localStorage.getItem('userId'));
 
     const Post = (e) =>
     {
@@ -160,29 +173,25 @@ const PreviewImg = styled.div`
         //     descriptionError.innerHTML = "OUPS ! Votre publication est vide !"
         // }
 
-        const data = new FormData()
-        data.append('descriptionInput', description)
-        data.append('imageUrl', imageUrl)
-       
-        const token = JSON.parse(localStorage.getItem('token'));
-        // const userId =JSON.parse(localStorage.getItem("userId"));
-
-        // const headers =
-        //     {
-        //     Authorization: `Bearer ${token}`
-        //     }
+        const dataPost = new FormData ()
+            dataPost.append( "description", description)
+            dataPost.append("imageUrl", imageUrl)
+        
     
         console.log(token);
+        console.log(userId);
+
+        
         axios({
             method:"post",
             url: `${process.env.REACT_APP_API_URL}api/publis`,
-            header: {
-                "Authorization": `Bearer ${token}`
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "multipart/form-data"
                 },
-            data: ({
-                description,
-                imageUrl,
-            }),
+            data:  
+               dataPost
+            
         })
             .then((res) => console.log(res))
             .then(function(value){
@@ -249,13 +258,12 @@ const PreviewImg = styled.div`
                                     imageChange(e)
                                     }}
                             />
-                            </Hide>
-                            <ButtonAdd htmlFor="imgInput" type="addPicture" onClick={() => {}}>
-                                    Add
-                                </ButtonAdd>                                                    
+                        </Hide>
                             <label htmlFor="imgInput" alt="Dossier" src="" > 
                             </label>
-                                
+                            <ButtonAdd htmlFor="imgInput" type="addPicture" onClick={() => {}}>
+                                    <i className="fa-solid fa-camera"></i>
+                            </ButtonAdd>                                                          
                         
                         {selectedImage && (
                             <PreviewImgContainer>
@@ -280,7 +288,9 @@ const PreviewImg = styled.div`
                             )}    
                         <ButtonPost type="submit" id="post"
                                     onClick={Post}>
-                            Post
+                            <div>
+                                <i className="fa-solid fa-paper-plane"></i>
+                            </div>
                         </ButtonPost>
                         <label htmlFor='post'></label>
                     </ContainerButtons>

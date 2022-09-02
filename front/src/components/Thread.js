@@ -8,8 +8,8 @@ import Loading from '../components/Loading'
 const ThreadContainer = styled.div`
     width: 70%;
     margin: 0px;
-@media screen and (max-width: 1023px){
-  width: 60%;}
+    @media screen and (max-width: 1023px){
+    width: 60%;}
 `
 
 const Thread = () => {

@@ -1,8 +1,8 @@
 const multer = require('multer');
 
 const MIME_TYPES = {
-    'images/jpeg': 'jpg',
-    'images/jpeg': 'jpg',
+    'images/jpeg': 'jpeg',
+    'images/jpg': 'jpg',
     'images/png': 'png',
 }
 

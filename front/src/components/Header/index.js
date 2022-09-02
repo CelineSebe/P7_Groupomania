@@ -5,6 +5,7 @@ import colors from '../../utils/style/colors'
 import '../../pages/Login/index';
 import { useContext } from 'react';
 import AuthContext from '../../store/authContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const HeaderContainer = styled.header`

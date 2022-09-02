@@ -64,8 +64,7 @@ align-items: center;
 width:70%;
 margin: 10px 20px;
 @media screen and (max-width: 1023px){
-  height: 80%;
-  margin: 10px 25px;
+  margin: 0px 0px;
   width: 100%;
     &:nth-child(2)
     {

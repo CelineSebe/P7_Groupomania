@@ -1,18 +1,41 @@
 const Publi = require('../models/Publi');
 const fs = require('fs');
-// const { STATUS_CODES } = require('http');
+
+
 
 //Controller POST pour créer une publication
+// exports.createPubli = (req, res, next) =>
+// {
+//     const publiObject = req.body.publi;
+//     // delete publiObject._id;
+//     const publi = new Publi
+//     ({ 
+//         ...publiObject,
+//         userId: req.body.userId,
+//         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        
+//     });
+//     publi.save()
+//     .then(() => { res.status(201).json({message: 'Votre publication est en ligne!'})})
+//     .catch(error => { res.status(400).json( { error })})
+// };
+
 exports.createPubli = (req, res, next) =>
 {
-    const publiObject = JSON.parse(req.body.publi);
-    delete publiObject._id;
-    const publi = new Publi
-    ({ 
-        ...publiObject,
-        userId: req.auth.userId,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    })
+   
+    // delete publiObject._id;  // pkoi delete ??
+    console.log(req.body);
+    console.log("req.body");
+    console.log(req.file);
+
+const dataPubli = {
+    description: req.body.description,
+    userId: req.auth.userId,
+    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/"
+}
+
+    const publi = new Publi(dataPubli)
+
     publi.save()
     .then(() => { res.status(201).json({message: 'Votre publication est en ligne!'})})
     .catch(error => { res.status(400).json( { error })})

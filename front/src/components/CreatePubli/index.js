@@ -28,9 +28,7 @@ justify-content: space-between;
 align-items: center;
 height: 50%;
 width: 90%;
-
 `
-
 
 const FormStyle = styled.div`
 border-bottom: solid 2px ${colors.secondary};
@@ -39,7 +37,7 @@ width: 80%;
 
 const InputStyleDescription= styled.input`
 border: none;
-padding: 15px;
+padding: 10px 0px 15px 15px;
 height: 90%;
 width: 100%;
 &::placeholder {
@@ -58,7 +56,6 @@ border-radius: 50px;
 width: 60px;
 height: 55px;
 margin: 35px 0px 0px 20px;
-
 `
 
 const LabelPostImg = styled.img`
@@ -66,7 +63,6 @@ width: 100%;
 height: 100%;
 border-radius: 50px;
 `
-
 
 const ContainerButtons = styled.div`
 display: flex;
@@ -147,8 +143,6 @@ font-size: larger;
     background-color: ${colors.secondary};
     }
 `
-
-
 const PreviewImgContainer = styled.div`
 `
 const PreviewImgDiv = styled.div`
@@ -157,7 +151,7 @@ const PreviewImg = styled.div`
 `
 
  
-const CreatePubli = ({setApiCalled}) => {
+const CreatePubli = () => {
 
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
@@ -168,16 +162,16 @@ const CreatePubli = ({setApiCalled}) => {
     {
         e.preventDefault()
        
-        // const descriptionError = document.querySelector('.description .error');
-         // if(description.length === 0){
-        //     descriptionError.innerHTML = "OUPS ! Votre publication est vide !"
-        // }
+        const descriptionError = document.querySelector('.description.error');
+         if(description.length === 0){
+            descriptionError.innerHTML = "OUPS ! Votre publication est vide !"
+        }else{
+            descriptionError.innerHTML = '';
 
         const dataPost = new FormData ()
             dataPost.append( "description", description)
             dataPost.append("imageUrl", imageUrl)
         
-    
         console.log(token);
         console.log(userId);
 
@@ -194,17 +188,15 @@ const CreatePubli = ({setApiCalled}) => {
             
         })
             .then((res) => console.log(res))
-            .then(function(value){
-                setApiCalled(true)
-            })
             .catch((err) => console.log(err))
+    }
         
             let descriptionInput = document.getElementById('descriptionInput')
             descriptionInput.value = ''
         
             removeSelectedImage()
             setImageUrl(undefined)
-          }
+        }
         
           const [selectedImage, setSelectedImage] = useState('')
         
@@ -218,12 +210,13 @@ const CreatePubli = ({setApiCalled}) => {
             setSelectedImage()
             setImageUrl(undefined)
           }
+        
     
 
     return (
         <>
             <ContainerCreatePubli>
-                <FormPost onSubmit={Post} id="post">
+                <FormPost onSubmit={Post} id="post" encType='multipart/form-data'>
                     <ContainerPublication>
                         <ProfilImgContainer>
                             <LabelPostImg alt=".jpg" src={assets}/>       
@@ -249,9 +242,8 @@ const CreatePubli = ({setApiCalled}) => {
                     <ContainerButtons>
                         <Hide>
                             <input
-                                id="imgInput"
+                                id="imgUrl"
                                 type="file"
-                                accept="image/*"
                                 onChange={(e) => {
                                     const imageUrl = e.target.files[0]
                                     setImageUrl(imageUrl)
@@ -259,9 +251,9 @@ const CreatePubli = ({setApiCalled}) => {
                                     }}
                             />
                         </Hide>
-                            <label htmlFor="imgInput" alt="Dossier" src="" > 
+                            <label htmlFor="imgUrl" alt="Dossier" src="" > 
                             </label>
-                            <ButtonAdd htmlFor="imgInput" type="addPicture" onClick={() => {}}>
+                            <ButtonAdd htmlFor="imgUrl" type="addPicture" onClick={() => {}}>
                                     <i className="fa-solid fa-camera"></i>
                             </ButtonAdd>                                                          
                         

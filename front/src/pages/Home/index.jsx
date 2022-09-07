@@ -6,6 +6,8 @@ import ProfilInfo from '../../components/ProfilInfo/ProfilInfo'
 import Header from '../../components/Header'
 import TrendingInfo from '../../components/TrendingInfo/TrendingInfo'
 import Thread from '../../components/Thread'
+import AuthContext from '../../store/authContext'
+import { useContext } from 'react'
 
 // import PropTypes from 'prop-types'
 
@@ -19,11 +21,11 @@ width: 100%;
 height: 100%;
 background-color: #F4F3F3;
 
-@media screen and (max-width: 1023px){
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: flex-start;
+  @media screen and (max-width: 1023px){
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 730px){
@@ -93,10 +95,9 @@ margin: 25px 50px;
 
 
 function Home(props) {
-  // const authCont = useContext(AuthContext);
-  // const isLoggedIn = authCont.isLoggedIn;
 
-
+  const authCont = useContext(AuthContext);
+  const isLoggedIn = authCont.isLoggedIn;
 
   return (
   <> 

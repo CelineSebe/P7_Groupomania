@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 
 const ProfilContainer = styled.div`
+display: flex;
+align-items: flex-start;
+justify-content: center;
 background-color: ${colors.secondary};
 width: 600px;
 height: 50vh;

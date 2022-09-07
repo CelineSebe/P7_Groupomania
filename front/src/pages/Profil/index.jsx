@@ -4,26 +4,27 @@ import Header from '../../components/Header';
 import ProfilInfo from '../../components/ProfilInfo/ProfilInfo';
 import UpdateProfil from '../../components/ProfilInfo/UpdateProfil';
 import AuthContext from '../../store/authContext';
-import colors from '../../utils/style/colors';
+// import colors from '../../utils/style/colors';
+// import InfiniteScroll from 'react-infinite-scroller';
+// import Loading from '../../components/Loading';
 
 const ProfilInfoContainer = styled.div`
     display: flex;
-    align-items: flex-start;
-    @media screen and (max-width: 1023px){
+    align-items: center;
+    @media screen and (max-width: 730px){
     display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 `
 const ProfilPage = styled.div`
-
 display:flex; 
 flex-direction: column;
 justify-content: flex-start; 
 align-items:center; 
-margin: 150px 30px;
+margin: 150px 20px;
 position: fixed; 
 width: 100%;
 height: 50%;
@@ -32,28 +33,30 @@ height: 50%;
 
 
 function Profil (props){
-//  const authCont = useContext(AuthContext)
-// console.log(props);
+    const authCont = useContext(AuthContext)
+    const isLoggedIn = authCont.isLoggedIn;
+    console.log(props);
 
 let userId = JSON.parse(localStorage.getItem('userId'));
 let token= JSON.parse(localStorage.getItem('token'))
-
-
-
-
 
     return(
         <>
         <Header />
 				<ProfilPage>
 
-                {/* <h1> Bienvenue {props.user} !</h1> */}
-                
-                    <ProfilInfoContainer>
-                            <UpdateProfil />
-                            <ProfilInfo/>
-                    </ProfilInfoContainer>
-                    {/* <p> Nous sommes le {props.date}</p> */}
+                <h1> Bienvenue {props.user} !</h1>
+                    {/* <InfiniteScroll pageStart={0}
+                        loadMore={"ProfilInfo"}
+                        hasMore={true}
+                        loader={<div className="loader" key={0}></div>}
+                > */}
+                        <ProfilInfoContainer>
+                                <UpdateProfil />
+                                <ProfilInfo/>
+                        </ProfilInfoContainer>
+                        <p> Nous sommes le {props.date}</p>
+                    {/* </InfiniteScroll> */}
                 </ProfilPage>
 
         </>

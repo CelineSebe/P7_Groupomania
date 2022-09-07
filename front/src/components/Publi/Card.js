@@ -10,6 +10,7 @@ import {
   MDBCardImage,
   MDBBtn
 } from 'mdb-react-ui-kit';
+import axios from 'axios';
 
 
 const CardContainer =styled.ul`
@@ -58,23 +59,32 @@ border-radius: 15px;;
 }
 `
 
-
  const Card = ( props ) => {
-    const [isLoading, setLoading] = useState(true);
+    const [isLoadingCard, setisLoadingCard] = useState(true);
+    
 
 
     return (
         
         <CardContainer>
         
-            {!isLoading ? (
+            {!isLoadingCard ? (
                 <>
                 <Main>
-                    <i className='fas fa-spinner fa-spin'></i>
+                    <Head>
+                        <ProfilImgContainer>
+                        <LabelPostImg alt=".jpg" src={assets}/> 
+                        </ProfilImgContainer>
+                    </Head>
+                    <MDBCard>
+
+                        {/* <i className='fas fa-spinner fa-spin'></i> */}
+                    </MDBCard>
+                        
                 </Main>
                 </>
                 ) : ( 
-                    <>            
+                <>            
                     <Main>
                         <Head>
                             <ProfilImgContainer>
@@ -86,19 +96,19 @@ border-radius: 15px;;
                         <MDBCardImage src='https://mdbootstrap.com/img/new/standard/nature/184.webp' position='top' alt='photo' style={{width:"100%"}} />
                         <MDBCardBody>
                             {/* <MDBCardTitle>Card title</MDBCardTitle> */}
-                            <div style={{padding:"10px", borderBottom:"2px solid #F1F1F1"}}>
+                                <div style={{padding:"10px", borderBottom:"2px solid #F1F1F1"}}>
                                 <MDBCardText>
                                 Some quick example text to build on the card title and make up the bulk of the card's content.
                                 </MDBCardText>
                             </div>
                             <span style={{display: "flex",justifyContent:"space-around", alignItems:"center",padding: "10px"}}>
-                                <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-thumbs-up" /><i class="fa-solid fa-thumbs-up" /></MDBBtn>
+                                <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-thumbs-up" /><i className="fa-solid fa-thumbs-up" /></MDBBtn>
                                 <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-comments" /></MDBBtn>
                             </span>
                         </MDBCardBody>
                     </MDBCard>
                     </Main>
-                     </>
+                </>
                 )}
             </CardContainer>
         

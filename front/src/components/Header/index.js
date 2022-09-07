@@ -55,7 +55,7 @@ const ContainerLink = styled.div`
     `
 
 const NavContent = styled.p`
-    padding: 19px 40px;
+    padding: 17px 40px;
     color: white;
     font-size: medium;
     &:hover{
@@ -64,7 +64,7 @@ const NavContent = styled.p`
     }
     @media screen and (max-width: 1023px)
     {
-        padding: 38px 20px;
+        padding: 17px 20px;
     }
 `
 
@@ -95,8 +95,6 @@ const LogOutButton = styled.button`
 function Header(){
 
 const AuthCont = useContext(AuthContext);
-
-
 
     return (
         

@@ -23,16 +23,16 @@ const fs = require('fs');
 exports.createPubli = (req, res, next) =>
 {
    
-    // delete publiObject._id;  // pkoi delete ??
+
     console.log(req.body);
-    console.log("req.body");
-    console.log(req.file);
+
 
 const dataPubli = {
     description: req.body.description,
     userId: req.auth.userId,
-    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/"
+    imageUrl: `${req.protocol}://${req.get('host')}/imageUrl/${req.file.filename}` 
 }
+  
 
     const publi = new Publi(dataPubli)
 

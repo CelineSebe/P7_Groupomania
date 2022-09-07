@@ -13,6 +13,9 @@ margin: 20px;
     background-color:white ;
     cursor: pointer;
 }
+    @media screen and (max-width: 730px){
+        width: 70%;
+    }
 `
 
 function ProfilInfo(props){

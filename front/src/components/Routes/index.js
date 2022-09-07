@@ -22,37 +22,37 @@ function Routing () {
       <Router>
 
             <Routes>
-            {/* {!isLoggedIn && */}
+            {!isLoggedIn &&
               <Route exact path="/"
                 element= { <Login/> }
                   />
-            {/* } */}
-            {/* {isLoggedIn && */}
+             }
+            {isLoggedIn &&
               <Route exact path="/Home" element=
                 {
                   <Home/>
                 }
               />
-              {/* } */}
-              {/* {isLoggedIn && */}
+              } 
+              {isLoggedIn &&
               <Route exact path="/Profil" element= 
                 {
                   <Profil user={dataUser.user} date={dataUser.date}/>
                 }
               />
-              {/* } */}
-              {/* {isLoggedIn && */}
+              }
+              {isLoggedIn &&
               <Route exact path="/Trending"
                 element= {
                     <Trending />
                   }
               />
-              {/* } */}
-            {/* {!isLoggedIn && */}
+              }
+            {!isLoggedIn &&
               <Route exact path="*"
                 element= {<Error />}
               />
-            {/* }    */}
+            }
           </Routes>
       </Router>
     );

@@ -30,7 +30,7 @@ exports.createPubli = (req, res, next) =>
 const dataPubli = {
     description: req.body.description,
     userId: req.auth.userId,
-    imageUrl: `${req.protocol}://${req.get('host')}/imageUrl/${req.file.filename}` 
+    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/"
 }
   
 

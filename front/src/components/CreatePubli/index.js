@@ -195,7 +195,7 @@ const CreatePubli = () => {
             descriptionInput.value = ''
         
             removeSelectedImage()
-            setImageUrl(undefined)
+            setImageUrl()
         }
         
           const [selectedImage, setSelectedImage] = useState('')

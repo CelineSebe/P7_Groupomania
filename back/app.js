@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 //importer variable environnement
 const dotenv = require("dotenv");
 dotenv.config();
+
 //importer les routes
 const publiRoutes = require('./routes/publi');
 const userRoutes = require('./routes/user');
@@ -28,7 +29,6 @@ mongoose.connect(`mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-
 // Configurer CORS: permettre l'utilisation même si un agent utilisateur réalise une requête HTTP multi-origine, 
 // cad lorsqu'il demande une ressource provenant d'un domaine, d'un protocole, d'un port différent 
 // de celui utilisé sur la page courante
@@ -45,8 +45,5 @@ app.use((req, res, next) => {
 app.use("/images", express.static(path.join(__dirname, 'imageUrl'))); 
 app.use("/api/publis", publiRoutes);
 app.use("/api/auth", userRoutes);
-
-
-
 
 module.exports = app;

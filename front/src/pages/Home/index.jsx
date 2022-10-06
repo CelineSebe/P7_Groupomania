@@ -28,7 +28,7 @@ background-color: #F4F3F3;
   align-items: flex-start;
 }
 
-@media screen and (max-width: 730px){
+  @media screen and (max-width: 730px){
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -73,6 +73,7 @@ margin: 10px 20px;
         order: 3;
     }
 }
+
 `
 const TrendContainer = styled.div `
 display: none;

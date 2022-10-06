@@ -24,11 +24,9 @@ root.render(
 
   
   <React.StrictMode >
-
     <AuthContextProvider>
       <App />
     </AuthContextProvider>  
-    
   </React.StrictMode>
 )
 

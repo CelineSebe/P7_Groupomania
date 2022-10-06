@@ -1,6 +1,8 @@
 import React from 'react-dom'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
+import { useState, useContext } from 'react';
+import AuthContext from '../../store/authContext';
 
 const ProfilContainer = styled.div`
 border-color: ${colors.secondary};
@@ -19,7 +21,22 @@ margin: 20px;
 `
 
 function ProfilInfo(props){
+    const authCont = useContext(AuthContext)
+    const isLoggedIn = authCont.isLoggedIn;
 
+const [user, setUser] = useState('');
+const { dataLocalStorage } = useContext(AuthContext);
+
+// useEffect(() => {
+//     axios.get(`${process.env.REACT_APP_API_URL}api/auth/user`, {
+//         headers: {
+//             accessToken:  dataLocalStorage
+//         }
+//     })
+//     .then((response) => {
+//         setUser(response.data);
+//     });
+// }, [dataLocalStorage])
 
     return(
     <>
@@ -28,7 +45,7 @@ function ProfilInfo(props){
                 {{textAlign:"center", 
                 padding: 5, 
                 fontSize: '15px', 
-                }}> Profil
+                }}> Profil de {props.user}
             </h1>
         </ProfilContainer>
 

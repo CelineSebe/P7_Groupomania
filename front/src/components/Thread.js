@@ -6,11 +6,15 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Loading from '../components/Loading'
 
 const ThreadContainer = styled.div`
-    width: 70%;
+    width: 60%;
     margin: 0px;
     @media screen and (max-width: 1023px){
-    width: 60%;}
+    width: 70%;}
+    @media screen and (max-width: 730px){
+    width: 90%;
+    }
 `
+
 
 const Thread = () => {
 
@@ -21,7 +25,7 @@ const Thread = () => {
 
     return (
         <ThreadContainer>
-            <h1 style={{textAlign: "center", fontSize:24}}> News</h1>
+            <h1 style={{textAlign: "center", fontSize:18}}> News</h1>
             <CreatePubli />
             <div style={{height:"900px", overflow:"auto"}}>
                 <InfiniteScroll

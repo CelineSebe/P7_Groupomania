@@ -13,14 +13,10 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
 
-    
-
     return (
         <> 
-        
-        <GlobalStyle />     
-        <Routes />
-        
+            <GlobalStyle />     
+            <Routes />
         </>
 
     );

@@ -234,7 +234,7 @@ const CreatePubli = () => {
                                 />
                             <label htmlFor="descriptionInput" style={{ display: 'none' }}>
                             </label>
-                            <div className='description error'></div>
+                            
                         </FormStyle>
                     
                     </ContainerPublication>
@@ -288,6 +288,7 @@ const CreatePubli = () => {
                     </ContainerButtons>
                 </FormPost>
             </ContainerCreatePubli>
+            <div className='description error' style={{fontSize: 16, color: "red", textAlign: "center", paddingTop: 2}}></div>
         </>
         
     );

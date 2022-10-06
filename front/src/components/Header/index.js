@@ -14,6 +14,7 @@ const HeaderContainer = styled.header`
   width: 100%;
   margin-bottom: 10px;
   `
+  
 const NavLink = styled.nav`
     display: flex;
     flex-direction: row;

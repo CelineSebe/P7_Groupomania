@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../../assets/Logos/icon-left-font-monochrome-white.svg'
@@ -5,7 +6,7 @@ import colors from '../../utils/style/colors'
 import '../../pages/Login/index';
 import { useContext } from 'react';
 import AuthContext from '../../store/authContext';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const HeaderContainer = styled.header`

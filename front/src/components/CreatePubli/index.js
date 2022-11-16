@@ -55,7 +55,7 @@ align-items: center;
 border-radius: 50px;
 width: 60px;
 height: 55px;
-margin: 35px 0px 0px 20px;
+margin: 45px 0px 0px 20px;
 `
 
 const LabelPostImg = styled.img`
@@ -70,7 +70,7 @@ justify-content: space-around;
 align-items: flex-start;
 height:50px;
 padding-left: 100px;
-padding-top: 0px;
+
 `
 
 const ButtonPost = styled.button`

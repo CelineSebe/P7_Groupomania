@@ -1,4 +1,5 @@
-import  React, { useContext, useState } from 'react';
+import React from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 // import colors from '../../utils/style/colors';
 import axios from 'axios';
@@ -22,14 +23,6 @@ margin: 5px 0px;
 line-height: 10px;
 font-size: smaller;`
 
-
-const FormSubmit = styled.div`
-  display: flex;
-  justify-content: center;
-  &:hover {
-    cursor: pointer;
-  }
-`
 
 const SignUp = () => {
   const [pseudo, setPseudo] = useState('');
@@ -79,8 +72,8 @@ console.log(authCont)
       }else {
         
         await axios({
-          method: "post",
-          url: `${process.env.REACT_APP_API_URL}api/auth/signup`,
+          method: "POST",
+          url: 'http://localhost:3000/api/auth/signup',
           data: ({
             pseudo,
             email,
@@ -153,12 +146,10 @@ console.log(authCont)
                     </Checkbox>
                     <div className="accepted error" style={{color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />                   
-                    <FormSubmit>  
-                      
-                      <Button type={"submit"} onClick={ () => {} } >
+                    <Button type={"submit"} onClick={ () => {} } >
                         Créer mon compte 
-                      </Button>
-                    </FormSubmit>
+                    </Button>
+                
                 </form>                            
             </Signup>
         </>

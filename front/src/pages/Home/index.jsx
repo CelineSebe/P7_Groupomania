@@ -97,8 +97,8 @@ margin: 25px 50px;
 
 function Home(props) {
 
-  const authCont = useContext(AuthContext);
-  const isLoggedIn = authCont.isLoggedIn;
+  // const authCont = useContext(AuthContext);
+  // const isLoggedIn = authCont.isLoggedIn;
 
   return (
   <> 

@@ -3,7 +3,8 @@ import colors from '../../utils/style/colors';
 import styled from 'styled-components';
 
  const ButtonStyle = styled.div`
-  
+  display: flex;
+  justify-content: center;
   padding: 15px 45px;
   text-align: center;
   border-radius: 100px;

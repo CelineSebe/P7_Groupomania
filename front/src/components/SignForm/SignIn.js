@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 // import AuthContext from '../../store/authContext';
 // import Test from '../Test';
@@ -22,16 +22,10 @@ margin: 20px 0px;
 line-height: 20px;
 font-size: smaller;
 `
-const FormSubmit = styled.div`
-  display: flex;
-  justify-content: center;
-  &:hover {
-    cursor: pointer;
-  }
-`
 
 const SignIn = () => 
 {
+    const [pseudo, setPseudo] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -67,18 +61,21 @@ const SignIn = () =>
     
         // se connecter pour récupérer l'userId et le token
         axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_API_URL}api/auth/login`,
+            method: 'POST',
+            url: 'http://localhost:3000/api/auth/login',
             data: ({
+                pseudo,
                 email,
                 password
             }),
         })
         .then((res) => {
             console.log(res);
+            localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo));
             localStorage.setItem('userId', JSON.stringify(res.data.userId));
             localStorage.setItem('token', JSON.stringify(res.data.token));
-            window.location=`./Home`
+            localStorage.setItem('profil', JSON.stringify(res.data.profil));            
+            window.location='./Home'
             
         })
         .catch((error) => {
@@ -179,12 +176,11 @@ const SignIn = () =>
                     </Checkbox>
                     <div className="accepted error" style={{display:"flex",color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />
-                    <FormSubmit>
-                        <Button 
+                    <Button 
                             type={"submit"}
                             onClick={()=>{}}> Se connecter 
-                        </Button>
-                    </FormSubmit>
+                    </Button>
+
                 </form>
                 
             </Signin>

@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState} from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import assets from '../../assets/user-solid.svg';
@@ -10,7 +10,6 @@ import {
   MDBCardImage,
   MDBBtn
 } from 'mdb-react-ui-kit';
-import AuthContext from '../../store/authContext';
 
 
 const CardContainer =styled.ul`
@@ -61,8 +60,8 @@ border-radius: 15px;;
 
  const Card = ( props ) => {
     const [isLoadingCard, setisLoadingCard] = useState(true);
-    const authCont = useContext(AuthContext);
-    const isLoggedIn = authCont.isLoggedIn;
+    // const authCont = useContext(AuthContext);
+    // const isLoggedIn = authCont.isLoggedIn;
 
 
     return (

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const auth = require ('../middleware/auth');
 const userCtrl = require('../controllers/user');
-// const { checkUser } = require("../middleware/auth")
+const { checkUser } = require("../middleware/auth")
 
 // const multer = require("multer");
 // const upload = multer();

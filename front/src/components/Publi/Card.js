@@ -1,7 +1,10 @@
-import React, { useState} from 'react';
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import assets from '../../assets/user-solid.svg';
+import { dateFormat } from '../../utils/DateFormat'
 import {
   MDBCard,
   MDBCardBody,
@@ -57,40 +60,48 @@ border-radius: 15px;;
     cursor: pointer;
 }
 `
+const PostCreation =styled.div`
+    font-size: 12px;
+  padding-top: 13px;
+  margin: 0;
+`
 
  const Card = ( props ) => {
-    const [isLoadingCard, setisLoadingCard] = useState(true);
+    // const [isLoadingCard, setisLoadingCard] = useState(true);
     // const authCont = useContext(AuthContext);
     // const isLoggedIn = authCont.isLoggedIn;
 
+    let pseudo = localStorage.getItem('pseudo');
+    let token = localStorage.getItem('token');
+    // se connecter pour récupérer l'userId et le token
+    axios({
+        method: "get",
+        url: "http://localhost:5000/api/publis",
+        data: ({
+            token
+        }),
+    })
+    .then((res) => {
+        console.log(res);
+        
+    })
+    .catch((error) => {
+        console.log(error);
+    })
 
     return (
         
         <CardContainer>
         
-            {!setisLoadingCard ? (
-                <>
-                <Main>
-                    <Head>
-                        <ProfilImgContainer>
-                        <LabelPostImg alt=".jpg" src={assets}/> 
-                        </ProfilImgContainer>
-                    </Head>
-                    <MDBCard>
-
-                        <i className='fas fa-spinner fa-spin'></i>
-                    </MDBCard>
-                        
-                </Main>
-                </>
-                ) : ( 
+            {/* {!setisLoadingCard ? ( */}
+                {/* <i className='fas fa-spinner fa-spin'></i> */}
                 <>            
                     <Main>
                         <Head>
                             <ProfilImgContainer>
                                 <LabelPostImg alt=".jpg" src={assets}/> 
                             </ProfilImgContainer>
-                            <p style={{padding: 10, fontSize:16}}>Publication de {props.user}</p>
+                            <p style={{padding: 10, fontSize:16}}>Publication de {pseudo}</p>
                         </Head>
                     <MDBCard>
                         <MDBCardImage src='https://mdbootstrap.com/img/new/standard/nature/184.webp' position='top' alt='photo' style={{width:"100%"}} />
@@ -99,6 +110,10 @@ border-radius: 15px;;
                                 <div style={{padding:"10px", borderBottom:"2px solid #F1F1F1"}}>
                                 <MDBCardText>
                                 Some quick example text to build on the card title and make up the bulk of the card's content.
+                                <PostCreation>
+                                    Créé il y a{' '}
+                                    {dateFormat(new Date(), 'MMM dd yyyy')}
+                                    </PostCreation>
                                 </MDBCardText>
                             </div>
                             <span style={{display: "flex",justifyContent:"space-around", alignItems:"center",padding: "10px"}}>
@@ -109,7 +124,6 @@ border-radius: 15px;;
                     </MDBCard>
                     </Main>
                 </>
-                )}
             </CardContainer>
         
             )

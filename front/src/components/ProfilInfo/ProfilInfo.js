@@ -21,22 +21,8 @@ margin: 20px;
 `
 
 function ProfilInfo(props){
-    // const authCont = useContext(AuthContext)
-    // const isLoggedIn = authCont.isLoggedIn;
 
-// const [user, setUser] = useState('');
-// const { dataLocalStorage } = useContext(AuthContext);
-
-// useEffect(() => {
-//     axios.get(`${process.env.REACT_APP_API_URL}api/auth/user`, {
-//         headers: {
-//             accessToken:  dataLocalStorage
-//         }
-//     })
-//     .then((response) => {
-//         setUser(response.data);
-//     });
-// }, [dataLocalStorage])
+let pseudo = localStorage.getItem('pseudo');
 
     return(
     <>
@@ -45,7 +31,7 @@ function ProfilInfo(props){
                 {{textAlign:"center", 
                 padding: 5, 
                 fontSize: '15px', 
-                }}> Profil de {props.user}
+                }}> Profil de {pseudo}
             </h1>
         </ProfilContainer>
 

@@ -33,10 +33,8 @@ height: 50%;
 
 
 function Profil (props){
-    // const authCont = useContext(AuthContext)
-    // const isLoggedIn = authCont.isLoggedIn;
-    console.log(props);
-
+    
+    let pseudo = localStorage.getItem('pseudo');
 // let userId = JSON.parse(localStorage.getItem('userId'));
 // let token= JSON.parse(localStorage.getItem('token'))
 
@@ -45,7 +43,7 @@ function Profil (props){
         <Header />
 				<ProfilPage>
 
-                <h1> Bienvenue {props.user} !</h1>
+                <h1> Bienvenue {pseudo} !</h1>
                     {/* <InfiniteScroll pageStart={0}
                         loadMore={"ProfilInfo"}
                         hasMore={true}

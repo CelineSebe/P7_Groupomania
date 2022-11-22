@@ -42,6 +42,7 @@ exports.login = (req, res, next) => {
                     {
                         res.status(200).json
                         ({
+                            pseudo: user.pseudo,
                             userId: user._id,
                             token: jwt.sign
                             (

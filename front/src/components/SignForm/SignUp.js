@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // import colors from '../../utils/style/colors';
 import axios from 'axios';
 import Button from '../Button';
-import AuthContext from '../../store/authContext';
+// import AuthContext from '../../store/authContext';
 
 
 const Signup = styled.div`
@@ -32,9 +32,9 @@ const SignUp = () => {
 
  
 //utilisation du contexte
-const authCont = useContext(AuthContext);
-console.log("authCont");
-console.log(authCont)
+// const authCont = useContext(AuthContext);
+// console.log("authCont");
+// console.log(authCont)
 
 // console.log(email, password);
 
@@ -72,12 +72,12 @@ console.log(authCont)
       }else {
         
         await axios({
-          method: "POST",
-          url: 'http://localhost:3000/api/auth/signup',
+          method: "post",
+          url: "http://localhost:5000/api/auth/signup",
           data: ({
             pseudo,
             email,
-            password,
+            password
           })
         })
         .then((res) => {

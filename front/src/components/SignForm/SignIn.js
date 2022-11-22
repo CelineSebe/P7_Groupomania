@@ -61,21 +61,20 @@ const SignIn = () =>
     
         // se connecter pour récupérer l'userId et le token
         axios({
-            method: 'POST',
-            url: 'http://localhost:3000/api/auth/login',
+            method: "post",
+            url: "http://localhost:5000/api/auth/login",
             data: ({
-                pseudo,
                 email,
                 password
             }),
         })
         .then((res) => {
             console.log(res);
-            localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo));
+            localStorage.setItem('pseudo', res.data.pseudo);
             localStorage.setItem('userId', JSON.stringify(res.data.userId));
             localStorage.setItem('token', JSON.stringify(res.data.token));
-            localStorage.setItem('profil', JSON.stringify(res.data.profil));            
-            window.location='./Home'
+            // localStorage.setItem('profil', JSON.stringify(res.data.profil));        
+            window.location='./Home';
             
         })
         .catch((error) => {

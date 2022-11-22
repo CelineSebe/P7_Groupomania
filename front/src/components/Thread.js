@@ -18,10 +18,6 @@ const ThreadContainer = styled.div`
 
 const Thread = () => {
 
-    // const dataUser = {
-    //     user: "Choupi",
-    //     date: Date(),       
-    // }
 
     return (
         <ThreadContainer>

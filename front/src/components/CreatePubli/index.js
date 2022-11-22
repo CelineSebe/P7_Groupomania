@@ -70,7 +70,6 @@ justify-content: space-around;
 align-items: flex-start;
 height:50px;
 padding-left: 100px;
-
 `
 
 const ButtonPost = styled.button`
@@ -178,7 +177,7 @@ const CreatePubli = () => {
         
         axios({
             method:"post",
-            url: `${process.env.REACT_APP_API_URL}api/publis`,
+            url: `http://localhost:3000/api/publis`,
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "multipart/form-data"

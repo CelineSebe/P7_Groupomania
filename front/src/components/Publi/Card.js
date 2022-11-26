@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import assets from '../../assets/user-solid.svg';
+import { PropTypes } from 'react';
 import { dateFormat } from '../../utils/DateFormat'
 import {
   MDBCard,
@@ -62,8 +63,8 @@ border-radius: 15px;;
 `
 const PostCreation =styled.div`
     font-size: 12px;
-  padding-top: 13px;
-  margin: 0;
+    padding-top: 13px;
+    margin: 0;
 `
 
  const Card = ( props ) => {
@@ -72,22 +73,7 @@ const PostCreation =styled.div`
     // const isLoggedIn = authCont.isLoggedIn;
 
     let pseudo = localStorage.getItem('pseudo');
-    let token = localStorage.getItem('token');
-    // se connecter pour récupérer l'userId et le token
-    axios({
-        method: "get",
-        url: "http://localhost:5000/api/publis",
-        data: ({
-            token
-        }),
-    })
-    .then((res) => {
-        console.log(res);
-        
-    })
-    .catch((error) => {
-        console.log(error);
-    })
+    
 
     return (
         
@@ -129,6 +115,17 @@ const PostCreation =styled.div`
             )
         
         }
+
+        // Card.propTypes = {
+        //     description: PropTypes.string.isRequired,
+        //     pseudo: PropTypes.string.isRequired,
+        //   }
+
+        // Card.defaultProps = {
+        //     description: 'Description du post',
+        //     pseudo: 'Pseudo',
+        //     creationTime: '00:00:00',
+        //   }
 
 
 export default Card;

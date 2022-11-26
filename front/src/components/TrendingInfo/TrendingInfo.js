@@ -13,7 +13,11 @@ height: 50vh;
 border: solid 2px ${colors.secondary};
 border-radius: 5px;
 margin: 20px;
+@media screen and (max-width: 730px){
+  display: none;
+}
 `
+
 
 
 function TrendingInfo () {

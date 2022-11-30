@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import Card from '../components/Publi/Card';
 import styled from 'styled-components';
 import CreatePubli from './CreatePubli';
-import InfiniteScroll from 'react-infinite-scroller';
-import Loading from '../components/Loading'
+// import InfiniteScroll from 'react-infinite-scroller';
+// import Loading from '../components/Loading'
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -24,14 +24,12 @@ const H1Thread = styled.h1`
     display: none;
     }
 `
-
-
-const MapData = ({ apiCalled, setApiCalled }) => {
+const MapData = () => {
     
     let token = JSON.parse(localStorage.getItem('token'));
     
     // se connecter pour récupérer l'userId et le token
-    const [postData, setPostData] = useState([])
+    const [postData, setPostData] = useState()
 
      useEffect(() => {
         axios({
@@ -39,68 +37,50 @@ const MapData = ({ apiCalled, setApiCalled }) => {
             url: `http://localhost:5000/api/publis`,
             headers: {
                 "Authorization": `Bearer ${token}`,
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "application/json",
                 },
-         
-            
         })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+            .then((res) => {
+                setPostData(res.data);
+                // console.log(res.data)
+            })
+            
+            .catch((error) => {
+                console.log(error);
+                alert(
+                    'Toutes nos excuses, impossible de se connecter à la base de données'
+                  )})
     }
- ,[apiCalled])
-
-    const isNoPost = postData.length !== 0 ? true : false
-    return isNoPost ? (
-                <InfiniteScroll>
-                    {postData.map((card, index) => (
-                    <Card
-                        _id = {card._id}
-                        userId = {card.userId}
-                        description={card.description}
-                        imageUrl={card.imageUrl}
-                        date={card.date}
-                        likes={card.likes}
-                        dislikes={card.dislikes}
-                        usersLikes={card.usersLikes}
-                        usersDislikes={card.usersDislikes}
-                        setApiCalled={setApiCalled}
-                        index={index}
-                    />
+ ,[postData])
+console.log(postData)
+   if(postData)return(
+                <>
+                    {postData.map((card) => (
+                        <Card image={card.imageUrl} description={card.description} />
+                        // <ul key={card._id} style={{flexDirection:"column"}}>
+                        // {/* <li> {card.userId} </li> */}
+                        // <li style={{width: "100%"}}><img src={card.imageUrl}></img> </li>
+                        // <li style={{width: "100%"}}> {card.description} </li>
+                        
+                        // </ul>
                     ))}
-                </InfiniteScroll>
+                </>
         
-        ) : (
-            <InfiniteScroll>
-                {<Card/> }
-                {<Card/> }
-                {<Card/> }
-                {<Card/> }
-                {<Card/> }
-                {<Card/> }
-                {<Card/> }
-                {<Card/> }
-            </InfiniteScroll>
-        )
+        );
 }
 
 function Feed() {
-    const [apiCalled, setApiCalled] = useState(null)
-  
-    let login = JSON.parse(localStorage.getItem('login'))
-  
-    // if (!login) {
-    //   return <Navigate to="/" />
-    // }
+    const [apiCalled, setApiCalled] = useState()
+
   
     return (
         <ThreadContainer>
             <H1Thread> News</H1Thread>
             <CreatePubli setApiCalled={setApiCalled}/>
-            <div style={{height:"900px", overflow:"auto"}}>
+            <div style={{height:"900px", overflow:"auto", width:"100%"}}>
                 <MapData apiCalled={apiCalled} setApiCalled={setApiCalled} />
             </div>
         </ThreadContainer>
-      
     )
   }
 

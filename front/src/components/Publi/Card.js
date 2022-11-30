@@ -67,8 +67,8 @@ const PostCreation =styled.div`
     margin: 0;
 `
 
- const Card = ( props ) => {
-    // const [isLoadingCard, setisLoadingCard] = useState(true);
+ const Card = ( {description, imageUrl} ) => {
+    const [isLoadingCard, setisLoadingCard] = useState(true);
     // const authCont = useContext(AuthContext);
     // const isLoggedIn = authCont.isLoggedIn;
 
@@ -79,53 +79,41 @@ const PostCreation =styled.div`
         
         <CardContainer>
         
-            {/* {!setisLoadingCard ? ( */}
-                {/* <i className='fas fa-spinner fa-spin'></i> */}
-                <>            
-                    <Main>
-                        <Head>
-                            <ProfilImgContainer>
-                                <LabelPostImg alt=".jpg" src={assets}/> 
-                            </ProfilImgContainer>
-                            <p style={{padding: 10, fontSize:16}}>Publication de {pseudo}</p>
-                        </Head>
-                    <MDBCard>
-                        <MDBCardImage src='https://mdbootstrap.com/img/new/standard/nature/184.webp' position='top' alt='photo' style={{width:"100%"}} />
-                        <MDBCardBody>
-                            {/* <MDBCardTitle>Card title</MDBCardTitle> */}
-                                <div style={{padding:"10px", borderBottom:"2px solid #F1F1F1"}}>
-                                <MDBCardText>
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
+            {/* {!setisLoadingCard} ? (
+                 <i className='fas fa-spinner fa-spin'></i>
+                <> ) : (            */}
+                <Main>
+                    <Head>
+                        <ProfilImgContainer>
+                            <LabelPostImg alt=".jpg" src={assets}/> 
+                        </ProfilImgContainer>
+                        <p style={{padding: 10, fontSize:16}}>Publication de {pseudo}</p>
+                    </Head>
+                <MDBCard>
+                    <MDBCardImage src={imageUrl} position='top' alt='photo' style={{width:"100%"}} />
+                    <MDBCardBody>
+                        <div style={{padding:"10px", borderBottom:"2px solid #F1F1F1"}}>
+                            <MDBCardText>
+                                <div>{description}</div>
                                 <PostCreation>
                                     Créé il y a{' '}
                                     {dateFormat(new Date(), 'MMM dd yyyy')}
-                                    </PostCreation>
-                                </MDBCardText>
-                            </div>
-                            <span style={{display: "flex",justifyContent:"space-around", alignItems:"center",padding: "10px"}}>
-                                <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-thumbs-up" /><i className="fa-solid fa-thumbs-up" /></MDBBtn>
-                                <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-comments" /></MDBBtn>
-                            </span>
-                        </MDBCardBody>
-                    </MDBCard>
-                    </Main>
-                </>
+                                </PostCreation>
+                            </MDBCardText>
+                        </div>
+                        <span style={{display: "flex",justifyContent:"space-around", alignItems:"center",padding: "10px"}}>
+                            <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-thumbs-up" /><i className="fa-solid fa-thumbs-up" /></MDBBtn>
+                            <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-comments" /></MDBBtn>
+                        </span>
+                    </MDBCardBody>
+                </MDBCard>
+                </Main>
+                {/* ) */}
+                {/* </> */}
             </CardContainer>
-        
-            )
+                )
         
         }
-
-        // Card.propTypes = {
-        //     description: PropTypes.string.isRequired,
-        //     pseudo: PropTypes.string.isRequired,
-        //   }
-
-        // Card.defaultProps = {
-        //     description: 'Description du post',
-        //     pseudo: 'Pseudo',
-        //     creationTime: '00:00:00',
-        //   }
 
 
 export default Card;

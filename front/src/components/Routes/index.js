@@ -10,10 +10,7 @@ import AuthContext from '../../store/authContext';
 
 function Routing () {
 
-  const dataUser = {
-    user: "Choupi",
-    date: Date(),  
-}
+  const pseudo = localStorage.getItem('pseudo');
   const authCont = useContext(AuthContext);
 
   const isLoggedIn = authCont.isLoggedIn;
@@ -37,7 +34,7 @@ function Routing () {
               {isLoggedIn &&
               <Route exact path="/Profil" element= 
                 {
-                  <Profil user={dataUser.user} date={dataUser.date}/>
+                  <Profil user={pseudo}/>
                 }
               />
               }

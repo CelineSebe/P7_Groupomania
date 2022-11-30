@@ -5,8 +5,8 @@ const auth = require ('../middleware/auth');
 const userCtrl = require('../controllers/user');
 const { checkUser } = require("../middleware/auth")
 
-// const multer = require("multer");
-// const upload = multer();
+const multer = require("multer");
+const upload = multer();
 
 //auth
 router.post('/signup', userCtrl.signup);

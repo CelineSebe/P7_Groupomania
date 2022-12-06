@@ -2,7 +2,6 @@ const Publi = require('../models/Publi');
 const fs = require('fs');
 
 
-
 //Controller POST pour créer une publication
 // exports.createPubli = (req, res, next) =>
 // {
@@ -22,10 +21,7 @@ const fs = require('fs');
 
 exports.createPubli = (req, res, next) =>
 {
-   
-
     console.log(req.body);
-
 
 const dataPubli = {
     description: req.body.description,

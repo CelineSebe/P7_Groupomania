@@ -61,7 +61,7 @@ const logoutHandler = () => {
   };
 
 
-//s'il y présence du token ça veut dire que je suis loggé
+//s'il y présence du token ça veut dire que je suis loguée
 //convertir le token en valeur booléenne
 const userIsLoggedIn =!! token;
 console.log("=> userIsLoggedIn");

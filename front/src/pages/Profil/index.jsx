@@ -20,14 +20,14 @@ const ProfilInfoContainer = styled.div`
 }
 `
 const ProfilPage = styled.div`
-display:flex; 
-flex-direction: column;
-justify-content: flex-start; 
-align-items:center; 
-margin: 150px 20px;
-position: fixed; 
-width: 100%;
-height: 50%;
+    display:flex; 
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items:center; 
+    margin: 150px 20px;
+    position: fixed; 
+    width: 100%;
+    height: 50%;
 
 `
 

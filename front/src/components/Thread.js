@@ -55,15 +55,20 @@ const MapData = () => {
 console.log(postData)
    if(postData)return(
                 <>
-                    {postData.map((card) => (
-                        <Card image={card.imageUrl} description={card.description} />
+                    {postData.map((card) =>
+                        <Card key={card.id}
+                              imageUrl = {card.imageUrl} 
+                              description = {card.description} 
+                              likes = {card.likes} 
+                              usersLikes = {card.usersLikes} 
+                              date = {card.date} />
                         // <ul key={card._id} style={{flexDirection:"column"}}>
                         // {/* <li> {card.userId} </li> */}
                         // <li style={{width: "100%"}}><img src={card.imageUrl}></img> </li>
                         // <li style={{width: "100%"}}> {card.description} </li>
                         
                         // </ul>
-                    ))}
+                    ).reverse()}
                 </>
         
         );

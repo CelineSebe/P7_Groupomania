@@ -67,7 +67,7 @@ const PostCreation =styled.div`
     margin: 0;
 `
 
- const Card = ( {description, imageUrl} ) => {
+ const Card = ( {description, imageUrl, likes, comments} ) => {
     const [isLoadingCard, setisLoadingCard] = useState(true);
     // const authCont = useContext(AuthContext);
     // const isLoggedIn = authCont.isLoggedIn;
@@ -102,8 +102,8 @@ const PostCreation =styled.div`
                             </MDBCardText>
                         </div>
                         <span style={{display: "flex",justifyContent:"space-around", alignItems:"center",padding: "10px"}}>
-                            <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-thumbs-up" /><i className="fa-solid fa-thumbs-up" /></MDBBtn>
-                            <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}><i className="fa-regular fa-comments" /></MDBBtn>
+                            <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}>{likes}<i className="fa-regular fa-thumbs-up" /><i className="fa-solid fa-thumbs-up" /></MDBBtn>
+                            <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}>{comments}<i className="fa-regular fa-comments" /></MDBBtn>
                         </span>
                     </MDBCardBody>
                 </MDBCard>

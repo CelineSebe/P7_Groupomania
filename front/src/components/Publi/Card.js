@@ -67,7 +67,7 @@ const PostCreation =styled.div`
     margin: 0;
 `
 
- const Card = ( {description, imageUrl, likes, comments} ) => {
+ const Card = ( {description, imageUrl, likes, usersLikes, date, comments} ) => {
     const [isLoadingCard, setisLoadingCard] = useState(true);
     // const authCont = useContext(AuthContext);
     // const isLoggedIn = authCont.isLoggedIn;
@@ -96,8 +96,10 @@ const PostCreation =styled.div`
                             <MDBCardText>
                                 <div>{description}</div>
                                 <PostCreation>
-                                    Créé il y a{' '}
-                                    {dateFormat(new Date(), 'MMM dd yyyy')}
+                                    Créé il y a {' '} 
+                                    {date && dateFormat(new Date(date),'MMM dd yyyy')}
+                                     {/* {Date.now() - date} minutes */}
+                                    {/* {dateFormat(new Date(), 'MMM dd yyyy')} */}
                                 </PostCreation>
                             </MDBCardText>
                         </div>

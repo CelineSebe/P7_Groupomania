@@ -74,14 +74,13 @@ const PostCreation = styled.div`
     margin: 0;
 `
 
- const Card = ( {key, description, imageUrl, likes, usersLikes, date, comments, imageUrlUser, setApiCalled,postData} ) => {
+ const Card = ( {key, description, imageUrl, likes, usersLikes, date, comments, imageUrlUser, setApiCalled, postData} ) => {
     const [isLoadingCard, setisLoadingCard] = useState(false);
     // const authCont = useContext(AuthContext);
     // const isLoggedIn = authCont.isLoggedIn;
     const [isModif, setIsModif] = useState(false)
 
     let pseudo = localStorage.getItem('pseudo');
-    const isImage = imageUrl !== 'undefined' ? true : false
 
     return (
         
@@ -98,7 +97,7 @@ const PostCreation = styled.div`
                             <LabelPostImg alt=".jpg" src={assets}/> 
                             <p style={{padding: 10, fontSize:16}}>Publication de {pseudo}</p>
                         </ProfilImgContainer>
-                        <ButtonLign>
+                        <ButtonLign style={{paddingRight:10}}>
                             <ButtonModify
                                 alt="Crayon noir qui écrit"
                                 onClick={(e) => {
@@ -109,6 +108,10 @@ const PostCreation = styled.div`
                             <ButtonSuppr
                                 id={key}
                                 setApiCalled={setApiCalled}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    
+                                    }}
                             />
                         </ButtonLign>
                     </Head>
@@ -128,7 +131,7 @@ const PostCreation = styled.div`
                         </div>
                         <span style={{display: "flex",justifyContent:"space-around", alignItems:"center",padding: "10px"}}>
                             <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}>{likes}<i className="fa-regular fa-thumbs-up" />
-                                                                                                <i className="fa-solid fa-thumbs-up" />
+                                                                                            <i className="fa-solid fa-thumbs-up" />
                             </MDBBtn>
                             <MDBBtn href='#' style={{color:"blueviolet", fontSize: 18}}>{comments}<i className="fa-regular fa-comments" /></MDBBtn>
                         </span>

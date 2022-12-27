@@ -33,6 +33,7 @@ let pseudo = localStorage.getItem('pseudo');
                 fontSize: '15px', 
                 }}> Profil de {pseudo}
             </h1>
+            
         </ProfilContainer>
 
     </>

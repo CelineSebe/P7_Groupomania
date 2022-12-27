@@ -177,7 +177,7 @@ const CreatePubli = () => {
         
         axios({
             method:"post",
-            url: `http://localhost:5000/api/publis`,
+            url: "http://localhost:5000/api/publis",
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "multipart/form-data"

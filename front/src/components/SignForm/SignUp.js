@@ -1,10 +1,10 @@
 import React from 'react';
-import { useContext, useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 // import colors from '../../utils/style/colors';
 import axios from 'axios';
 import Button from '../Button';
-// import AuthContext from '../../store/authContext';
+import AuthContext from '../../store/authContext';
 
 
 const Signup = styled.div`
@@ -31,12 +31,12 @@ const SignUp = () => {
   const [ControlPassword, setControlPassword] = useState(''); 
 
  
-//utilisation du contexte
-// const authCont = useContext(AuthContext);
-// console.log("authCont");
-// console.log(authCont)
+// utilisation du contexte
+const authCont = useContext(AuthContext);
+console.log("authCont");
+console.log(authCont)
 
-// console.log(email, password);
+console.log(email, password);
 
   async function handleRegister (e) {
       e.preventDefault();
@@ -73,7 +73,7 @@ const SignUp = () => {
         
         await axios({
           method: "post",
-          url: "http://localhost:5000/api/auth/signup",
+          url: 'http://localhost:5000/api/auth/signup',
           data: ({
             pseudo,
             email,
@@ -88,7 +88,10 @@ const SignUp = () => {
             passwordError.innerHTML =res.data.errors.password;
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err)
+          window.location='/';
+          })
       }
   };
       

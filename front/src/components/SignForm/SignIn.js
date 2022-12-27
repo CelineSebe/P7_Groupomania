@@ -33,9 +33,10 @@ const SignIn = () =>
     // const authCont = useContext(AuthContext);
     // console.log("authCont");
     // console.log(AuthContext);
+    console.log(email, password);
 
-    const handleLogin = (e) => 
-        
+    
+    async function handleLogin(e)
     {
         e.preventDefault();
         const accepted = document.getElementById('accepted');
@@ -56,35 +57,34 @@ const SignIn = () =>
             if( password.length === 0 )
             passwordError.innerHTML = "Veuillez remplir les informations requises";
 
-    if ( acceptedError.checked || email.length > 0 || password.length > 0)
+    if ( accepted.checked && email.length > 0 && password.length > 0)
     {
-    
         // se connecter pour récupérer l'userId et le token
-        axios({
+        await axios({
             method: "post",
-            url: "http://localhost:5000/api/auth/login",
-            data: ({
+            url: "http://localhost:5000/api/auth/login",   
+            data: ({             
+                // pseudo,
                 email,
                 password
             }),
         })
         .then((res) => {
+            console.log(res.status);
             console.log(res);
-            localStorage.setItem('pseudo', res.data.pseudo);
+            
+            // localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo));
             localStorage.setItem('userId', JSON.stringify(res.data.userId));
             localStorage.setItem('token', JSON.stringify(res.data.token));
-            // localStorage.setItem('profil', JSON.stringify(res.data.profil));        
+            localStorage.setItem('profil', JSON.stringify(res.data.profil));        
             window.location='./Home';
-            
         })
         .catch((error) => {
-            window.location=`*`
+            // window.location=`*`
             console.log(error);
         })
     }
         
-        
-
     // const fetchHandler = async () => 
     //     {
     //     try {
@@ -175,17 +175,18 @@ const SignIn = () =>
                     </Checkbox>
                     <div className="accepted error" style={{display:"flex",color:"red", fontSize:12, fontWeight:"bold"}}></div>
                     <br />
-                    <Button 
-                            type={"submit"}
-                            onClick={()=>{}}> Se connecter 
+                    <Button
+                        type={"submit"}
+                        onClick={()=>{}}>
+                        Se connecter
                     </Button>
-
                 </form>
                 
             </Signin>
             </>
         );
 }
+
 
 
 

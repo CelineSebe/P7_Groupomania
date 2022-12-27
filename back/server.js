@@ -9,7 +9,7 @@ app.use(cors()); // Use this after the variable declaration
 
 //Paramétrer le port avec set de Express
 const normalizePort = val => {
-  const port = parseInt(val, 10);
+const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     return val;
@@ -19,7 +19,7 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT);
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 //Gestionnaire d'erreurs

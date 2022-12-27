@@ -6,8 +6,8 @@ import ProfilInfo from '../../components/ProfilInfo/ProfilInfo'
 import Header from '../../components/Header'
 import TrendingInfo from '../../components/TrendingInfo/TrendingInfo'
 import Thread from '../../components/Thread'
-// import AuthContext from '../../store/authContext'
-// import { useContext } from 'react'
+import AuthContext from '../../store/authContext'
+import { useContext } from 'react'
 
 // import PropTypes from 'prop-types'
 

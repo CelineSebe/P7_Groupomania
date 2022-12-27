@@ -26,13 +26,13 @@ exports.createPubli = (req, res, next) =>
 const dataPubli = {
     description: req.body.description,
     userId: req.auth.userId,
-    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/",
+    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/"
 }
     const publi = new Publi(dataPubli)
 
     publi.save()
     .then(() => { res.status(201).json({message: 'Votre publication est en ligne!'})})
-    .catch(error => { res.status(400).json( "La création de la publication a échouée")})
+    .catch(error => { res.status(400).json( "La création de la publication a échoué")})
 };
 
 //Controller GET renvoie une publication selon l'_id

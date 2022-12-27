@@ -5,7 +5,6 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-
 exports.signup = (req, res, next) => 
 {
     bcrypt.hash(req.body.password, 10)
@@ -14,6 +13,7 @@ exports.signup = (req, res, next) =>
             const user = new User({
                 pseudo: req.body.pseudo,
                 email : req.body.email,
+                // imageUrlUser: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/",
                 password: hash
             });
             user
@@ -63,6 +63,7 @@ exports.login = (req, res, next) => {
         {
             res.status(500).json({ error })
         });
+    // next()
  };
 
  exports.logout = (req, res) => {

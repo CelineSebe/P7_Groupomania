@@ -25,6 +25,13 @@ function Routing () {
                   />
              }
             {isLoggedIn &&
+              <Route exact path="/" element=
+                {
+                  <Home/>
+                }
+              />
+              } 
+            {isLoggedIn &&
               <Route exact path="/Home" element=
                 {
                   <Home/>

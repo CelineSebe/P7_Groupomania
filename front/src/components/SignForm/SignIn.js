@@ -64,7 +64,6 @@ const SignIn = () =>
             method: "post",
             url: "http://localhost:5000/api/auth/login",   
             data: ({             
-                // pseudo,
                 email,
                 password
             }),
@@ -73,14 +72,14 @@ const SignIn = () =>
             console.log(res.status);
             console.log(res);
             
-            // localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo));
+            localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo));
             localStorage.setItem('userId', JSON.stringify(res.data.userId));
             localStorage.setItem('token', JSON.stringify(res.data.token));
             localStorage.setItem('profil', JSON.stringify(res.data.profil));        
             window.location='./Home';
         })
         .catch((error) => {
-            // window.location=`*`
+            window.location=`*`
             console.log(error);
         })
     }

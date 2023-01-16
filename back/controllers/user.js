@@ -76,8 +76,26 @@ exports.login = (req, res, next) => {
 
 // exports.getUser = async (req, res) => {
 //     const id = req.auth.id;
-//     const user = await Users.findOne({ where: { id: id }, attributes: ['pseudo', 'email', 'password', 'userImageUrl' ]});
+//     const user = await User.findOne({ where: { id: id }, attributes: ['pseudo', 'email', 'password', 'userImageUrl' ]});
 //     res.status(200).json(user);
 // };
-
+exports.getUser = (req, res, next) => 
+ {
+    User.findOne
+    ({
+      _id: req.params.id
+    })
+      .then(
+      (user) => 
+      {
+        res.status(200).json(user);
+      })
+      .catch
+      ((error) => 
+      { res.status(404).json
+        ({
+          error: error
+        });
+      });
+  }
 

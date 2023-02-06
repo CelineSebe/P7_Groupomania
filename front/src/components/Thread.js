@@ -76,7 +76,7 @@ const MapData = () => {
 }
 
 const MapUser = () => {
-  const [postUser, setPostUser] = useState()
+  const [postUser, setPostUser] = useState([])
   let token = JSON.parse(localStorage.getItem('token'))
 
   useEffect(() => {
@@ -90,26 +90,29 @@ const MapUser = () => {
     })
       .then((res) => {
         setPostUser(res.data)
-        console.log(res)
+        console.log('res', res.data)
       })
 
       .catch((error) => {
         console.log(error)
       })
   })
-  if (postUser)
+  if (postUser.length >= 1)
     return (
       <>
         {postUser
           .map((card) => (
-            <Card
-              key={card.id}
-              imageUrlUser={card.imageUrlUser}
-              pseudo={card.pseudo}
-              postUser={postUser}
-            />
+            // <Card
+            //   key={card._id}
+            //   imageUrlUser={card.imageUrlUser}
+            //   pseudo={card.pseudo}
+            //   postUser={postUser}
+            // />
+            <p>{card.pseudo}</p>
           ))
           .reverse()}
+        {/* {postUser.map((card) => <p>{card._id}</p>).reverse()} */}
+        {console.log('postUser', postUser)}
       </>
     )
 }
@@ -123,7 +126,7 @@ function Feed() {
       <CreatePubli setApiCalled={setApiCalled} />
       <div style={{ height: '900px', overflow: 'auto', width: '100%' }}>
         <MapData apiCalled={apiCalled} setApiCalled={setApiCalled} />
-        <MapUser apiCalled={apiCalled} setApiCalled={setApiCalled} />
+        <MapUser />
       </div>
     </ThreadContainer>
   )

@@ -79,23 +79,40 @@ exports.login = (req, res, next) => {
 //     const user = await User.findOne({ where: { id: id }, attributes: ['pseudo', 'email', 'password', 'userImageUrl' ]});
 //     res.status(200).json(user);
 // };
+// exports.getUser = (req, res, next) => 
+//  {
+//     const id = req.auth.id;
+//     User.findOne
+//     ({
+//         where: { id: id }, attributes: ['pseudo', 'email', 'password', 'userImageUrl']  
+//     })
+//       .then(
+//       (user) => 
+//       {
+//         res.status(200).json(user);
+
+//       })
+//       .catch
+//       ((error) => 
+//       { res.status(404).json
+//         ({
+//           error: error
+//         });
+//       });
+//   }
 exports.getUser = (req, res, next) => 
  {
-    User.findOne
-    ({
-      _id: req.params.id
-    })
-      .then(
-      (user) => 
-      {
-        res.status(200).json(user);
-      })
-      .catch
-      ((error) => 
-      { res.status(404).json
-        ({
-          error: error
+User.find()
+        .then((users) =>
+        {
+            res.status(200).json(users);
+        })
+        .catch((error) => 
+        {
+            res.status(400).json
+            ({
+                error: error
+            });
         });
-      });
-  }
+ }
 

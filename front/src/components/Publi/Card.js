@@ -76,6 +76,8 @@ const PostCreation = styled.div`
 const Card = ({
   key,
   userId,
+  _id,
+  imageUrlUser,
   pseudo,
   description,
   imageUrl,
@@ -85,9 +87,6 @@ const Card = ({
   comments,
   setApiCalled,
 }) => {
-  //   const [isLoadingCard, setisLoadingCard] = useState(false)
-  // const authCont = useContext(AuthContext);
-  // const isLoggedIn = authCont.isLoggedIn;
   const [isModif, setIsModif] = useState(false)
 
   //   const [postUser, setPostUser] = useState()
@@ -125,7 +124,7 @@ const Card = ({
         <Head>
           <ProfilImgContainer>
             <LabelPostImg alt=".jpg" src={assets} />
-            <p style={{ padding: 10, fontSize: 16 }}>Publication de {userId}</p>
+            <p style={{ padding: 10, fontSize: 16 }}>Publication de {pseudo}</p>
           </ProfilImgContainer>
           <ButtonLign style={{ paddingRight: 10 }}>
             <ButtonModify

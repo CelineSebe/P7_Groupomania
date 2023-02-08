@@ -1,40 +1,160 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
+import axios from 'axios'
 
 const ProfilContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items: center;
-background-color: ${colors.secondary};
-width: 600px;
-height: 50vh;
-/* width: 100%;
-height: 100%; */
-border: solid 2px ${colors.secondary};
-border-radius: 5px;
-margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: ${colors.secondary};
+  width: 600px;
+  height: 200px;
+  width: 100%;
+  height: 100%;
+  border: solid 2px ${colors.secondary};
+  border-radius: 5px;
+  margin: 20px;
 `
 const ImgContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-width:100%;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `
 
-const UpdateProfil = ({imageUrlUser}) => {
-    return (
-        <ProfilContainer>
-			<h1 style={{fontSize:"24px", padding:20, textAlign: "center"}}> 
-			Photo de profil </h1>
-            <ImgContainer>
-                <img src={imageUrlUser} alt="photo de profil"></img>
-                <button style={{position:'absolute', bottom: 0}}> Modifier </button>
-            </ImgContainer>
-        </ProfilContainer>
-    );
-};
+const Hide = styled.div`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+`
+const FormPost = styled.form`
+  height: 100%;
+  width: 100%;
+`
+const ButtonAdd = styled.label`
+  background-color: ${colors.primary};
+  border-color: ${colors.primary};
+  color: ${colors.secondary};
+  height: 50px;
+  width: 100px;
+  border-radius: 15px;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    background-color: #b69c9c;
+  }
+`
+const BtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const ButtonPush = styled.button`
+  background-color: ${colors.primary};
+  border-color: ${colors.primary};
+  color: ${colors.secondary};
+  height: 50px;
+  width: 100px;
+  border-radius: 15px;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    background-color: #b69c9c;
+  }
+`
 
-export default UpdateProfil;
+const UpdateProfil = ({ imageUrlUser }) => {
+  const token = JSON.parse(localStorage.getItem('token'))
+
+  const [postImage, setPostImage] = useState('')
+
+  const userData = new FormData()
+  userData.append('imageUrl', imageUrlUser)
+  const handleSubmit = () => {
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/api/auth/user/upload/',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+      data: userData,
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
+
+  const handleImg = (e) => {
+    var tgt = e.target,
+      files = tgt.files
+
+    // FileReader support
+    var fr = new FileReader()
+    fr.onloadend = function (event) {
+      setPostImage(fr.result)
+    }
+    fr.readAsDataURL(files[0])
+  }
+
+  return (
+    <ProfilContainer>
+      <h1 style={{ fontSize: '24px', padding: 20, textAlign: 'center' }}>
+        Editer le profil{' '}
+      </h1>
+      <FormPost onSubmit={handleSubmit} encType="multipart/form-data">
+        <ImgContainer>
+          <Hide>
+            <input
+              id="imgUrl"
+              type="file"
+              onChange={(e) => {
+                handleImg(e)
+              }}
+            />
+          </Hide>
+          <img
+            src={postImage}
+            style={{ height: '30%', width: '30%' }}
+            alt="photo de profil"
+          ></img>
+          <BtnContainer>
+            <ButtonAdd htmlFor="imgUrl" type="addPicture">
+              Modifier
+            </ButtonAdd>
+            <ButtonPush
+              type="submit"
+              style={{
+                height: 50,
+                width: 80,
+                borderStyle: 'none',
+              }}
+              onChange={(e) => {
+                handleSubmit(e)
+              }}
+            >
+              <div>
+                <i className="fa-solid fa-paper-plane"></i>
+              </div>
+            </ButtonPush>
+          </BtnContainer>
+        </ImgContainer>
+      </FormPost>
+    </ProfilContainer>
+  )
+}
+
+export default UpdateProfil

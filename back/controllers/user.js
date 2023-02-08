@@ -13,7 +13,7 @@ exports.signup = (req, res, next) =>
             const user = new User({
                 pseudo: req.body.pseudo,
                 email : req.body.email,
-                // imageUrlUser: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/",
+                imageUrlUser: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/",
                 password: hash
             });
             user
@@ -114,5 +114,9 @@ User.find()
                 error: error
             });
         });
+ }
+
+ exports.updateImgProfil = (req, res, next) => {
+    
  }
 

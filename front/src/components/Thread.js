@@ -29,7 +29,7 @@ const MapData = () => {
   let token = JSON.parse(localStorage.getItem('token'))
 
   // se connecter pour récupérer l'userId et le token
-  const [postData, setPostData] = useState()
+  const [postsData, setPostsData] = useState()
 
   useEffect(() => {
     axios({
@@ -41,7 +41,7 @@ const MapData = () => {
       },
     })
       .then((res) => {
-        setPostData(res.data)
+        setPostsData(res.data)
         // console.log(res.data)
       })
 
@@ -51,33 +51,11 @@ const MapData = () => {
           'Toutes nos excuses, impossible de se connecter à la base de données'
         )
       })
-  }, [postData])
-  //   console.log(postData)
-  if (postData)
-    return (
-      <>
-        {postData
-          .map((card) => (
-            <Card
-              key={card.id}
-              userId={card.userId}
-              imageUrlUser={card.imageUrlUser}
-              imageUrl={card.imageUrl}
-              description={card.description}
-              likes={card.likes}
-              usersLikes={card.usersLikes}
-              date={card.date}
-              postData={postData}
-            />
-          ))
-          .reverse()}
-      </>
-    )
-}
 
-const MapUser = () => {
-  const [postUser, setPostUser] = useState([])
-  let token = JSON.parse(localStorage.getItem('token'))
+    setInterval(MapData, 100)
+  }, [])
+
+  const [usersData, setUsersData] = useState()
 
   useEffect(() => {
     axios({
@@ -89,35 +67,44 @@ const MapUser = () => {
       },
     })
       .then((res) => {
-        setPostUser(res.data)
+        setUsersData(res.data)
         console.log('res', res.data)
       })
 
       .catch((error) => {
         console.log(error)
       })
-  })
-  if (postUser.length >= 1)
+  }, [])
+  //   console.log(postData)
+  if (postsData && usersData)
     return (
       <>
-        {postUser
-          .map((card) => (
-            // <Card
-            //   key={card._id}
-            //   imageUrlUser={card.imageUrlUser}
-            //   pseudo={card.pseudo}
-            //   postUser={postUser}
-            // />
-            <p>{card.pseudo}</p>
-          ))
+        {postsData
+          .map(function (post) {
+            let user = usersData.find((user) => post.userId === user._id)
+            console.log(post, usersData, user)
+
+            return (
+              <Card
+                key={post.id}
+                id={post._id}
+                imageUrlUser={1}
+                imageUrl={post.imageUrl}
+                description={post.description}
+                likes={post.likes}
+                usersLikes={post.usersLikes}
+                date={post.date}
+                postData={postsData}
+                pseudo={user === undefined ? 'user unknown' : user.pseudo}
+              />
+            )
+          })
           .reverse()}
-        {/* {postUser.map((card) => <p>{card._id}</p>).reverse()} */}
-        {console.log('postUser', postUser)}
       </>
     )
 }
 
-function Feed() {
+function Thread() {
   const [apiCalled, setApiCalled] = useState()
 
   return (
@@ -126,10 +113,9 @@ function Feed() {
       <CreatePubli setApiCalled={setApiCalled} />
       <div style={{ height: '900px', overflow: 'auto', width: '100%' }}>
         <MapData apiCalled={apiCalled} setApiCalled={setApiCalled} />
-        <MapUser />
       </div>
     </ThreadContainer>
   )
 }
 
-export default Feed
+export default Thread

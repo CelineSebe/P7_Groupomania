@@ -74,9 +74,7 @@ const PostCreation = styled.div`
 `
 
 const Card = ({
-  key,
-  userId,
-  _id,
+  id,
   imageUrlUser,
   pseudo,
   description,
@@ -135,7 +133,8 @@ const Card = ({
               }}
             />
             <ButtonSuppr
-              id={key}
+              postId={id}
+              pseudo={pseudo}
               setApiCalled={setApiCalled}
               onClick={(e) => {
                 e.preventDefault()

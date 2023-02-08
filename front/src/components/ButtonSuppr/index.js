@@ -13,26 +13,26 @@ const Suppr = styled.div`
 function supprOnePost({ postId, setApiCalled }) {
   let token = JSON.parse(localStorage.getItem('token'))
 
-  // axios({
-  //   method: 'DELETE',
-  //   url: `http://localhost:5000/api/publis/${postId}`,
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then((res) => {
-  //     if (res.ok) {
-  //       return res.json
-  //     }
-  //     console.log(res.data)
-  //     alert('votre post a bien été supprimé')
-  //   })
+  axios({
+    method: 'DELETE',
+    url: `http://localhost:5000/api/publis/${postId}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json
+      }
+      console.log(res.data)
+      alert('votre post a bien été supprimé')
+    })
 
-  //   .catch((err) => {
-  //     console.log(err)
-  //     window.alert("Votre post n'a pas été supprimé")
-  //   })
+    .catch((err) => {
+      console.log(err)
+      window.alert("Votre post n'a pas été supprimé")
+    })
 }
 
 function handleSuppr({ postId, setApiCalled }) {
@@ -42,7 +42,10 @@ function handleSuppr({ postId, setApiCalled }) {
   }
 }
 
-const ButtonSuppr = ({ postId, setApiCalled }) => {
+const ButtonSuppr = ({ postId, setApiCalled, pseudo }) => {
+  let pseudoStock = JSON.parse(localStorage.getItem('pseudo'))
+  console.log(postId)
+
   return (
     <Suppr
       setApiCalled={setApiCalled}
@@ -51,10 +54,14 @@ const ButtonSuppr = ({ postId, setApiCalled }) => {
         handleSuppr({ postId, setApiCalled })
       }}
     >
-      <i
-        style={{ fontSize: '100%', padding: '10px' }}
-        class="fa-solid fa-trash"
-      ></i>
+      {pseudoStock === pseudo ? (
+        <i
+          style={{ fontSize: '100%', padding: '10px' }}
+          class="fa-solid fa-trash"
+        ></i>
+      ) : (
+        <></>
+      )}
     </Suppr>
   )
 }

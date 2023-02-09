@@ -126,10 +126,12 @@ const Card = ({
           </ProfilImgContainer>
           <ButtonLign style={{ paddingRight: 10 }}>
             <ButtonModify
+              postId={id}
+              pseudo={pseudo}
+              setApiCalled={setApiCalled}
               alt="Crayon noir qui écrit"
               onClick={(e) => {
                 e.preventDefault()
-                setIsModif(true)
               }}
             />
             <ButtonSuppr

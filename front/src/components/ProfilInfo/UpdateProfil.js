@@ -129,11 +129,15 @@ const UpdateProfil = () => {
               }}
             />
           </Hide>
-          <img
-            src={postImage}
-            style={{ height: '30%', width: '30%' }}
-            alt="miniature"
-          ></img>
+          {postImage ? (
+            <img
+              src={postImage}
+              style={{ height: '30%', width: '30%' }}
+              alt="miniature"
+            ></img>
+          ) : (
+            <></>
+          )}
           <BtnContainer>
             <ButtonAdd htmlFor="imgUrl" type="addPicture">
               Modifier

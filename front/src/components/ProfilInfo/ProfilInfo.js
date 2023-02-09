@@ -30,11 +30,11 @@ function ProfilInfo(props) {
           {' '}
           Profil de {pseudo}
         </h1>
-        <img
+        {/* <img
           src={1}
           style={{ height: '30%', width: '30%' }}
           alt="photo de profil"
-        ></img>
+        ></img> */}
       </ProfilContainer>
     </>
   )

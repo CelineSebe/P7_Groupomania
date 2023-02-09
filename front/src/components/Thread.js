@@ -52,7 +52,7 @@ const MapData = () => {
         )
       })
 
-    setInterval(MapData, 100)
+    // setInterval(MapData, 100)
   }, [])
 
   const [usersData, setUsersData] = useState()
@@ -87,8 +87,8 @@ const MapData = () => {
             return (
               <Card
                 key={post.id}
+                userId={post.userId}
                 id={post._id}
-                imageUrlUser={1}
                 imageUrl={post.imageUrl}
                 description={post.description}
                 likes={post.likes}

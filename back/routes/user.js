@@ -5,8 +5,8 @@ const auth = require ('../middleware/auth');
 const userCtrl = require('../controllers/user');
 // const { checkUser } = require("../middleware/auth")
 
-const multer = require("multer");
-const upload = multer();
+const multer = require('../middleware/multer-config');
+
 
 //auth
 
@@ -17,7 +17,7 @@ router.get('/logout', userCtrl.logout);
 
 // user
 router.get('/user', auth, userCtrl.getUser);
-router.post("/upload", auth, upload.single("file"), userCtrl.updateImgProfil);
+router.post("/upload", auth, multer, userCtrl.updateImgProfil);
 
 
 module.exports = router;

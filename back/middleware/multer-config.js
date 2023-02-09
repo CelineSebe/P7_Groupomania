@@ -35,5 +35,3 @@ const storageProfil = multer.diskStorage({
  })
 
 module.exports = multer({storage: storagePost}).single('imageUrl');
-
-module.exports = multer({storage:storageProfil}).single('imageUrl');

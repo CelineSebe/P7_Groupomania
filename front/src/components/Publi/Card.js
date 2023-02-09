@@ -143,12 +143,16 @@ const Card = ({
           </ButtonLign>
         </Head>
         <MDBCard>
-          <MDBCardImage
-            src={imageUrl}
-            position="top"
-            alt="photo"
-            style={{ width: '100%' }}
-          />
+          {imageUrl === '/' ? (
+            <></>
+          ) : (
+            <MDBCardImage
+              src={imageUrl}
+              position="top"
+              alt="photo"
+              style={{ width: '100%' }}
+            />
+          )}
           <MDBCardBody>
             <div style={{ padding: '10px', borderBottom: '2px solid #F1F1F1' }}>
               <MDBCardText>

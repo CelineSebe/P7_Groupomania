@@ -74,32 +74,6 @@ exports.login = (req, res, next) => {
     res.status(200).send('user is logged out');
 };
 
-// exports.getUser = async (req, res) => {
-//     const id = req.auth.id;
-//     const user = await User.findOne({ where: { id: id }, attributes: ['pseudo', 'email', 'password', 'userImageUrl' ]});
-//     res.status(200).json(user);
-// };
-// exports.getUser = (req, res, next) => 
-//  {
-//     const id = req.auth.id;
-//     User.findOne
-//     ({
-//         where: { id: id }, attributes: ['pseudo', 'email', 'password', 'userImageUrl']  
-//     })
-//       .then(
-//       (user) => 
-//       {
-//         res.status(200).json(user);
-
-//       })
-//       .catch
-//       ((error) => 
-//       { res.status(404).json
-//         ({
-//           error: error
-//         });
-//       });
-//   }
 exports.getUser = (req, res, next) => 
  {
 User.find()
@@ -117,6 +91,21 @@ User.find()
  }
 
  exports.updateImgProfil = (req, res, next) => {
-    
+
+    const userObject = req.file?
+    {
+        ...JSON.parse(req.body.user),
+        imageUrlUser: `${req.protocol}://${ req.get('host') }/images/${req.file.filename}`
+    } : { ...req.body };
+    // console.log(req.body)
+    // console.log(req.file)
+
+    // User.findOne({_id: req.params.id},{...userObject})
+    //     .then((user) => {
+    //         User.updateOne( {_id: req.params.id})
+    //         .then(() => res.status(200).json( {message: 'User update'}))
+    //         .catch(error => res.status(401).json( {error}))
+    //     })
+
  }
 

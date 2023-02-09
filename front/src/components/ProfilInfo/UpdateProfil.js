@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import axios from 'axios'
@@ -77,17 +77,19 @@ const ButtonPush = styled.button`
   }
 `
 
-const UpdateProfil = ({ imageUrlUser }) => {
+const UpdateProfil = () => {
   const token = JSON.parse(localStorage.getItem('token'))
 
   const [postImage, setPostImage] = useState('')
+  const [postFile, setPostFile] = useState()
 
-  const userData = new FormData()
-  userData.append('imageUrl', imageUrlUser)
   const handleSubmit = () => {
+    const userData = new FormData()
+    userData.append('imageUrl', postFile)
+
     axios({
       method: 'post',
-      url: 'http://localhost:5000/api/auth/user/upload/',
+      url: 'http://localhost:5000/api/auth/upload/',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
@@ -108,6 +110,7 @@ const UpdateProfil = ({ imageUrlUser }) => {
       setPostImage(fr.result)
     }
     fr.readAsDataURL(files[0])
+    setPostFile(files[0])
   }
 
   return (
@@ -129,7 +132,7 @@ const UpdateProfil = ({ imageUrlUser }) => {
           <img
             src={postImage}
             style={{ height: '30%', width: '30%' }}
-            alt="photo de profil"
+            alt="miniature"
           ></img>
           <BtnContainer>
             <ButtonAdd htmlFor="imgUrl" type="addPicture">

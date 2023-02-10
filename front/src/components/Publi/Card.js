@@ -72,25 +72,29 @@ const PostCreation = styled.div`
   padding-top: 13px;
   margin: 0;
 `
-const ContainerCreatePubli = styled.div``
-const FormPost = styled.form``
+const ContainerCreatePubli = styled.div`
+  width: 100%;
+`
+const FormPost = styled.form`
+  width: 100%;
+`
 
 const ContainerPublication = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
 `
 
 const FormStyle = styled.div`
   border-bottom: solid 2px ${colors.secondary};
-  width: 80%;
+  width: 100%;
 `
 
 const InputStyleDescription = styled.input`
   border: none;
   padding: 10px 0px 15px 15px;
-  height: 90%;
+  max-height: max-content;
   width: 100%;
   &::placeholder {
     font-size: 14px;
@@ -166,8 +170,47 @@ const Close = styled.div`
   cursor: pointer;
   color: red;
   display: flex;
-  margin: 5px; ;
+  justify-content: flex-end;
+  margin-right: 25px;
+  font-size: larger;
 `
+
+function modifyOnePost({ dataPost, postId, ImageUrlModif, setApiCalled }) {
+  const token = JSON.parse(localStorage.getItem('token'))
+  //   const Post = (e) => {
+  axios({
+    method: 'PUT',
+    url: `http://localhost:5000/api/publis/${postId}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    data: dataPost,
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json
+      }
+      console.log(res.data)
+      alert('votre post a bien été modifié')
+    })
+
+    .catch((err) => {
+      console.log(err)
+      window.alert("Votre post n'a pas été modifié. Veuillez recommencer!")
+    })
+}
+
+// function handleModify({ dataPost, postId, setImageUrlModif, setApiCalled }) {
+//   let res = alert('Votre publication va être modifiée. Confirmation?')
+//   if (res) {
+//     modifyOnePost({
+//       postId,
+//       dataPost,
+//       setApiCalled,
+//     })
+//   }
+// }
 
 const Card = ({
   id,
@@ -182,7 +225,8 @@ const Card = ({
   setApiCalled,
 }) => {
   const [isModif, setIsModif] = useState(false)
-
+  const [isDescriptionModif, setIsDescriptionModif] = useState(description)
+  const [isImageModif, setIsImageModif] = useState('')
   return (
     <CardContainer>
       {/* {setisLoadingCard} ? (
@@ -276,15 +320,19 @@ const Card = ({
             </Close>
             <FormPost>
               <ContainerPublication>
-                <ProfilImgContainer></ProfilImgContainer>
+                {imageUrl === true ? (
+                  <ProfilImgContainer></ProfilImgContainer>
+                ) : (
+                  <></>
+                )}
                 <FormStyle>
                   <InputStyleDescription
                     id="descriptionInput"
                     type="text"
-                    placeholder={description}
+                    value={isDescriptionModif}
                     onChange={(e) => {
-                      const { value } = e.target
-                      // setDescriptionModif(value)
+                      const { description } = e.target
+                      setIsDescriptionModif(description)
                     }}
                     required
                   />
@@ -296,12 +344,21 @@ const Card = ({
               </ContainerPublication>
 
               <ContainerButtons>
-                <Hide></Hide>
+                <Hide>
+                  <input
+                    id="imgUrl"
+                    type="file"
+                    onChange={(e) => {
+                      const imageUrl = e.target.files[0]
+                      setIsImageModif(imageUrl)
+                    }}
+                  />
+                </Hide>
                 <label htmlFor="imgUrl" alt="Dossier" src=""></label>
                 <ButtonAdd
                   htmlFor="imgUrl"
                   type="addPicture"
-                  onClick={() => {}}
+                  onClick={(e) => {}}
                 >
                   <i className="fa-solid fa-camera"></i>
                 </ButtonAdd>
@@ -310,6 +367,7 @@ const Card = ({
                   id="post"
                   onClick={() => {
                     // handleModify()
+                    modifyOnePost()
                     setIsModif(false)
                   }}
                 >

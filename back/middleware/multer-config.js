@@ -24,14 +24,5 @@ const storagePost = multer.diskStorage({
     }
 });
 
-const storageProfil = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, 'images');
-    },
-    filename: (req, file, callback) => {
-        const extension = MIME_TYPES[file.mimetype];
-        callback(null, Date.now() + '.' + extension);
-    }
- })
 
 module.exports = multer({storage: storagePost}).single('imageUrl');

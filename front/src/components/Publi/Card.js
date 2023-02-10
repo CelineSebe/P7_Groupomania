@@ -175,15 +175,19 @@ const Close = styled.div`
   font-size: larger;
 `
 
-function modifyOnePost({ dataPost, postId, ImageUrlModif, setApiCalled }) {
+function modifyOnePost({ id, isDescriptionModif, isImageModif }) {
   const token = JSON.parse(localStorage.getItem('token'))
-  //   const Post = (e) => {
+  console.log(isDescriptionModif, isImageModif)
+  const dataPost = new FormData()
+  dataPost.append('description', isDescriptionModif)
+  dataPost.append('imageUrl', isImageModif)
+
   axios({
     method: 'PUT',
-    url: `http://localhost:5000/api/publis/${postId}`,
+    url: `http://localhost:5000/api/publis/${id}`,
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
     },
     data: dataPost,
   })
@@ -201,16 +205,13 @@ function modifyOnePost({ dataPost, postId, ImageUrlModif, setApiCalled }) {
     })
 }
 
-// function handleModify({ dataPost, postId, setImageUrlModif, setApiCalled }) {
-//   let res = alert('Votre publication va être modifiée. Confirmation?')
-//   if (res) {
-//     modifyOnePost({
-//       postId,
-//       dataPost,
-//       setApiCalled,
-//     })
-//   }
-// }
+function handleModify({ id, isDescriptionModif, isImageModif }) {
+  let res = window.confirm('Votre publication va être modifiée. Confirmation?')
+  if (res) {
+    console.log(isDescriptionModif, isImageModif)
+    modifyOnePost({ id, isDescriptionModif, isImageModif })
+  }
+}
 
 const Card = ({
   id,
@@ -226,7 +227,10 @@ const Card = ({
 }) => {
   const [isModif, setIsModif] = useState(false)
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
-  const [isImageModif, setIsImageModif] = useState('')
+  const [isImageModif, setIsImageModif] = useState(imageUrl)
+
+  // console.log(isDescriptionModif)
+  // console.log(isImageModif)
   return (
     <CardContainer>
       {/* {setisLoadingCard} ? (
@@ -331,7 +335,7 @@ const Card = ({
                     type="text"
                     value={isDescriptionModif}
                     onChange={(e) => {
-                      const { description } = e.target
+                      const description = e.target.value
                       setIsDescriptionModif(description)
                     }}
                     required
@@ -364,10 +368,11 @@ const Card = ({
                 </ButtonAdd>
                 <ButtonPost
                   type="submit"
-                  id="post"
-                  onClick={() => {
-                    // handleModify()
-                    modifyOnePost()
+                  id="put"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleModify({ id, isDescriptionModif, isImageModif })
+                    // modifyOnePost()
                     setIsModif(false)
                   }}
                 >

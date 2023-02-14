@@ -15,6 +15,7 @@ import {
 } from 'mdb-react-ui-kit'
 import ButtonSuppr from '../ButtonSuppr'
 import ButtonModify from '../ButtonModify'
+import ButtonLike from '../ButtonLike'
 
 const CardContainer = styled.ul`
   display: flex;
@@ -225,9 +226,38 @@ const Card = ({
   comments,
   setApiCalled,
 }) => {
+  // const [isLike, setIsLike] = useState(false)
+  // const [isNbLike, setIsNbLike] = useState()
   const [isModif, setIsModif] = useState(false)
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
   const [isImageModif, setIsImageModif] = useState(imageUrl)
+  console.log(usersLikes.length)
+
+  // const likeDislike = (e) => {
+  //   const token = JSON.parse(localStorage.getItem('token'))
+
+  //   let counter = likes
+  //   if (isLike === false) {
+  //     counter = counter + 1
+  //     setIsLike(true)
+  //     setIsNbLike(counter)
+  //   } else {
+  //     counter = counter - 1
+  //     setIsLike(false)
+  //     setIsNbLike(counter)
+  //   }
+  //   axios({
+  //     method: 'put',
+  //     url: `http://localhost:5000/api/publis/${id}`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       'Content-Type': 'application/json',
+  //     },
+  //     data: isNbLike,
+  //   })
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err))
+  // }
 
   // console.log(isDescriptionModif)
   // console.log(isImageModif)
@@ -301,10 +331,11 @@ const Card = ({
                   padding: '10px',
                 }}
               >
-                <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
-                  {likes}
-                  <i className="fa-regular fa-thumbs-up" />
-                  <i className="fa-solid fa-thumbs-up" />
+                <MDBBtn
+                  alt="Pouce like"
+                  style={{ color: 'blueviolet', fontSize: 18 }}
+                >
+                  <ButtonLike id={id} likes={likes} />
                 </MDBBtn>
                 <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
                   {comments}

@@ -97,7 +97,7 @@ User.find()
      
     const userObject =
     {
-        imageURL: `${req.protocol}://${ req.get('host') }/images/${req.file.filename}`
+        imageUrlUser: `${req.protocol}://${ req.get('host') }/images/${req.file.filename}`
     }
     console.log(userObject)
 

@@ -50,8 +50,16 @@ const ButtonLike = ({
   //   const [usersLikes, setUsersLikes] = useState()
 
   const token = JSON.parse(localStorage.getItem('token'))
-  function handleLike({ id, counter, userId, likes, usersLikes, token }) {
-    fetch('http://localhost:5000/api/publis/${id}', {
+  function handleLike({
+    id,
+    counter,
+    userId,
+    likes,
+    dislikes,
+    usersLikes,
+    token,
+  }) {
+    fetch(`http://localhost:5000/api/publis/${id}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -65,9 +73,7 @@ const ButtonLike = ({
           return res.json()
         }
       })
-      .then(function (value) {
-        // setLiked(true)
-      })
+      .then(function (value) {})
       .catch(function (err) {
         console.log(err)
       })
@@ -89,6 +95,8 @@ const ButtonLike = ({
             id,
             userId,
             liked,
+            likes,
+            dislikes,
             usersLikes,
             token,
           })
@@ -115,6 +123,8 @@ const ButtonLike = ({
           handleLike({
             id,
             userId,
+            likes,
+            dislikes,
             liked,
             disliked,
             usersLikes,

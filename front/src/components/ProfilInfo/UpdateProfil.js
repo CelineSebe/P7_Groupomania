@@ -81,24 +81,7 @@ const UpdateProfil = () => {
   const token = JSON.parse(localStorage.getItem('token'))
 
   const [postImage, setPostImage] = useState('')
-  const [postFile, setPostFile] = useState()
-
-  const handleSubmit = () => {
-    const userData = new FormData()
-    userData.append('imageUrl', postFile)
-
-    axios({
-      method: 'post',
-      url: 'http://localhost:5000/api/auth/upload/',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data',
-      },
-      data: userData,
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
-  }
+  const [postFile, setPostFile] = useState('')
 
   const handleImg = (e) => {
     var tgt = e.target,
@@ -110,7 +93,31 @@ const UpdateProfil = () => {
       setPostImage(fr.result)
     }
     fr.readAsDataURL(files[0])
+    // console.log(fr.readAsDataURL(files[0]))
+    console.log(files[0])
+
     setPostFile(files[0])
+
+    // console.log(postFile)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const userData = new FormData()
+    userData.append('imageUrl', postFile)
+    console.log('userData', userData.get('imageUrl'))
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/api/auth/upload/',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+      body: userData.get('imageUrl'),
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -148,9 +155,6 @@ const UpdateProfil = () => {
                 height: 50,
                 width: 80,
                 borderStyle: 'none',
-              }}
-              onChange={(e) => {
-                handleSubmit(e)
               }}
             >
               <div>

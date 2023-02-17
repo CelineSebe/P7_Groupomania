@@ -95,8 +95,10 @@ User.find()
     const userObject = req.file?
     {
         ...JSON.parse(req.body.user),
-        imageUrlUser: `${req.protocol}://${ req.get('host') }/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${ req.get('host') }/images/${req.file.filename}`
     } : { ...req.body };
+    console.log(userObject)
+
     // console.log(req.body)
     // console.log(req.file)
 

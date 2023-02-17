@@ -216,6 +216,7 @@ function handleModify({ id, isDescriptionModif, isImageModif }) {
 
 const Card = ({
   id,
+  userId,
   imageUrlUser,
   pseudo,
   description,
@@ -226,48 +227,13 @@ const Card = ({
   comments,
   setApiCalled,
 }) => {
-  // const [isLike, setIsLike] = useState(false)
-  // const [isNbLike, setIsNbLike] = useState()
   const [isModif, setIsModif] = useState(false)
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
   const [isImageModif, setIsImageModif] = useState(imageUrl)
   console.log(usersLikes.length)
 
-  // const likeDislike = (e) => {
-  //   const token = JSON.parse(localStorage.getItem('token'))
-
-  //   let counter = likes
-  //   if (isLike === false) {
-  //     counter = counter + 1
-  //     setIsLike(true)
-  //     setIsNbLike(counter)
-  //   } else {
-  //     counter = counter - 1
-  //     setIsLike(false)
-  //     setIsNbLike(counter)
-  //   }
-  //   axios({
-  //     method: 'put',
-  //     url: `http://localhost:5000/api/publis/${id}`,
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     data: isNbLike,
-  //   })
-  //     .then((res) => console.log(res))
-  //     .catch((err) => console.log(err))
-  // }
-
-  // console.log(isDescriptionModif)
-  // console.log(isImageModif)
   return (
     <CardContainer>
-      {/* {setisLoadingCard} ? (
-                <>
-                 <i className='fas fa-spinner fa-spin'></i>
-                </> ) : (   
-                <>         */}
       <Main>
         <Head>
           <ProfilImgContainer>
@@ -331,12 +297,12 @@ const Card = ({
                   padding: '10px',
                 }}
               >
-                <MDBBtn
+                {/* <MDBBtn
                   alt="Pouce like"
                   style={{ color: 'blueviolet', fontSize: 18 }}
-                >
-                  <ButtonLike id={id} likes={likes} />
-                </MDBBtn>
+                > */}
+                <ButtonLike id={id} userId={userId} likes={likes} />
+                {/* </MDBBtn> */}
                 <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
                   {comments}
                   <i className="fa-regular fa-comments" />

@@ -92,22 +92,26 @@ User.find()
 
  exports.updateImgProfil = (req, res, next) => {
 
-    const userObject = req.file?
+    //  console.log(req.file)
+    //  return
+     
+    const userObject =
     {
-        ...JSON.parse(req.body.user),
-        imageUrl: `${req.protocol}://${ req.get('host') }/images/${req.file.filename}`
-    } : { ...req.body };
+        imageURL: `${req.protocol}://${ req.get('host') }/images/${req.file.filename}`
+    }
     console.log(userObject)
 
     // console.log(req.body)
-    // console.log(req.file)
 
-    // User.findOne({_id: req.params.id},{...userObject})
-    //     .then((user) => {
-    //         User.updateOne( {_id: req.params.id})
-    //         .then(() => res.status(200).json( {message: 'User update'}))
-    //         .catch(error => res.status(401).json( {error}))
-    //     })
-
+    User.findOne({_id: req.auth.userId})
+        .then((user) => {
+            User.updateOne( user,userObject)
+            .then(() => res.status(200).json( {message: 'User update'}))
+            .catch(error => res.status(401).json( {error}))
+        })
+        .catch((error) => 
+            {
+                res.status(400).json({ error });
+            });
  }
 

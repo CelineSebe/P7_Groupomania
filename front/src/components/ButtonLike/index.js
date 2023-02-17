@@ -14,26 +14,25 @@ const Dislike = styled.div`
   font-size: 18px;
 `
 
-function handleLike({ id, counter, userId, likes, usersLikes, token }) {
-  axios
-    .patch(
-      `http://localhost:5000/api/publis/${id}`,
-      //   { edited_field: 'likes', likes: counter },
-      //   { edited_field: 'usersLikes', usersLikes: userId },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
-    .then((response) => {
-      console.log(response)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
+//   axios
+//     .post(
+//       `http://localhost:5000/api/publis/${id}`,
+//       //   { edited_field: 'likes', likes: counter },
+//       //   { edited_field: 'usersLikes', usersLikes: userId },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ id }),
+//       }
+//     )
+//     .then((response) => {
+//       console.log(response)
+//     })
+//     .catch((error) => {
+//       console.log(error)
+//     })
 
 const ButtonLike = ({
   id,
@@ -51,24 +50,43 @@ const ButtonLike = ({
   //   const [usersLikes, setUsersLikes] = useState()
 
   const token = JSON.parse(localStorage.getItem('token'))
-
+  function handleLike({ id, counter, userId, likes, usersLikes, token }) {
+    fetch('http://localhost:5000/api/publis/${id}', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ id }),
+    })
+      .then(function (res) {
+        if (res.ok) {
+          return res.json()
+        }
+      })
+      .then(function (value) {
+        // setLiked(true)
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
+  }
   return (
     <>
       <Like
         onClick={(e) => {
-          let counter = likes
           if (liked === false) {
-            counter = counter + 1
             setLiked(true)
-            setcountLike(counter)
+            setDisliked(false)
+            setcountDislike(countDislike - 1)
+            setcountLike(countLike + 1)
           } else {
-            counter = counter - 1
             setLiked(false)
-            setcountLike(counter)
+            setcountLike(countLike - 1)
           }
           handleLike({
             id,
-            counter,
             userId,
             liked,
             usersLikes,
@@ -85,19 +103,17 @@ const ButtonLike = ({
       </Like>
       <Dislike
         onClick={(e) => {
-          let counter = dislikes
           if (disliked === false) {
-            counter = counter + 1
+            setLiked(false)
             setDisliked(true)
-            setcountDislike(counter)
+            setcountLike(countLike - 1)
+            setcountDislike(countDislike + 1)
           } else {
-            counter = counter - 1
             setDisliked(false)
-            setcountDislike(counter)
+            setcountDislike(countDislike - 1)
           }
           handleLike({
             id,
-            counter,
             userId,
             liked,
             disliked,

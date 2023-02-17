@@ -7,7 +7,10 @@ const publiSchema = mongoose.Schema({
     imageUrl: { type: String, required: false},
     date: { type: Number, required: true, default: Date.now},
     likes: { type: Number, required: true, default: 0},
+    dislikes: { type: Number, required: true, default: 0},
     usersLikes: { type: Array, required: true, default:[]},
+    usersDislikes: { type: Array, required: true, default:[]},
+
 });
 
 module.exports = mongoose.model("Publi", publiSchema);

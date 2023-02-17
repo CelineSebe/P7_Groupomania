@@ -114,7 +114,7 @@ const UpdateProfil = () => {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
       },
-      body: userData.get('imageUrl'),
+      data: userData,
     })
       .then((res) => console.log(res))
       .catch((err) => console.log(err))

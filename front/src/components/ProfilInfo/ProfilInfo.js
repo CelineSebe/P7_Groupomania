@@ -37,6 +37,11 @@ function ProfilInfo({ userId }) {
     .then((res) => {
       // console.log(res.data.imageUrlUser)
       setUserData(res.data.imageUrlUser)
+      localStorage.setItem(
+        'imageUrlUser',
+        JSON.stringify(res.data.imageUrlUser)
+      )
+
       // console.log(res.data)
     })
 

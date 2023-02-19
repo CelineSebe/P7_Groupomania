@@ -106,6 +106,7 @@ const MapData = () => {
 
 function Thread() {
   const [apiCalled, setApiCalled] = useState()
+  console.log(apiCalled)
 
   return (
     <ThreadContainer>

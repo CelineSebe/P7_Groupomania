@@ -82,7 +82,6 @@ const UpdateProfil = () => {
 
   const [postImage, setPostImage] = useState('')
   const [postFile, setPostFile] = useState('')
-
   const handleImg = (e) => {
     var tgt = e.target,
       files = tgt.files
@@ -97,12 +96,10 @@ const UpdateProfil = () => {
     console.log(files[0])
 
     setPostFile(files[0])
-
-    // console.log(postFile)
   }
 
   const handleSubmit = (e) => {
-    // e.preventDefault()
+    e.preventDefault()
     const userData = new FormData()
     userData.append('imageUrl', postFile)
     console.log('userData', userData.get('imageUrl'))
@@ -119,7 +116,6 @@ const UpdateProfil = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
   }
-
   return (
     <ProfilContainer>
       <h1 style={{ fontSize: '24px', padding: 20, textAlign: 'center' }}>

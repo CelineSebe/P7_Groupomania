@@ -70,9 +70,6 @@ const SignIn = () => {
           localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo))
           localStorage.setItem('userId', JSON.stringify(res.data.userId))
           localStorage.setItem('token', JSON.stringify(res.data.token))
-          localStorage.setItem('profil', JSON.stringify(res.data.profil))
-          localStorage.setItem('email', JSON.stringify(res.data.email))
-          localStorage.setItem('password', JSON.stringify(res.data.password))
 
           window.location = './Home'
         })

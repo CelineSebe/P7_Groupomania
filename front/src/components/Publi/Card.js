@@ -33,7 +33,7 @@ const CardContainer = styled.ul`
 const Head = styled.header`
   display: flex;
   width: 100%;
-  height: 30px;
+  height: 40px;
   margin: 8px;
   padding-right: 10px;
   border-radius: 20px 20px 0px 0px;
@@ -46,11 +46,14 @@ const ProfilImgContainer = styled.div`
   align-items: center;
   width: 50%;
   border-radius: 50px;
+  margin: 8px;
 `
 
 const UserImg = styled.img`
-  height: 100%;
-  border-radius: 50px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: solid;
 `
 const Main = styled.div`
   width: 100%;

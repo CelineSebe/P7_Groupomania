@@ -16,6 +16,7 @@ router.post('/login', userCtrl.login);
 router.get('/logout', userCtrl.logout); 
 
 // user
+router.get('/oneuser', auth, userCtrl.getOneUser);
 router.get('/user', auth, userCtrl.getUser);
 router.post("/upload", auth, multer, userCtrl.updateImgProfil);
 

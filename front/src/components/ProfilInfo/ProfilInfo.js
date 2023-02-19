@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-// import { useState, useContext } from 'react';
+import axios from 'axios'
+import { useState } from 'react'
 // import AuthContext from '../../store/authContext';
 
 const ProfilContainer = styled.div`
@@ -20,9 +21,28 @@ const ProfilContainer = styled.div`
   }
 `
 
-function ProfilInfo(props) {
+function ProfilInfo({ userId }) {
+  const [userData, setUserData] = useState('')
   let pseudo = JSON.parse(localStorage.getItem('pseudo'))
+  let token = JSON.parse(localStorage.getItem('token'))
 
+  axios({
+    method: 'get',
+    url: `http://localhost:5000/api/auth/oneuser/`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => {
+      // console.log(res.data.imageUrlUser)
+      setUserData(res.data.imageUrlUser)
+      // console.log(res.data)
+    })
+
+    .catch((error) => {
+      console.log(error)
+    })
   return (
     <>
       <ProfilContainer>
@@ -30,11 +50,11 @@ function ProfilInfo(props) {
           {' '}
           Profil de {pseudo}
         </h1>
-        {/* <img
-          src={1}
-          style={{ height: '30%', width: '30%' }}
+        <img
+          src={userData}
+          style={{ height: '50%', width: '50%' }}
           alt="photo de profil"
-        ></img> */}
+        ></img>
       </ProfilContainer>
     </>
   )

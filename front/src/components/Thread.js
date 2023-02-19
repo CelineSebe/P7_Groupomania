@@ -82,7 +82,7 @@ const MapData = () => {
         {postsData
           .map(function (post) {
             let user = usersData.find((user) => post.userId === user._id)
-            console.log(post, usersData, user)
+            console.log(usersData)
 
             return (
               <Card
@@ -94,7 +94,7 @@ const MapData = () => {
                 likes={post.likes}
                 usersLikes={post.usersLikes}
                 date={post.date}
-                postData={postsData}
+                imageUrlUser={user === undefined ? '' : user.imageUrlUser}
                 pseudo={user === undefined ? 'user unknown' : user.pseudo}
               />
             )

@@ -102,7 +102,7 @@ const UpdateProfil = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     const userData = new FormData()
     userData.append('imageUrl', postFile)
     console.log('userData', userData.get('imageUrl'))

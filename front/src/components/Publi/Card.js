@@ -48,7 +48,7 @@ const ProfilImgContainer = styled.div`
   border-radius: 50px;
 `
 
-const LabelPostImg = styled.img`
+const UserImg = styled.img`
   height: 100%;
   border-radius: 50px;
 `
@@ -237,7 +237,11 @@ const Card = ({
       <Main>
         <Head>
           <ProfilImgContainer>
-            <LabelPostImg alt=".jpg" src={assets} />
+            {imageUrlUser ? (
+              <UserImg alt="image profil" src={imageUrlUser} />
+            ) : (
+              <UserImg alt="image profil" src={assets} />
+            )}
             <p style={{ padding: 10, fontSize: 16 }}>Publication de {pseudo}</p>
           </ProfilImgContainer>
           <ButtonLign style={{ paddingRight: 10 }}>
@@ -247,7 +251,7 @@ const Card = ({
               description={description}
               imageUrl={imageUrl}
               setIsModif={setIsModif}
-              setApiCalled={setApiCalled}
+              // setApiCalled={setApiCalled}
               alt="Crayon noir qui écrit"
               onClick={(e) => {
                 e.preventDefault()

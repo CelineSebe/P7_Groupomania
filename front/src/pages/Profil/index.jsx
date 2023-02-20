@@ -11,6 +11,7 @@ import UpdateProfil from '../../components/ProfilInfo/UpdateProfil'
 const ProfilInfoContainer = styled.div`
   display: flex;
   align-items: center;
+
   @media screen and (max-width: 730px) {
     display: flex;
     flex-direction: column;
@@ -24,10 +25,9 @@ const ProfilPage = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 150px 20px;
+  margin: 80px 20px;
   position: fixed;
   width: 100%;
-  height: 50%;
 `
 
 function Profil(props) {
@@ -44,8 +44,6 @@ function Profil(props) {
           <UpdateProfil />
           <ProfilInfo userId={userId} />
         </ProfilInfoContainer>
-        <p> Nous sommes le {props.date}</p>
-        {/* </InfiniteScroll> */}
       </ProfilPage>
     </>
   )

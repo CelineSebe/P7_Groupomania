@@ -6,12 +6,16 @@ import { useState } from 'react'
 // import AuthContext from '../../store/authContext';
 
 const ProfilContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   border-color: ${colors.secondary};
   width: 100%;
   height: 50vh;
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
-  margin: 20px;
+  margin: 10px;
   &:hover {
     background-color: white;
     cursor: pointer;

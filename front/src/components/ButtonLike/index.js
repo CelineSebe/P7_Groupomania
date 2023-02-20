@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -43,10 +43,7 @@ const ButtonLike = ({
   usersDislikes,
 }) => {
   const [liked, setLiked] = useState(false)
-  const [disliked, setDisliked] = useState(false)
-
   const [countLike, setcountLike] = useState(likes)
-  const [countDislike, setcountDislike] = useState(dislikes)
   //   const [usersLikes, setUsersLikes] = useState()
 
   const token = JSON.parse(localStorage.getItem('token'))
@@ -59,24 +56,47 @@ const ButtonLike = ({
     usersLikes,
     token,
   }) {
-    fetch(`http://localhost:5000/api/publis/${id}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ id }),
-    })
-      .then(function (res) {
-        if (res.ok) {
-          return res.json()
-        }
+    // useEffect(() => {
+    if (liked === true) {
+      fetch(`http://localhost:5000/api/publis/${id}/like`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id }),
       })
-      .then(function (value) {})
-      .catch(function (err) {
-        console.log(err)
+        .then(function (res) {
+          if (res.ok) {
+            return res.json()
+          }
+        })
+        .then(function (value) {})
+        .catch(function (err) {
+          console.log(err)
+        })
+    } else {
+      fetch(`http://localhost:3000/api/publis/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id }),
       })
+        .then(function (res) {
+          if (res.ok) {
+            return res.json()
+          }
+        })
+        .then(function (value) {})
+        .catch(function (err) {
+          console.log(err)
+        })
+    }
+    // }, [handleLike])
   }
   return (
     <>
@@ -84,22 +104,29 @@ const ButtonLike = ({
         onClick={(e) => {
           if (liked === false) {
             setLiked(true)
-            setDisliked(false)
-            setcountDislike(countDislike - 1)
             setcountLike(countLike + 1)
+            handleLike({
+              id,
+              userId,
+              liked,
+              likes,
+              dislikes,
+              usersLikes,
+              token,
+            })
           } else {
             setLiked(false)
             setcountLike(countLike - 1)
+            handleLike({
+              id,
+              userId,
+              liked,
+              likes,
+              dislikes,
+              usersLikes,
+              token,
+            })
           }
-          handleLike({
-            id,
-            userId,
-            liked,
-            likes,
-            dislikes,
-            usersLikes,
-            token,
-          })
         }}
       >
         {countLike > 0 ? countLike : <></>}
@@ -109,7 +136,7 @@ const ButtonLike = ({
           <i className="fa-regular fa-thumbs-up" />
         )}
       </Like>
-      <Dislike
+      {/* <Dislike
         onClick={(e) => {
           if (disliked === false) {
             setLiked(false)
@@ -139,7 +166,7 @@ const ButtonLike = ({
         ) : (
           <i className="fa-regular fa-thumbs-down" />
         )}
-      </Dislike>
+      </Dislike> */}
     </>
   )
 }

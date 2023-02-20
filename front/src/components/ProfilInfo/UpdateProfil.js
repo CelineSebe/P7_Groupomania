@@ -6,22 +6,23 @@ import axios from 'axios'
 const ProfilContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-color: ${colors.secondary};
-  width: 600px;
-  height: 200px;
-  width: 100%;
+  width: 80%;
   height: 100%;
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
   margin: 20px;
+  padding: 20px;
 `
 const ImgContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 10px; ;
 `
 
 const Hide = styled.div`
@@ -33,6 +34,9 @@ const Hide = styled.div`
   z-index: -1;
 `
 const FormPost = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
 `
@@ -57,6 +61,7 @@ const ButtonAdd = styled.label`
 const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
 `
 const ButtonPush = styled.button`
   background-color: ${colors.primary};

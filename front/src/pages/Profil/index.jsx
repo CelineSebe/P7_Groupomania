@@ -10,6 +10,8 @@ import UpdateProfil from '../../components/ProfilInfo/UpdateProfil'
 
 const ProfilInfoContainer = styled.div`
   display: flex;
+  flex-direction: column-reverse;
+  margin: 30px;
   align-items: center;
 
   @media screen and (max-width: 730px) {

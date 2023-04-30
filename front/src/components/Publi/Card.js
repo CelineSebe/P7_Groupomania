@@ -179,9 +179,9 @@ const Close = styled.div`
   font-size: larger;
 `
 
-function modifyOnePost({ id, isDescriptionModif, isImageModif }) {
+function modifyOnePost({ id, isDescriptionModif, isImageModif, isLiked }) {
   const token = JSON.parse(localStorage.getItem('token'))
-  console.log(isDescriptionModif, isImageModif)
+  console.log(isDescriptionModif, isImageModif, isLiked)
   const dataPost = new FormData()
   dataPost.append('description', isDescriptionModif)
   dataPost.append('imageUrl', isImageModif)
@@ -225,15 +225,15 @@ const Card = ({
   description,
   imageUrl,
   likes,
+  dislikes,
   usersLikes,
+  usersDislikes,
   date,
-  comments,
   setApiCalled,
 }) => {
   const [isModif, setIsModif] = useState(false)
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
   const [isImageModif, setIsImageModif] = useState(imageUrl)
-  console.log(usersLikes.length)
 
   return (
     <CardContainer>
@@ -304,16 +304,24 @@ const Card = ({
                   padding: '10px',
                 }}
               >
-                {/* <MDBBtn
-                  alt="Pouce like"
-                  style={{ color: 'blueviolet', fontSize: 18 }}
-                > */}
-                <ButtonLike id={id} userId={userId} likes={likes} />
+                <ButtonLike
+                  postId={id}
+                  userId={userId}
+                  likes={likes}
+                  dislikes={dislikes}
+                  usersLikes={usersLikes}
+                  usersDislikes={usersDislikes}
+                  description={description}
+                  imageUrl={imageUrl}
+                  onClick={(e) => {
+                    e.preventDefault()
+                  }}
+                />
                 {/* </MDBBtn> */}
-                <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
+                {/* <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
                   {comments}
                   <i className="fa-regular fa-comments" />
-                </MDBBtn>
+                </MDBBtn> */}
               </span>
             </MDBCardBody>
           </MDBCard>
@@ -375,7 +383,11 @@ const Card = ({
                   id="put"
                   onClick={(e) => {
                     e.preventDefault()
-                    handleModify({ id, isDescriptionModif, isImageModif })
+                    handleModify({
+                      id,
+                      isDescriptionModif,
+                      isImageModif,
+                    })
                     // modifyOnePost()
                     setIsModif(false)
                   }}

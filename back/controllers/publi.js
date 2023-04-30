@@ -136,38 +136,38 @@ exports.likeDislike = (req, res, next) =>
             {
                 const countUsers =
                     {
-                        usersLiked: publi.usersLiked,
-                        usersDisliked: publi.usersDisliked,
+                        usersLikes: publi.usersLikes,
+                        usersDislikes: publi.usersDislikes,
                         likes: 0,
                         dislikes:0,
                     };
-                    if (like == 1)
+                        if (like == 1)
                         {
-                            if(!publi.usersLiked.includes(userId) && !publi.usersDisliked.includes(userId))
+                            if(!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
                             {
-                                countUsers.usersLiked.push(userId);
+                                countUsers.usersLikes.push(userId);
                             }
                         }else if (like == -1)
                         {
-                            if (!publi.userLiked.includes(userId) && !publi.usersDisliked.includes(userId))
+                            if (!publi.userLikes.includes(userId) && !publi.usersDislikes.includes(userId))
                             {
-                                countUsers.usersDisliked.push(userId);
+                                countUsers.usersDislikes.push(userId);
                             }
                         } else
                         {
-                            if (publi.usersLiked.includes(userId))
+                            if (publi.usersLikes.includes(userId))
                             {
-                                const index = countUsers.usersLiked.indexOf(userId);
-                                countUsers.usersLiked.splice(index, 1);
+                                const index = countUsers.usersLikes.indexOf(userId);
+                                countUsers.usersLikes.splice(index, 1);
                             }
-                            else if (publi.usersDisliked.includes(userId))
+                            else if (publi.usersDislikes.includes(userId))
                             {
-                                const index = countUsers.usersDisliked.indexOf(userId);
-                                countUsers.usersDisliked.splice(index, 1);
+                                const index = countUsers.usersDislikes.indexOf(userId);
+                                countUsers.usersDislikes.splice(index, 1);
                             }
                         }
-                        countUsers.likes = countUsers.usersLiked.length;
-                        countUsers.dislikes = countUsers.usersDisliked.length;
+                        countUsers.likes = countUsers.usersLikes.length;
+                        countUsers.dislikes = countUsers.usersDislikes.length;
 
                         Publi.updateOne({ _id: publiId }, countUsers)
                             .then(() => res.status(201)

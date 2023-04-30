@@ -92,7 +92,9 @@ const MapData = () => {
                 imageUrl={post.imageUrl}
                 description={post.description}
                 likes={post.likes}
+                dislikes={post.dislikes} 
                 usersLikes={post.usersLikes}
+                usersDislikes={post.usersDislikes} 
                 date={post.date}
                 imageUrlUser={user === undefined ? '' : user.imageUrlUser}
                 pseudo={user === undefined ? 'user unknown' : user.pseudo}
@@ -110,7 +112,7 @@ function Thread() {
 
   return (
     <ThreadContainer>
-      <H1Thread> News</H1Thread>
+      {/* <H1Thread> News</H1Thread> */}
       <CreatePubli setApiCalled={setApiCalled} />
       <div style={{ height: '900px', overflow: 'auto', width: '100%' }}>
         <MapData apiCalled={apiCalled} setApiCalled={setApiCalled} />

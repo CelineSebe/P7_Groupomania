@@ -14,119 +14,141 @@ const Dislike = styled.div`
   font-size: 18px;
 `
 
-//   axios
-//     .post(
-//       `http://localhost:5000/api/publis/${id}`,
-//       //   { edited_field: 'likes', likes: counter },
-//       //   { edited_field: 'usersLikes', usersLikes: userId },
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ id }),
-//       }
-//     )
-//     .then((response) => {
-//       console.log(response)
-//     })
-//     .catch((error) => {
-//       console.log(error)
-//     })
+function modifyLike({
+  postId,
+  countDislike,
+  countLike,
+  userLike,
+  userDislike,
+  imageUrl,
+  description,
+}) {
+  const token = JSON.parse(localStorage.getItem('token'))
+  console.log('likes', countLike)
+  const dataPost = new FormData()
 
+  dataPost.append('description', description)
+  dataPost.append('imageUrl', imageUrl)
+  dataPost.append('likes', countLike)
+  dataPost.append('dislikes', countDislike)
+  dataPost.append('usersLikes', userLike)
+  dataPost.append('usersDislikes', userDislike)
+
+  axios({
+    method: 'PUT',
+    url: `http://localhost:5000/api/publis/${postId}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+    data: dataPost,
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json
+      }
+      console.log(res.data)
+      alert('votre post a bien été modifié')
+    })
+
+    .catch((err) => {
+      console.log(err)
+      window.alert("Votre post n'a pas été modifié. Veuillez recommencer!")
+    })
+}
+function handleLike({
+  postId,
+  userId,
+  liked,
+  userDislike,
+  userLike,
+  countDislike,
+  countLike,
+  token,
+  description,
+  imageUrl,
+}) {
+  let res = window.confirm(
+    'Votre publication va être likée/dislikée. Confirmation?'
+  )
+  if (res) {
+    console.log('handleLiked')
+    modifyLike({
+      postId,
+      userId,
+      liked,
+      countDislike,
+      countLike,
+      userDislike,
+      userLike,
+      token,
+      description,
+      imageUrl,
+    })
+  }
+}
 const ButtonLike = ({
-  id,
+  postId,
   userId,
   likes,
   dislikes,
   usersLikes,
   usersDislikes,
+  description,
+  imageUrl,
 }) => {
   const [liked, setLiked] = useState(false)
+  const [disliked, setDisliked] = useState(false)
+  const [userLike, setuserLike] = useState([])
+  const [userDislike, setuserDislike] = useState([])
+  const [countDislike, setcountDislike] = useState(dislikes)
   const [countLike, setcountLike] = useState(likes)
-  //   const [usersLikes, setUsersLikes] = useState()
 
   const token = JSON.parse(localStorage.getItem('token'))
-  function handleLike({
-    id,
-    counter,
-    userId,
-    likes,
-    dislikes,
-    usersLikes,
-    token,
-  }) {
-    // useEffect(() => {
-    if (liked === true) {
-      fetch(`http://localhost:5000/api/publis/${id}/like`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ id }),
-      })
-        .then(function (res) {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then(function (value) {})
-        .catch(function (err) {
-          console.log(err)
-        })
-    } else {
-      fetch(`http://localhost:3000/api/publis/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ id }),
-      })
-        .then(function (res) {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then(function (value) {})
-        .catch(function (err) {
-          console.log(err)
-        })
+  for (var i = 0; i < usersLikes.length; i++) {
+    if (userId === usersLikes[i]) {
+      console.log('user a déjà liké')
+      setLiked(true)
     }
-    // }, [handleLike])
   }
+  for (var j = 0; j < usersDislikes.length; j++) {
+    if (userId === usersDislikes[j]) {
+      console.log('user a déjà disliké')
+      setDisliked(true)
+    }
+  }
+
   return (
     <>
       <Like
         onClick={(e) => {
+          e.preventDefault()
           if (liked === false) {
             setLiked(true)
             setcountLike(countLike + 1)
-            handleLike({
-              id,
-              userId,
-              liked,
-              likes,
-              dislikes,
-              usersLikes,
-              token,
-            })
+            // setuserLike(usersLikes.push(userId))
+
+            if (disliked) {
+              setDisliked(false)
+              setcountDislike(countDislike - 1)
+              // setuserDislike(usersLikes.pop(userId))
+            }
           } else {
             setLiked(false)
             setcountLike(countLike - 1)
-            handleLike({
-              id,
-              userId,
-              liked,
-              likes,
-              dislikes,
-              usersLikes,
-              token,
-            })
+            // setuserLike(usersLikes.pop(userId))
           }
+          handleLike({
+            postId,
+            userId,
+            userLike,
+            userDislike,
+            countDislike,
+            countLike,
+            token,
+            description,
+            imageUrl,
+          })
         }}
       >
         {countLike > 0 ? countLike : <></>}
@@ -136,27 +158,47 @@ const ButtonLike = ({
           <i className="fa-regular fa-thumbs-up" />
         )}
       </Like>
-      {/* <Dislike
+      <Dislike
         onClick={(e) => {
-          if (disliked === false) {
-            setLiked(false)
+          e.preventDefault()
+          if (disliked === false) 
+          {
             setDisliked(true)
-            setcountLike(countLike - 1)
             setcountDislike(countDislike + 1)
+            // setuserDislike(usersDislikes.push(userId))
+
+            // for (var i = 0; i < usersDislikes.length; i++) {
+              //   if (userId === usersDislikes[i]) {
+                //     console.log('user a déjà liké')
+                //     setuserDislike(usersDislikes.pop(userId))
+                //   } else {
+                  //     setuserDislike(usersDislikes.push(userId))
+                  //   }
+                  // }
+                  if (liked) {
+                    setLiked(false)
+                    setcountLike(countLike - 1)
+                    // setuserLike(usersLikes.pop(userId))
+                  }
           } else {
             setDisliked(false)
             setcountDislike(countDislike - 1)
+            // setuserDislike(usersDislikes.pop(userId))
           }
           handleLike({
-            id,
+            postId,
             userId,
-            likes,
-            dislikes,
             liked,
             disliked,
+            userLike,
+            userDislike,
+            countDislike,
+            countLike,
             usersLikes,
             usersDislikes,
             token,
+            description,
+            imageUrl,
           })
         }}
       >
@@ -166,7 +208,7 @@ const ButtonLike = ({
         ) : (
           <i className="fa-regular fa-thumbs-down" />
         )}
-      </Dislike> */}
+      </Dislike>
     </>
   )
 }

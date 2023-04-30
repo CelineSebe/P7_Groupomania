@@ -12,16 +12,18 @@ const ProfilContainer = styled.div`
   align-items: center;
   border-color: ${colors.secondary};
   width: 100%;
-  height: 50vh;
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
   margin: 10px;
+  padding: 40px;
   &:hover {
     background-color: white;
     cursor: pointer;
   }
   @media screen and (max-width: 730px) {
     width: 70%;
+    height: 70%;
+    margin: 60px;
   }
 `
 

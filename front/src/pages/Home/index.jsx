@@ -18,7 +18,6 @@ const FeedContainer = styled.div`
   position: fixed;
   top: 60px;
   width: 100%;
-  height: 100%;
   background-color: #f4f3f3;
 
   @media screen and (max-width: 1023px) {
@@ -39,21 +38,20 @@ const FeedContainer = styled.div`
 const ProfilContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 300px;
-  height: 60vh;
-  margin: 25px 10px;
+  justify-content: center;
+  width: 20%;
+  margin-top: 40px;
+  /* width: 300px;
+  height: 60vh; */
+  /* margin: 25px 10px; */
   @media screen and (max-width: 1023px) {
+    display: none;
     height: 12%;
     font-size: 8px;
     margin: 0px;
     &:nth-child(1) {
       order: 1;
     }
-  }
-  @media screen and (max-width: 730px) {
-    display: none;
   }
 `
 
@@ -62,7 +60,7 @@ const PostContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 70%;
-  margin: 10px 20px;
+  margin: 10px 10px;
   @media screen and (max-width: 1023px) {
     margin: 0px 0px;
     width: 100%;
@@ -71,23 +69,23 @@ const PostContainer = styled.div`
     }
   }
 `
-const TrendContainer = styled.div`
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-  height: 50vh;
-  margin: 25px 50px;
-  @media screen and (max-width: 1023px) {
-    display: flex;
-    height: 12%;
-    font-size: 8px;
-    margin: 0px;
-    &:nth-child(3) {
-      order: 2;
-    }
-  }
-`
+// const TrendContainer = styled.div`
+//   display: none;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 300px;
+//   height: 50vh;
+//   margin: 25px 50px;
+//   @media screen and (max-width: 1023px) {
+//     display: none;
+//     height: 12%;
+//     font-size: 8px;
+//     margin: 0px;
+//     &:nth-child(3) {
+//       order: 2;
+//     }
+//   }
+// `
 
 function Home(props) {
   const authCont = useContext(AuthContext)
@@ -105,9 +103,9 @@ function Home(props) {
           <Thread />
         </PostContainer>
 
-        <TrendContainer>
+        {/* <TrendContainer>
           <TrendingInfo />
-        </TrendContainer>
+        </TrendContainer> */}
       </FeedContainer>
     </>
   )

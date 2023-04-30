@@ -9,20 +9,20 @@ const ProfilContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${colors.secondary};
-  width: 80%;
-  height: 100%;
+  width: 100%;
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
   margin: 20px;
   padding: 20px;
+  @media screen and (max-width: 730px) {
+    width: 70%;
+  }
 `
+
 const ImgContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
-  margin: 10px; ;
 `
 
 const Hide = styled.div`
@@ -37,8 +37,6 @@ const FormPost = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
 `
 const ButtonAdd = styled.label`
   background-color: ${colors.primary};
@@ -62,6 +60,9 @@ const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 730px) {
+    width: 70%;
+  }
 `
 const ButtonPush = styled.button`
   background-color: ${colors.primary};
@@ -72,14 +73,11 @@ const ButtonPush = styled.button`
   border-radius: 15px;
   font-size: 14px;
   margin-top: 10px;
-  margin-right: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   &:hover {
     cursor: pointer;
     background-color: #b69c9c;
   }
+  
 `
 
 const UpdateProfil = () => {
@@ -124,7 +122,7 @@ const UpdateProfil = () => {
   return (
     <ProfilContainer>
       <h1 style={{ fontSize: '24px', padding: 20, textAlign: 'center' }}>
-        Editer le profil{' '}
+        Editer votre profil{' '}
       </h1>
       <FormPost onSubmit={handleSubmit} encType="multipart/form-data">
         <ImgContainer>

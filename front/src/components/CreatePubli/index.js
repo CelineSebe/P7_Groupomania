@@ -146,9 +146,27 @@ const PreviewImg = styled.div``
 const CreatePubli = () => {
   const [description, setDescription] = useState('')
   const [imageUrl, setImageUrl] = useState('')
+  const [isImageValid, setImageValid] = useState(true);
+
   const token = JSON.parse(localStorage.getItem('token'))
   const userId = JSON.parse(localStorage.getItem('userId'))
   const ImageUrlUser = JSON.parse(localStorage.getItem('imageUrlUser'))
+
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const allowedFormats = ['image/jpeg', 'image/png']; // Formats d'image autorisés
+  
+      if (allowedFormats.includes(file.type)) {
+        setSelectedImage(file);
+        setImageValid(true); // L'image est valide
+      } else {
+        setSelectedImage('');
+        setImageValid(false); // L'image n'est pas valide
+      }
+    }
+  };
+  
 
   const Post = (e) => {
     e.preventDefault()
@@ -188,11 +206,6 @@ const CreatePubli = () => {
 
   const [selectedImage, setSelectedImage] = useState('')
 
-  const imageChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedImage(e.target.files[0])
-    }
-  }
 
   const removeSelectedImage = () => {
     setSelectedImage()
@@ -275,14 +288,17 @@ const CreatePubli = () => {
         </FormPost>
       </ContainerCreatePubli>
       <div
-        className="description error"
-        style={{
-          fontSize: 16,
-          color: 'red',
-          textAlign: 'center',
-          paddingTop: 2,
-        }}
-      ></div>
+  className="description error"
+  style={{
+    fontSize: 16,
+    color: 'red',
+    textAlign: 'center',
+    paddingTop: 2,
+    visibility: isImageValid ? 'hidden' : 'visible', // Masque le message d'erreur si l'image est valide
+  }}
+>
+  Le format de l'image n'est pas valide. Veuillez choisir une image au format JPEG ou PNG.
+</div>
     </>
   )
 }

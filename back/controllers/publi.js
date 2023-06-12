@@ -149,7 +149,7 @@ exports.likeDislike = (req, res, next) =>
                             }
                         }else if (like == -1)
                         {
-                            if (!publi.userLikes.includes(userId) && !publi.usersDislikes.includes(userId))
+                            if (!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
                             {
                                 countUsers.usersDislikes.push(userId);
                             }

@@ -120,18 +120,15 @@ const ButtonLike = ({
   // initialisation des variables updatedUsersLikes et updatedUsersDislikes
   console.log('usersLikes:', usersLikes)
   console.log('usersDislikes:', usersDislikes)
- 
 
   useEffect(() => {
-  if (usersLikes.includes(userId)) {
-    console.log('user a déjà liké')
-    setLiked(true)
-  }
-  if (usersDislikes.includes(userId)) {
-    console.log('user a déjà disliké')
-    setDisliked(true)
-  }
-})
+    if (usersLikes.includes(userId)) {
+      setLiked(true)
+    }
+    if (usersDislikes.includes(userId)) {
+      setDisliked(true)
+    }
+  }, [usersLikes, usersDislikes, userId])
   return (
     <>
       <Like

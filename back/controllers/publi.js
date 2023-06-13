@@ -128,9 +128,10 @@ exports.getAllPublis = (req, res, next) =>
 exports.likeDislike = (req, res, next) =>
 {
     const publiObject = {...req.body};
-        let like = req.body.like;
-        let userId = req.body.userId;
+        let like = publiObject.like;
+        let userId = publiObject.userId;
         let publiId = req.params.id;
+        console.log('userId', userId)
         Publi.findOne({ _id: publiId })
             .then((publi) => 
             {
@@ -141,6 +142,7 @@ exports.likeDislike = (req, res, next) =>
                         likes: 0,
                         dislikes:0,
                     };
+                    if (typeof userId !== 'undefined') {
                         if (like == 1)
                         {
                             if(!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
@@ -166,6 +168,7 @@ exports.likeDislike = (req, res, next) =>
                                 countUsers.usersDislikes.splice(index, 1);
                             }
                         }
+                    }
                         countUsers.likes = countUsers.usersLikes.length;
                         countUsers.dislikes = countUsers.usersDislikes.length;
 

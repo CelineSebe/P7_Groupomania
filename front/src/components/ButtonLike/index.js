@@ -25,6 +25,7 @@ function modifyLike({
 }) {
   const token = JSON.parse(localStorage.getItem('token'))
   console.log('likes', countLike)
+
   const dataPost = new FormData()
 
   dataPost.append('description', description)
@@ -89,7 +90,6 @@ function handleLike({
 }
 const ButtonLike = ({
   postId,
-  userId,
   likes,
   dislikes,
   usersLikes,
@@ -105,6 +105,8 @@ const ButtonLike = ({
   const [countLike, setcountLike] = useState(likes)
 
   const token = JSON.parse(localStorage.getItem('token'))
+  const userId = JSON.parse(localStorage.getItem('userId'))
+
   // for (var i = 0; i < usersLikes.length; i++) {
   //   if (userId === usersLikes[i]) {
   //     console.log('user a déjà liké')
@@ -136,14 +138,14 @@ const ButtonLike = ({
           e.preventDefault()
           let updatedCounts = { countLike, countDislike }
 
-          // for (var i = 0; i < usersLikes.length; i++) {
-          //   if (userId === usersLikes[i]) {
-          //     console.log('user a déjà liké')
-          //     setuserLike(usersLikes.pop(userId))
-          //   } else {
-          //     setuserLike(usersLikes.push(userId))
-          //   }
-          // }
+          for (var i = 0; i < usersLikes.length; i++) {
+            if (userId === usersLikes[i]) {
+              console.log('user a déjà liké')
+              // setupdatedUsersLikes(usersLikes.pop(userId))
+            } else {
+              // setupdatedUsersLikes(usersLikes.push(userId))
+            }
+          }
           if (liked === false) {
             setLiked(true)
             updatedCounts.countLike = countLike + 1
@@ -158,7 +160,7 @@ const ButtonLike = ({
                 // setupdatedUsersDislikes(updatedUsersDislikes.pop(userId))
                 usersDislikes.pop(userId)
               }
-              // setuserDislike(usersLikes.pop(userId))
+              // setupdatedUsersDislikes(usersLikes.pop(userId))
             }
           } else {
             setLiked(false)
@@ -167,7 +169,7 @@ const ButtonLike = ({
               // setupdatedUsersLikes(updatedUsersLikes.pop(userId))
               usersLikes.pop(userId)
             }
-            // setuserLike(usersLikes.pop(userId))
+            // setupdatedUsersLikes(usersLikes.pop(userId))
           }
           handleLike({
             postId,
@@ -212,7 +214,7 @@ const ButtonLike = ({
               // setupdatedUsersDislikes(updatedUsersDislikes.push(userId))
               usersDislikes.push(userId)
             }
-            // setuserDislike(usersDislikes.push(userId))
+            // setupdatedUsersDislikes(usersDislikes.push(userId))
 
             if (liked) {
               setLiked(false)
@@ -221,7 +223,7 @@ const ButtonLike = ({
                 // setupdatedUsersLikes(updatedUsersLikes.pop(userId))
                 usersLikes.pop(userId)
               }
-              // setuserLike(usersLikes.pop(userId))
+              // setupdatedUsersLikes(usersLikes.pop(userId))
             }
           } else {
             setDisliked(false)
@@ -231,7 +233,7 @@ const ButtonLike = ({
               usersDislikes.pop(userId)
             }
 
-            // setuserDislike(usersDislikes.pop(userId))
+            // setupdatedUsersDislikes(usersDislikes.pop(userId))
           }
           handleLike({
             postId,

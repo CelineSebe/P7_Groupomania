@@ -18,45 +18,51 @@ function modifyLike({
   postId,
   countDislike,
   countLike,
-  userLike,
-  userDislike,
+  usersLikes,
+  usersDislikes,
   imageUrl,
   description,
 }) {
   const token = JSON.parse(localStorage.getItem('token'))
+  const userId = JSON.parse(localStorage.getItem('userId'))
   console.log('likes', countLike)
 
-  const dataPost = new FormData()
+  // const dataPost = new FormData()
 
-  dataPost.append('description', description)
-  dataPost.append('imageUrl', imageUrl)
-  dataPost.append('likes', countLike)
-  dataPost.append('dislikes', countDislike)
-  dataPost.append('usersLikes', userLike)
-  dataPost.append('usersDislikes', userDislike)
+  // dataPost.append('description', description)
+  // dataPost.append('imageUrl', imageUrl)
+  // dataPost.append('likes', countLike)
+  // dataPost.append('dislikes', countDislike)
+  // dataPost.append('usersLikes', userId)
+  // dataPost.append('usersDislikes', userId)
 
   axios({
     method: 'PUT',
-    url: `http://localhost:5000/api/publis/${postId}`,
+    url: `http://localhost:5000/api/publis/${postId}/like`,
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
-    data: dataPost,
+    data: {
+      likes: countLike,
+      dislikes: countDislike,
+      usersLikes: userId,
+      usersDislikes: userId
+    },
   })
     .then((res) => {
       if (res.ok) {
-        return res.json
+        return res.json()
       }
-      console.log(res.data)
-      alert('votre post a bien été modifié')
+      alert('vos likes ont bien été modifié')
     })
 
     .catch((err) => {
       console.log(err)
-      window.alert("Votre post n'a pas été modifié. Veuillez recommencer!")
+      window.alert("Vos likes n'ont pas été modifié. Veuillez recommencer!")
     })
 }
+
 function handleLike({
   postId,
   userId,

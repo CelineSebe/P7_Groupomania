@@ -107,15 +107,14 @@ const MapData = () => {
 }
 
 function Thread() {
-  const [apiCalled, setApiCalled] = useState()
-  console.log(apiCalled)
+
 
   return (
     <ThreadContainer>
       {/* <H1Thread> News</H1Thread> */}
-      <CreatePubli setApiCalled={setApiCalled} />
+      <CreatePubli />
       <div style={{ height: '900px', overflow: 'auto', width: '100%' }}>
-        <MapData apiCalled={apiCalled} setApiCalled={setApiCalled} />
+        <MapData />
       </div>
     </ThreadContainer>
   )

@@ -127,29 +127,35 @@ exports.getAllPublis = (req, res, next) =>
 
 exports.likeDislike = (req, res, next) =>
 {
-    const publiObject = {...req.body};
-        let like = publiObject.like;
-        let userId = publiObject.userId;
-        let publiId = req.params.id;
-        console.log('userId', userId)
-        Publi.findOne({ _id: publiId })
-            .then((publi) => 
+    
+    const publiObject = { ...req.body};
+    let likes = publiObject.likes;
+    let userId = req.auth.userId;
+    let publiId = req.params.id;
+    
+    console.log('body', req.body)
+    
+    Publi.findOne({ _id: publiId })
+    .then((publi) => 
+    {
+        const countUsers =
+        {
+            usersLikes: publi.usersLikes,
+            usersDislikes: publi.usersDislikes,
+            likes: 0,
+            dislikes:0,
+        };
+        console.log('userId', req.auth.userId)
+        console.log('likes', likes)
+        if (typeof userId !== 'undefined') {
+            if (likes == 1)
             {
-                const countUsers =
-                    {
-                        usersLikes: publi.usersLikes,
-                        usersDislikes: publi.usersDislikes,
-                        likes: 0,
-                        dislikes:0,
-                    };
-                    if (typeof userId !== 'undefined') {
-                        if (like == 1)
-                        {
-                            if(!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
-                            {
+                if(!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
+                {
+              
                                 countUsers.usersLikes.push(userId);
                             }
-                        }else if (like == -1)
+                        }else if (likes == -1)
                         {
                             if (!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
                             {
@@ -172,11 +178,11 @@ exports.likeDislike = (req, res, next) =>
                         countUsers.likes = countUsers.usersLikes.length;
                         countUsers.dislikes = countUsers.usersDislikes.length;
 
-                        Publi.updateOne({ _id: publiId }, countUsers)
+                        Publi.updateOne({ _id: publiId }, {$set: countUsers})
                             .then(() => res.status(201)
                                 .json({ message:" Action sur le like ou dislike pris en compte!"}))
                             .catch(error => res.status(400)
                                 .json({ error }))
                 })
                 .catch((error) => res.status(500).json({ error }));
-            }
+}

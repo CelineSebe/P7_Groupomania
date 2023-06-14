@@ -147,42 +147,39 @@ exports.likeDislike = (req, res, next) =>
         };
         console.log('userId', req.auth.userId)
         console.log('likes', likes)
+        
         if (typeof userId !== 'undefined') {
-            if (likes == 1)
-            {
-                if(!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
-                {
-              
-                                countUsers.usersLikes.push(userId);
-                            }
-                        }else if (likes == -1)
-                        {
-                            if (!publi.usersLikes.includes(userId) && !publi.usersDislikes.includes(userId))
-                            {
-                                countUsers.usersDislikes.push(userId);
-                            }
-                        } else
-                        {
-                            if (publi.usersLikes.includes(userId))
-                            {
-                                const index = countUsers.usersLikes.indexOf(userId);
-                                countUsers.usersLikes.splice(index, 1);
-                            }
-                            else if (publi.usersDislikes.includes(userId))
-                            {
-                                const index = countUsers.usersDislikes.indexOf(userId);
-                                countUsers.usersDislikes.splice(index, 1);
-                            }
-                        }
-                    }
-                        countUsers.likes = countUsers.usersLikes.length;
-                        countUsers.dislikes = countUsers.usersDislikes.length;
+            if (publiObject.likes === 1) {
+              if (!publi.usersLikes.includes(userId)) {
+                countUsers.usersLikes.push(userId);
+              }
+      
+              if (publi.usersDislikes.includes(userId)) {
+                const index = countUsers.usersDislikes.indexOf(userId);
+                countUsers.usersDislikes.splice(index, 1);
+              }
+            } else if (publiObject.likes === -1) {
+              if (!publi.usersDislikes.includes(userId)) {
+                countUsers.usersDislikes.push(userId);
+              }
+      
+              if (publi.usersLikes.includes(userId)) {
+                const index = countUsers.usersLikes.indexOf(userId);
+                countUsers.usersLikes.splice(index, 1);
+              }
+            }
+          }
+       
+                countUsers.likes = countUsers.usersLikes.length;
+                countUsers.dislikes = countUsers.usersDislikes.length;
 
-                        Publi.updateOne({ _id: publiId }, {$set: countUsers})
-                            .then(() => res.status(201)
-                                .json({ message:" Action sur le like ou dislike pris en compte!"}))
-                            .catch(error => res.status(400)
-                                .json({ error }))
+                console.log("countUsers", countUsers.likes)
+                console.log("countUsers", countUsers.dislikes)
+                Publi.updateOne({ _id: publiId }, {$set: countUsers})
+                    .then(() => res.status(201)
+                    .json({ message:" Action sur le like ou dislike pris en compte!"}))
+                    .catch(error => res.status(400)
+                    .json({ error }))
                 })
-                .catch((error) => res.status(500).json({ error }));
+            .catch((error) => res.status(500).json({ error }));
 }

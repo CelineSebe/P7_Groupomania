@@ -42,7 +42,7 @@ const MapData = () => {
     })
       .then((res) => {
         setPostsData(res.data)
-        // console.log(res.data)
+        console.log('post', res.data)
       })
 
       .catch((error) => {
@@ -68,7 +68,6 @@ const MapData = () => {
     })
       .then((res) => {
         setUsersData(res.data)
-        console.log('res', res.data)
       })
 
       .catch((error) => {
@@ -82,8 +81,12 @@ const MapData = () => {
         {postsData
           .map(function (post) {
             let user = usersData.find((user) => post.userId === user._id)
-            console.log(usersData)
-
+            console.log('USD', usersData)
+            console.log('usersLikes', post.usersLikes)
+            console.log('usersDislikes', post.usersDislikes)
+            console.log('description', post.description)
+            const usersLikes = post.usersLikes || []; // Utiliser un tableau vide si post.usersLikes est undefined
+            const usersDislikes = post.usersDislikes || []; // Utiliser un tableau vide si post.usersDislikes est undefined
             return (
               <Card
                 key={post.id}
@@ -92,9 +95,9 @@ const MapData = () => {
                 imageUrl={post.imageUrl}
                 description={post.description}
                 likes={post.likes}
-                dislikes={post.dislikes} 
-                usersLikes={post.usersLikes}
-                usersDislikes={post.usersDislikes} 
+                dislikes={post.dislikes}
+                usersLikes={usersLikes}
+                usersDislikes={usersDislikes}
                 date={post.date}
                 imageUrlUser={user === undefined ? '' : user.imageUrlUser}
                 pseudo={user === undefined ? 'user unknown' : user.pseudo}
@@ -107,8 +110,6 @@ const MapData = () => {
 }
 
 function Thread() {
-
-
   return (
     <ThreadContainer>
       {/* <H1Thread> News</H1Thread> */}

@@ -20,12 +20,13 @@ function modifyLike({
   countLike,
   usersLikes,
   usersDislikes,
-  imageUrl,
-  description,
 }) {
   const token = JSON.parse(localStorage.getItem('token'))
   const userId = JSON.parse(localStorage.getItem('userId'))
   console.log('likes', countLike)
+  console.log('dislikes', countDislike)
+  console.log('usersLikes', usersLikes)
+  console.log('usersDislikes', usersDislikes)
 
   // const dataPost = new FormData()
 
@@ -46,8 +47,8 @@ function modifyLike({
     data: {
       likes: countLike,
       dislikes: countDislike,
-      usersLikes: userId,
-      usersDislikes: userId
+      usersLikes: usersLikes,
+      usersDislikes: usersDislikes,
     },
   })
     .then((res) => {
@@ -154,14 +155,14 @@ const ButtonLike = ({
           }
           if (liked === false) {
             setLiked(true)
-            updatedCounts.countLike = countLike + 1
+            updatedCounts.countLike = +1
             if (!usersLikes.includes(userId)) {
               // setupdatedUsersLikes(updatedUsersLikes.push(userId))
               usersLikes.push(userId)
             }
             if (disliked) {
               setDisliked(false)
-              updatedCounts.countDislike = countDislike - 1
+              updatedCounts.countDislike = -1
               if (usersDislikes.includes(userId)) {
                 // setupdatedUsersDislikes(updatedUsersDislikes.pop(userId))
                 usersDislikes.pop(userId)
@@ -170,7 +171,7 @@ const ButtonLike = ({
             }
           } else {
             setLiked(false)
-            updatedCounts.countLike = countLike - 1
+            updatedCounts.countLike = -1
             if (usersLikes.includes(userId)) {
               // setupdatedUsersLikes(updatedUsersLikes.pop(userId))
               usersLikes.pop(userId)
@@ -215,7 +216,7 @@ const ButtonLike = ({
           // }
           if (disliked === false) {
             setDisliked(true)
-            updatedCounts.countDislike = countDislike + 1
+            updatedCounts.countDislike = +1
             if (!usersDislikes.includes(userId)) {
               // setupdatedUsersDislikes(updatedUsersDislikes.push(userId))
               usersDislikes.push(userId)
@@ -224,7 +225,7 @@ const ButtonLike = ({
 
             if (liked) {
               setLiked(false)
-              updatedCounts.countLike = countLike - 1
+              updatedCounts.countLike = -1
               if (usersLikes.includes(userId)) {
                 // setupdatedUsersLikes(updatedUsersLikes.pop(userId))
                 usersLikes.pop(userId)
@@ -233,7 +234,7 @@ const ButtonLike = ({
             }
           } else {
             setDisliked(false)
-            updatedCounts.countDislike = countDislike - 1
+            updatedCounts.countDislike = -1
             if (usersDislikes.includes(userId)) {
               // setupdatedUsersDislikes(updatedUsersDislikes.pop(userId))
               usersDislikes.pop(userId)

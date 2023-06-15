@@ -12,3 +12,6 @@ a,
 a:visited {
   color: blue;
 }
+.fa-solid.fa-xmark {
+  color: red;
+}

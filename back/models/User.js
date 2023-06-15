@@ -6,6 +6,12 @@ const userSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true},
     password: { type: String, required: true},
     imageUrlUser: {type: String, required: false},
+    role: {
+        type: String,
+        enum: ['utilisateur', 'administrateur'],
+        default: 'utilisateur',
+    },
+
 });
 
 userSchema.plugin(uniqueValidator);

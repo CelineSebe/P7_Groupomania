@@ -14,13 +14,15 @@ exports.signup = (req, res, next) =>
                 pseudo: req.body.pseudo,
                 email : req.body.email,
                 imageUrlUser: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/",
-                password: hash
+                password: hash,
+                role: role || 'utilisateur', // Définir le rôle par défaut si aucun n'est fourni
             });
             user
                 .save()
                 .then(() => res.status(201).json({ message: 'Utilisateur créé'}))
                 .catch(error => res.status(400).json({error}));
         })
+        .catch(error => res.status(500).json({ error }));
 };
 
 exports.login = (req, res, next) => {
@@ -135,4 +137,19 @@ User.find()
                 res.status(400).json({ error });
             });
  }
+
+
+exports.deleteUser = (req, res, next) => {
+  const userId = req.params.id; // Identifiant de l'utilisateur à supprimer
+
+  // Vérifier si l'utilisateur connecté a le rôle d'administrateur
+  if (req.user.role !== 'administrateur') {
+    return res.status(403).json({ message: 'Accès refusé. Vous devez être administrateur pour effectuer cette action.' });
+  }
+
+  // Supprimer l'utilisateur de la base de données
+  User.findByIdAndRemove(userId)
+    .then(() => res.status(200).json({ message: 'Utilisateur supprimé avec succès.' }))
+    .catch(error => res.status(500).json({ error }));
+};
 

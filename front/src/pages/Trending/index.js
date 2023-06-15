@@ -12,17 +12,14 @@ margin: 150px;
 
 `
 
-const index = () => {
+const deleteUser = () => {
     return (
     <>
         <Header />
-            <ContainerTrends>
-                <Header />
-                <TrendingInfo />
-            </ContainerTrends>
+     <containerContact></containerContact>
     </>
 
     );
 };
 
-export default index
+export default deleteUser

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import axios from 'axios'
 import { useState } from 'react'
-// import AuthContext from '../../store/authContext';
+// import { useContext } from 'react'
+// import AuthContext from '../../store/authContext'
 
 const ProfilContainer = styled.div`
   display: flex;
@@ -14,8 +15,9 @@ const ProfilContainer = styled.div`
   width: 100%;
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
-  margin: 10px;
-  padding: 40px;
+  margin-top: 40px;
+  /* margin: 10px; */
+  padding: 20px;
   &:hover {
     background-color: white;
     cursor: pointer;
@@ -31,6 +33,7 @@ function ProfilInfo({ userId }) {
   const [userData, setUserData] = useState('')
   let pseudo = JSON.parse(localStorage.getItem('pseudo'))
   let token = JSON.parse(localStorage.getItem('token'))
+  // const AuthCont = useContext(AuthContext)
 
   axios({
     method: 'get',
@@ -57,7 +60,13 @@ function ProfilInfo({ userId }) {
   return (
     <>
       <ProfilContainer>
-        <h1 style={{ textAlign: 'center', padding: 5, fontSize: '15px' }}>
+        <h1
+          style={{
+            textAlign: 'center',
+            paddingBottom: '20px',
+            fontSize: '15px',
+          }}
+        >
           {' '}
           Profil de {pseudo}
         </h1>

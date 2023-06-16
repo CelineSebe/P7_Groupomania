@@ -22,16 +22,52 @@ table{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
+  border: 1px dashed black;
+  padding: 40px 0px;
 }
-
+.title{
+  border-bottom: 2px solid #c22405;
+  width: 900px;
+}
 tr{
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 th{
   width: 150px;
-  border: 1px solid black;
   padding: 8px;
   min-width: 250px;
+  
+}
+.pseudoTitle{
+  display: flex;
+  justify-content: flex-start;
+}
+.pseudoColumn{
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.emailTitle{
+  display: flex;
+  justify-content: flex-start;
+}
+.roleTitle{
+  display: flex;
+  justify-content: flex-start;
+}
+.roleColumn{
+  display: flex;
+  justify-content: flex-start;
+}
+select:hover{
+  cursor: pointer;
+}
+
+.emailColumn{
+  display: flex;
+  justify-content: flex-start;
 }

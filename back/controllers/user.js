@@ -167,4 +167,20 @@ exports.updateUserRole = (req, res, next) => {
       })
       .catch(error => res.status(500).json({ error }));
   };
+
+  exports.updateUser = (req, res, next) => {
+    const userId = req.params.id;
+    const newPseudo = req.body.pseudo;
+    
+    console.log("newpseudo",newPseudo)
+    
+    User.findByIdAndUpdate(userId, { pseudo: newPseudo }, { new: true })
+      .then(updatedUser => {
+        if (!updatedUser) {
+          return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+        }
+        res.status(200).json({ message: 'Pseudo de l\'utilisateur mis à jour avec succès.', user: updatedUser });
+      })
+      .catch(error => res.status(500).json({ error }));
+  };
   

@@ -60,6 +60,7 @@ const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 80%;
   @media screen and (max-width: 730px) {
     width: 70%;
   }
@@ -77,11 +78,22 @@ const ButtonPush = styled.button`
     cursor: pointer;
     background-color: #b69c9c;
   }
-  
+`
+const PhotoContainer = styled.div`
+  font-size: 11px;
+  display: flex;
+  margin: 10px;
+`
+const PseudoContainer = styled.div`
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
 `
 
 const UpdateProfil = () => {
   const token = JSON.parse(localStorage.getItem('token'))
+  const userId = JSON.parse(localStorage.getItem('userId'))
 
   const [postImage, setPostImage] = useState('')
   const [postFile, setPostFile] = useState('')
@@ -119,50 +131,98 @@ const UpdateProfil = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
   }
+  const handlePseudo = (e) => {
+    e.preventDefault()
+    const newPseudo = document.getElementById('pseudoInput').value
+    // const userData = new FormData()
+    // console.log(newPseudo)
+    // userData.append('pseudo', newPseudo)
+    // console.log('userData', userData.get('pseudo'))
+
+    axios({
+      method: 'put',
+      url: `http://localhost:5000/api/auth/user/${userId}/user`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      data: { pseudo: newPseudo },
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
+
+  const storedPseudo = JSON.parse(localStorage.getItem('pseudo'))
+
   return (
     <ProfilContainer>
-      <h1 style={{ fontSize: '24px', padding: 20, textAlign: 'center' }}>
-        Editer votre profil{' '}
-      </h1>
-      <FormPost onSubmit={handleSubmit} encType="multipart/form-data">
-        <ImgContainer>
-          <Hide>
-            <input
-              id="imgUrl"
-              type="file"
-              onChange={(e) => {
-                handleImg(e)
-              }}
-            />
-          </Hide>
-          {postImage ? (
-            <img
-              src={postImage}
-              style={{ height: '30%', width: '30%' }}
-              alt="miniature"
-            ></img>
-          ) : (
-            <></>
-          )}
-          <BtnContainer>
-            <ButtonAdd htmlFor="imgUrl" type="addPicture">
-              Modifier
-            </ButtonAdd>
-            <ButtonPush
-              type="submit"
-              style={{
-                height: 50,
-                width: 80,
-                borderStyle: 'none',
-              }}
-            >
-              <div>
-                <i className="fa-solid fa-paper-plane"></i>
-              </div>
-            </ButtonPush>
-          </BtnContainer>
-        </ImgContainer>
-      </FormPost>
+      <h1 style={{ fontSize: '20px' }}> Editer</h1>
+      <PseudoContainer>
+        <FormPost onSubmit={handlePseudo} encType="multipart/form-data">
+          <h2>Pseudo: </h2>
+          <input
+            id="pseudoInput"
+            style={{ height: '40px', padding: '4px' }}
+            placeholder={storedPseudo}
+          ></input>
+          <ButtonPush
+            type="submit"
+            style={{
+              height: 50,
+              width: 80,
+              borderStyle: 'none',
+            }}
+          >
+            <div>
+              <i className="fa-solid fa-paper-plane"></i>
+            </div>
+          </ButtonPush>
+        </FormPost>
+      </PseudoContainer>
+      <PhotoContainer>
+        <h2 style={{ padding: 20, display: 'flex', justifyContent: 'left' }}>
+          Photo de profil:{' '}
+        </h2>
+        <FormPost onSubmit={handleSubmit} encType="multipart/form-data">
+          <ImgContainer>
+            <Hide>
+              <input
+                id="imgUrl"
+                type="file"
+                onChange={(e) => {
+                  handleImg(e)
+                }}
+              />
+            </Hide>
+            {postImage ? (
+              <img
+                src={postImage}
+                style={{ height: '30%', width: '30%' }}
+                alt="miniature"
+              ></img>
+            ) : (
+              <></>
+            )}
+            <BtnContainer>
+              <ButtonAdd htmlFor="imgUrl" type="addPicture">
+                Modifier
+              </ButtonAdd>
+              <ButtonPush
+                type="submit"
+                style={{
+                  height: 50,
+                  width: 80,
+                  borderStyle: 'none',
+                }}
+              >
+                <div>
+                  <i className="fa-solid fa-paper-plane"></i>
+                </div>
+              </ButtonPush>
+            </BtnContainer>
+          </ImgContainer>
+        </FormPost>
+      </PhotoContainer>
     </ProfilContainer>
   )
 }

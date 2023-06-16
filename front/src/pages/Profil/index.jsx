@@ -41,7 +41,7 @@ function Profil(props) {
     <>
       <Header />
       <ProfilPage>
-        <h1> Bienvenue {pseudo} !</h1>
+        <h1> Bienvenue !</h1>
         <ProfilInfoContainer>
           <UpdateProfil />
           <ProfilInfo userId={userId} />

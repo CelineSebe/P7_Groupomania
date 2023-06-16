@@ -23,5 +23,8 @@ router.post("/upload", auth, multer, userCtrl.updateImgProfil);
 // Ajouter la route pour supprimer un utilisateur
 router.delete('/user/:id', auth, userCtrl.deleteUser);
 router.put('/user/:id/role', auth, userCtrl.updateUserRole);
+router.put('/user/:id/user', auth, userCtrl.updateUser);
+
+
 
 module.exports = router;

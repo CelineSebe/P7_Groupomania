@@ -4,17 +4,23 @@ import Header from '../../components/Header'
 import styled from 'styled-components'
 
 const TableContainer = styled.div`
-  margin-top: 80px;
+  margin-top: 100px;
   width: 100%;
   line-height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
-const Close = styled.th`
-  cursor: pointer;
-  color: red;
+const Close = styled.div`
   display: flex;
   justify-content: center;
-  margin-left: 25px;
+  align-items: center;
+  cursor: pointer;
+  color: red;
+  margin-left: 20px;
   font-size: larger;
+  border: none;
 `
 
 function UserList() {
@@ -82,13 +88,13 @@ function UserList() {
         role: newRole,
       },
     })
+    // Effectuez les actions nécessaires après la mise à jour du rôle
       .then((response) => {
         console.log(response.data) // Réponse de succès
-        // Effectuez les actions nécessaires après la mise à jour du rôle
       })
+      // Gérez les erreurs de requête
       .catch((error) => {
         console.error(error)
-        // Gérez les erreurs de requête
       })
   }
 
@@ -96,13 +102,18 @@ function UserList() {
     <>
       <Header />
       <TableContainer>
+        <h2>Gestion des droits utilisateurs</h2>
         <table>
-          <caption>Tableau des utilisateurs</caption>
+            <tr className='title'>
+                <th className='pseudoTitle'>Pseudo</th>
+                <th className="roleTitle">Droits</th>
+                <th className="emailTitle">Email</th>
+            </tr>
           {users.map((user) => (
-            <div key={user._id}>
+              <div key={user._id}>
               <tr>
-                <th>{user.pseudo}:</th>
-                <th>
+                <th className="pseudoColumn">{user.pseudo}:</th>
+                <th className="roleColumn">
                   <select
                     value={user.role}
                     onChange={(e) => updateUserRole(user._id, e.target.value)}
@@ -111,12 +122,14 @@ function UserList() {
                     <option value="utilisateur">Utilisateur</option>
                   </select>
                 </th>
-                <th>{user.email}</th>
-                <Close onClick={() => deleteUser(user._id)}>
+                <th className='emailColumn'>{user.email}</th>
+                <Close
+                  style={{ width: '5px' }}
+                  onClick={() => deleteUser(user._id)}
+                >
                   <i className="fa-solid fa-xmark"></i>
                 </Close>
               </tr>
-              {/* Afficher d'autres informations d'utilisateur si nécessaire */}
             </div>
           ))}
         </table>

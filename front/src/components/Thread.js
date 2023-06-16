@@ -42,7 +42,7 @@ const MapData = () => {
     })
       .then((res) => {
         setPostsData(res.data)
-        console.log('post', res.data)
+        // console.log('post', res.data)
       })
 
       .catch((error) => {
@@ -81,10 +81,11 @@ const MapData = () => {
         {postsData
           .map(function (post) {
             let user = usersData.find((user) => post.userId === user._id)
-            console.log('USD', usersData)
-            console.log('usersLikes', post.usersLikes)
-            console.log('usersDislikes', post.usersDislikes)
-            console.log('description', post.description)
+            // console.log('USD', usersData)
+            // console.log('usersLikes', post.usersLikes)
+            // console.log('usersDislikes', post.usersDislikes)
+            // console.log('description', post.description)
+            
             const usersLikes = post.usersLikes || []; // Utiliser un tableau vide si post.usersLikes est undefined
             const usersDislikes = post.usersDislikes || []; // Utiliser un tableau vide si post.usersDislikes est undefined
             return (

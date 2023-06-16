@@ -234,6 +234,7 @@ const Card = ({
   const [isModif, setIsModif] = useState(false)
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
   const [isImageModif, setIsImageModif] = useState(imageUrl)
+ 
 
   return (
     <CardContainer>
@@ -248,27 +249,31 @@ const Card = ({
             <p style={{ padding: 10, fontSize: 16 }}>Publication de {pseudo}</p>
           </ProfilImgContainer>
           <ButtonLign style={{ paddingRight: 10 }}>
-            <ButtonModify
-              postId={id}
-              pseudo={pseudo}
-              description={description}
-              imageUrl={imageUrl}
-              setIsModif={setIsModif}
-              // setApiCalled={setApiCalled}
-              alt="Crayon noir qui écrit"
-              onClick={(e) => {
-                e.preventDefault()
-                setIsModif(true)
-              }}
-            />
-            <ButtonSuppr
-              postId={id}
-              pseudo={pseudo}
-              setApiCalled={setApiCalled}
-              onClick={(e) => {
-                e.preventDefault()
-              }}
-            />
+            
+
+            <>
+              <ButtonModify
+                postId={id}
+                pseudo={pseudo}
+                description={description}
+                imageUrl={imageUrl}
+                setIsModif={setIsModif}
+                // setApiCalled={setApiCalled}
+                alt="Crayon noir qui écrit"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setIsModif(true)
+                }}
+              />
+              <ButtonSuppr
+                postId={id}
+                pseudo={pseudo}
+                setApiCalled={setApiCalled}
+                onClick={(e) => {
+                  e.preventDefault()
+                }}
+              />
+            </>
           </ButtonLign>
         </Head>
         {isModif === false ? (

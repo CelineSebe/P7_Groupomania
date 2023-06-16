@@ -4,7 +4,6 @@ import styled from 'styled-components'
 // import Publi from '../../components/Publi/index'
 import ProfilInfo from '../../components/ProfilInfo/ProfilInfo'
 import Header from '../../components/Header'
-import TrendingInfo from '../../components/TrendingInfo/TrendingInfo'
 import Thread from '../../components/Thread'
 import AuthContext from '../../store/authContext'
 import { useContext } from 'react'
@@ -69,23 +68,7 @@ const PostContainer = styled.div`
     }
   }
 `
-// const TrendContainer = styled.div`
-//   display: none;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 300px;
-//   height: 50vh;
-//   margin: 25px 50px;
-//   @media screen and (max-width: 1023px) {
-//     display: none;
-//     height: 12%;
-//     font-size: 8px;
-//     margin: 0px;
-//     &:nth-child(3) {
-//       order: 2;
-//     }
-//   }
-// `
+
 
 function Home(props) {
   const authCont = useContext(AuthContext)
@@ -102,10 +85,6 @@ function Home(props) {
         <PostContainer>
           <Thread />
         </PostContainer>
-
-        {/* <TrendContainer>
-          <TrendingInfo />
-        </TrendContainer> */}
       </FeedContainer>
     </>
   )

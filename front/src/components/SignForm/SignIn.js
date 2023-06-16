@@ -64,14 +64,11 @@ const SignIn = () => {
         },
       })
         .then((res) => {
-          console.log(res.status)
-          console.log(res)
-
           localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo))
           localStorage.setItem('userId', JSON.stringify(res.data.userId))
           localStorage.setItem('token', JSON.stringify(res.data.token))
           localStorage.setItem('role', JSON.stringify(res.data.role))
-
+          console.log('role', res.data)
           window.location = './Home'
         })
         .catch((error) => {
@@ -79,53 +76,6 @@ const SignIn = () => {
           console.log(error)
         })
     }
-
-    // const fetchHandler = async () =>
-    //     {
-    //     try {
-    //         const response =  await fetch("http://localhost:5000/api/auth/login", {
-    //             method: "POST",
-    //             body: JSON.stringify({
-    //                 email,
-    //                 password,
-    //             }),
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //     });
-
-    //     const dataResponse = await response.json();
-
-    //     setIsLoading(false);
-
-    //         if(response.ok){
-
-    //             console.log("dataresponse");
-    //             console.log(dataResponse);
-
-    //             setData(dataResponse);
-
-    //             console.log("token");
-    //             console.log(dataResponse.token);
-    //             authCont.login(dataResponse);
-
-    //         }else{
-
-    //             setError(
-    //                 {
-    //                     title: "echec de l'authentification",
-    //                     message: dataResponse.error,
-    //                 });
-
-    //         }
-    //     }catch{
-    //             console.log("-->error");
-    //             console.log(error);
-
-    //     }
-
-    //     };
-    //     fetchHandler();
   }
 
   return (

@@ -20,9 +20,12 @@ const AuthContext = createContext(defaultValue)
 //Contrôle dans le LS
 const tokenLocalStorage = localStorage.getItem('token')
 const userIdLocalStorage = localStorage.getItem('userId')
-const adminLocalStorage = Number(localStorage.getItem('admin'))
+const adminLocalStorage =
+  localStorage.getItem('role') !== null
+    ? Number(localStorage.getItem('role'))
+    : null
 const pseudoLocalStorage = localStorage.getItem('pseudo')
-const profilLocalStorage = localStorage.getItem('profil')
+// const profilLocalStorage = localStorage.getItem('profil')
 
 //le context provider pour wrapper app.js
 export const AuthContextProvider = (props) => {
@@ -31,20 +34,20 @@ export const AuthContextProvider = (props) => {
   const [userId, setUserId] = useState(userIdLocalStorage)
   const [admin, setAdmin] = useState(adminLocalStorage)
   const [pseudo, setPseudo] = useState(pseudoLocalStorage)
-  const [profil, setProfile] = useState(profilLocalStorage)
+  // const [profil, setProfile] = useState(profilLocalStorage)
 
   //fonction pour mettre à jour le token
   const loginHandler = (token, userId, pseudo) => {
     setToken(token)
     setUserId(userId)
-    setAdmin(admin)
+    setAdmin(adminLocalStorage)
     setPseudo(pseudo)
-    setProfile(profil)
-    localStorage.setItem('token', token)
+    // setProfile(profilLocalStorage)
+    // localStorage.setItem('token', token)
     localStorage.setItem('userId', userId)
-    localStorage.setItem('admin', admin)
+    localStorage.setItem('role', adminLocalStorage)
     localStorage.setItem('pseudo', pseudo)
-    localStorage.setItem('profil', profil)
+    // localStorage.setItem('profil', profilLocalStorage)
   }
 
   //pour se déconnecter (faire passer le token à null)
@@ -53,7 +56,7 @@ export const AuthContextProvider = (props) => {
     setUserId(null)
     setAdmin(null)
     setPseudo(null)
-    setProfile(null)
+    // setProfile(null)
 
     //supprimer la donnée dans le local storage
     localStorage.clear()
@@ -71,7 +74,7 @@ export const AuthContextProvider = (props) => {
     token: token,
     userId: userId,
     admin: admin,
-    profil: profil,
+    // profil: profil,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,

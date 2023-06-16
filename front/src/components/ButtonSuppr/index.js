@@ -45,7 +45,8 @@ function handleSuppr({ postId, setApiCalled }) {
 const ButtonSuppr = ({ postId, setApiCalled, pseudo }) => {
   let pseudoStock = JSON.parse(localStorage.getItem('pseudo'))
   console.log(postId)
-
+  const role = JSON.parse(localStorage.getItem('role'))
+  
   return (
     <Suppr
       setApiCalled={setApiCalled}
@@ -54,7 +55,7 @@ const ButtonSuppr = ({ postId, setApiCalled, pseudo }) => {
         handleSuppr({ postId, setApiCalled })
       }}
     >
-      {pseudoStock === pseudo ? (
+      {pseudoStock === pseudo || role === "administrateur" ? (
         <i
           style={{ fontSize: '100%', padding: '10px' }}
           class="fa-solid fa-trash"

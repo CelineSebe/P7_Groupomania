@@ -51,7 +51,8 @@ exports.login = (req, res, next) => {
                                 { userId: user._id },
                                 `${process.env.APP_SECRET}`,
                                 { expiresIn: '24H' }
-                            )
+                            ),
+                            role: user.role
                         });
                     }
                 })

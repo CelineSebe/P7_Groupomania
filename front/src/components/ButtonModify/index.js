@@ -180,6 +180,7 @@ const ButtonModify = ({
   setApiCalled,
 }) => {
   let pseudoStock = JSON.parse(localStorage.getItem('pseudo'))
+  const role = JSON.parse(localStorage.getItem('role'))
   console.log(pseudo)
 
   // const [descriptionModif, setDescriptionModif] = useState(description)
@@ -197,7 +198,7 @@ const ButtonModify = ({
         setIsModif(true)
       }}
     >
-      {pseudoStock === pseudo ? (
+      {pseudoStock === pseudo || role === "administrateur"? (
         <ButtonPen>
           <i
             style={{ fontSize: '100%', padding: '6px' }}

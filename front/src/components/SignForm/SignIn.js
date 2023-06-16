@@ -70,6 +70,7 @@ const SignIn = () => {
           localStorage.setItem('pseudo', JSON.stringify(res.data.pseudo))
           localStorage.setItem('userId', JSON.stringify(res.data.userId))
           localStorage.setItem('token', JSON.stringify(res.data.token))
+          localStorage.setItem('role', JSON.stringify(res.data.role))
 
           window.location = './Home'
         })

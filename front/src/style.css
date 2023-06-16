@@ -15,3 +15,23 @@ a:visited {
 .fa-solid.fa-xmark {
   color: red;
 }
+
+table{
+  width:1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+tr{
+  display: flex;
+  justify-content: center;
+}
+th{
+  width: 150px;
+  border: 1px solid black;
+  padding: 8px;
+  min-width: 250px;
+}

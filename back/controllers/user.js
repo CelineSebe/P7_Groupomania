@@ -15,7 +15,7 @@ exports.signup = (req, res, next) =>
                 email : req.body.email,
                 imageUrlUser: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "/",
                 password: hash,
-                role: role || 'utilisateur', // Définir le rôle par défaut si aucun n'est fourni
+                role: req.body.role || 'utilisateur', // Définir le rôle par défaut si aucun n'est fourni
             });
             user
                 .save()
@@ -143,9 +143,9 @@ exports.deleteUser = (req, res, next) => {
   const userId = req.params.id; // Identifiant de l'utilisateur à supprimer
 
   // Vérifier si l'utilisateur connecté a le rôle d'administrateur
-  if (req.user.role !== 'administrateur') {
-    return res.status(403).json({ message: 'Accès refusé. Vous devez être administrateur pour effectuer cette action.' });
-  }
+//   if (req.user.role !== 'administrateur') {
+//     return res.status(403).json({ message: 'Accès refusé. Vous devez être administrateur pour effectuer cette action.' });
+//   }
 
   // Supprimer l'utilisateur de la base de données
   User.findByIdAndRemove(userId)
@@ -153,3 +153,17 @@ exports.deleteUser = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
+exports.updateUserRole = (req, res, next) => {
+    const userId = req.params.id;
+    const newRole = req.body.role;
+  
+    User.findByIdAndUpdate(userId, { role: newRole }, { new: true })
+      .then(updatedUser => {
+        if (!updatedUser) {
+          return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+        }
+        res.status(200).json({ message: 'Rôle de l\'utilisateur mis à jour avec succès.', user: updatedUser });
+      })
+      .catch(error => res.status(500).json({ error }));
+  };
+  

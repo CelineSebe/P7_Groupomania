@@ -112,7 +112,7 @@ function Header() {
           {role === 'administrateur' && ( // Afficher le lien uniquement si le rôle est "admin"
             <Link to="/Trending" style={{ textDecoration: 'none' }}>
               <NavContent>
-                <i className="fa-solid fa-rocket"></i>
+                <i className="fa-solid fa-gear"></i>
               </NavContent>
             </Link>
           )}

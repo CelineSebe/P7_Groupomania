@@ -72,16 +72,16 @@ function UserList() {
 
   const updateUserRole = (userId, newRole) => {
     axios({
-        method: 'put',
-        url: `http://localhost:5000/api/user/${userId}/role`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        data: {
-            role: newRole,
-          },
-      }) 
+      method: 'put',
+      url: `http://localhost:5000/api/auth/user/${userId}/role`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      data: {
+        role: newRole,
+      },
+    })
       .then((response) => {
         console.log(response.data) // Réponse de succès
         // Effectuez les actions nécessaires après la mise à jour du rôle
@@ -103,11 +103,14 @@ function UserList() {
               <tr>
                 <th>{user.pseudo}:</th>
                 <th>
-                    <select value={user.role} onChange={(e) => updateUserRole(user._id, e.target.value)}>
-                        <option value="administrateur">Administrateur</option>
-                        <option value="utilisateur">Utilisateur</option>
-                    </select>
-                    </th>
+                  <select
+                    value={user.role}
+                    onChange={(e) => updateUserRole(user._id, e.target.value)}
+                  >
+                    <option value="administrateur">Administrateur</option>
+                    <option value="utilisateur">Utilisateur</option>
+                  </select>
+                </th>
                 <th>{user.email}</th>
                 <Close onClick={() => deleteUser(user._id)}>
                   <i className="fa-solid fa-xmark"></i>

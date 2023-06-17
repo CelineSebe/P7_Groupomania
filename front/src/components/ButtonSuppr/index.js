@@ -10,17 +10,18 @@ const Suppr = styled.div`
   }
 `
 
+
 function supprOnePost({ postId, setApiCalled }) {
   let token = JSON.parse(localStorage.getItem('token'))
-
-  axios({
-    method: 'DELETE',
-    url: `http://localhost:5000/api/publis/${postId}`,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  })
+  
+    axios({
+      method: 'DELETE',
+      url: `http://localhost:5000/api/publis/${postId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
     .then((res) => {
       if (res.ok) {
         return res.json
@@ -28,12 +29,12 @@ function supprOnePost({ postId, setApiCalled }) {
       console.log(res.data)
       alert('votre post a bien été supprimé')
     })
-
+    
     .catch((err) => {
       console.log(err)
       window.alert("Votre post n'a pas été supprimé")
     })
-}
+  }
 
 function handleSuppr({ postId, setApiCalled }) {
   let res = window.confirm(`Êtes-vous sûr de vouloir supprimer ce post?`)

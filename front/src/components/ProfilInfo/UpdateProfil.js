@@ -9,7 +9,7 @@ const ProfilContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${colors.secondary};
-  width: 100%;
+  width: 600px;
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
   margin: 20px;
@@ -181,7 +181,7 @@ const UpdateProfil = () => {
       </PseudoContainer>
       <PhotoContainer>
         <h2 style={{ padding: 20, display: 'flex', justifyContent: 'left' }}>
-          Photo de profil:{' '}
+          Photo:{' '}
         </h2>
         <FormPost onSubmit={handleSubmit} encType="multipart/form-data">
           <ImgContainer>
@@ -197,7 +197,7 @@ const UpdateProfil = () => {
             {postImage ? (
               <img
                 src={postImage}
-                style={{ height: '30%', width: '30%' }}
+                style={{ height: '10%', width: '10%' }}
                 alt="miniature"
               ></img>
             ) : (

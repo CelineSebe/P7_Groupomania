@@ -322,11 +322,10 @@ const Card = ({
                     e.preventDefault()
                   }}
                 />
-                {/* </MDBBtn> */}
-                {/* <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
-                  {comments}
+                <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
+                  {/* {comments} */}
                   <i className="fa-regular fa-comments" />
-                </MDBBtn> */}
+                </MDBBtn>
               </span>
             </MDBCardBody>
           </MDBCard>

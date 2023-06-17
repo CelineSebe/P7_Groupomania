@@ -8,29 +8,27 @@ import UpdateProfil from '../../components/ProfilInfo/UpdateProfil'
 // import InfiniteScroll from 'react-infinite-scroller';
 // import Loading from '../../components/Loading';
 
-const ProfilInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  margin: 30px;
-  align-items: center;
-
-  @media screen and (max-width: 730px) {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-  }
-`
 const ProfilPage = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  margin: 80px 20px;
-  position: fixed;
   width: 100%;
-`
+
+  `
+  const ProfilInfoContainer = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+   
+    @media screen and (max-width: 730px) {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  `
 
 function Profil(props) {
   let pseudo = JSON.parse(localStorage.getItem('pseudo'))
@@ -41,7 +39,7 @@ function Profil(props) {
     <>
       <Header />
       <ProfilPage>
-        <h1> Bienvenue !</h1>
+        <h1 style={{ marginTop: "80px"}}> Bienvenue !</h1>
         <ProfilInfoContainer>
           <UpdateProfil />
           <ProfilInfo userId={userId} />

@@ -12,7 +12,7 @@ const ProfilContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-color: ${colors.secondary};
-  width: 100%;
+  width: 600px;
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
   margin-top: 40px;
@@ -70,11 +70,11 @@ function ProfilInfo({ userId }) {
           {' '}
           Profil de {pseudo}
         </h1>
-        <img
-          src={userData}
-          style={{ height: '50%', width: '50%' }}
-          alt="photo de profil"
-        ></img>
+          <img
+            src={userData}
+            style={{ height:'50%', width:'50%' }}
+            alt="photo de profil"
+            ></img>
       </ProfilContainer>
     </>
   )

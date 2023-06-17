@@ -75,8 +75,9 @@ function UserList() {
         setError(error.message)
       })
   }
+  
+  const updateUserRole = ({userId, newRole}) => {
 
-  const updateUserRole = (userId, newRole) => {
     axios({
       method: 'put',
       url: `http://localhost:5000/api/auth/user/${userId}/role`,
@@ -96,8 +97,8 @@ function UserList() {
       .catch((error) => {
         console.error(error)
       })
+    
   }
-
   return (
     <>
       <Header />

@@ -16,6 +16,7 @@ import {
 import ButtonSuppr from '../ButtonSuppr'
 import ButtonModify from '../ButtonModify'
 import ButtonLike from '../ButtonLike'
+import ButtonComment from '../ButtonComment'
 
 const CardContainer = styled.ul`
   display: flex;
@@ -76,9 +77,7 @@ const PostCreation = styled.div`
   padding-top: 13px;
   margin: 0;
 `
-const ContainerCreatePubli = styled.div`
-  width: 100%;
-`
+
 const FormPost = styled.form`
   width: 100%;
 `
@@ -107,13 +106,6 @@ const InputStyleDescription = styled.input`
     outline: 1px solid white;
   }
 `
-
-const PostImg = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 50px;
-`
-
 const ContainerButtons = styled.div`
   display: flex;
   justify-content: space-around;
@@ -178,6 +170,11 @@ const Close = styled.div`
   margin-right: 25px;
   font-size: larger;
 `
+const FormComment = styled.form`
+  width: 100%;
+  height: 50px;
+  margin: 0px 8px;
+`
 
 function modifyOnePost({ id, isDescriptionModif, isImageModif, isLiked }) {
   const token = JSON.parse(localStorage.getItem('token'))
@@ -228,13 +225,50 @@ const Card = ({
   dislikes,
   usersLikes,
   usersDislikes,
+  comments,
   date,
   setApiCalled,
 }) => {
   const [isModif, setIsModif] = useState(false)
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
   const [isImageModif, setIsImageModif] = useState(imageUrl)
- 
+  const [newComment, setNewComment] = useState('')
+  console.log(newComment)
+
+  const token = JSON.parse(localStorage.getItem('token'))
+
+  const handleCommentChange = (event) => {
+    setNewComment(event.target.value)
+  }
+  const handleCommentSubmit = (event) => {
+    event.preventDefault()
+
+    // Envoyer le nouveau commentaire au backend
+    // Utilisez une requête HTTP (par exemple, axios) pour envoyer le commentaire au serveur
+   
+    axios
+      .post(`http://localhost:5000/api/publis/comments`, {
+        postId: id,
+        userId: userId,
+        content: newComment,
+      },{
+        headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        // Gérer la réponse du serveur si nécessaire
+        console.log('Comment submitted:', response.data)
+
+        // Réinitialiser l'état du nouveau commentaire
+        setNewComment('')
+      })
+      .catch((error) => {
+        // Gérer les erreurs de requête s'il y en a
+        console.error('Error submitting comment:', error)
+      })
+  }
 
   return (
     <CardContainer>
@@ -249,8 +283,6 @@ const Card = ({
             <p style={{ padding: 10, fontSize: 16 }}>Publication de {pseudo}</p>
           </ProfilImgContainer>
           <ButtonLign style={{ paddingRight: 10 }}>
-            
-
             <>
               <ButtonModify
                 postId={id}
@@ -324,10 +356,26 @@ const Card = ({
                 />
                 <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
                   {/* {comments} */}
-                  <i className="fa-regular fa-comments" />
+                  <ButtonComment
+                    postId={id}
+                    userId={userId}
+                    comments={comments}
+                    onClick={(e) => {
+                      e.preventDefault()
+                    }}
+                  />
                 </MDBBtn>
               </span>
             </MDBCardBody>
+            <FormComment onSubmit={handleCommentSubmit}>
+              <input
+                type="text"
+                value={newComment}
+                style={{ border: 'none', width: '90%' }}
+                onChange={handleCommentChange}
+                placeholder="Ajouter un commentaire..."
+              />
+            </FormComment>
           </MDBCard>
         ) : (
           <MDBCard>
@@ -362,7 +410,6 @@ const Card = ({
                   ></label>
                 </FormStyle>
               </ContainerPublication>
-
               <ContainerButtons>
                 <Hide>
                   <input

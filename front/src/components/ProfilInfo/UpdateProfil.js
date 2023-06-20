@@ -48,7 +48,8 @@ const ButtonAdd = styled.label`
   border-radius: 15px;
   font-size: 14px;
   margin-top: 10px;
-  margin-right: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,9 +72,10 @@ const ButtonPush = styled.button`
   border-color: ${colors.primary};
   color: ${colors.secondary};
   height: 50px;
-  width: 80px;
+  width: 100px;
   border-style: none;
   border-radius: 15px;
+  margin-left:auto;
   font-size: 14px;
   margin-top: 10px;
   &:hover {
@@ -89,7 +91,7 @@ align-items: center;
 `
 const PseudoContainer = styled.div`
   font-size: 11px;
-  margin: 10px;
+  margin: 18px;
 `
 
 const UpdateProfil = () => {
@@ -98,9 +100,6 @@ const UpdateProfil = () => {
 
   const [postImage, setPostImage] = useState('')
   const [postFile, setPostFile] = useState('')
-
-
-
 
 
   const handleImg = (e) => {
@@ -202,7 +201,7 @@ const UpdateProfil = () => {
                 alt="miniature"
               ></img>
             ) : (
-              <></>
+              <> </>
             )}
             <BtnContainer>
               <ButtonAdd htmlFor="imgUrl" type="addPicture">

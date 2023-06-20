@@ -99,6 +99,7 @@ const MapData = () => {
                 dislikes={post.dislikes}
                 usersLikes={usersLikes}
                 usersDislikes={usersDislikes}
+                comments={post.comments}
                 date={post.date}
                 imageUrlUser={user === undefined ? '' : user.imageUrlUser}
                 pseudo={user === undefined ? 'user unknown' : user.pseudo}

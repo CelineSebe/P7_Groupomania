@@ -200,8 +200,8 @@ const CreatePubli = () => {
       dataPost.append('description', description)
       dataPost.append('imageUrl', imageUrl)
 
-      console.log(token)
-      console.log(userId)
+      // console.log(token)
+      // console.log(userId)
 
       axios({
         method: 'post',

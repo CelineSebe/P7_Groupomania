@@ -15,5 +15,7 @@ const multer = require('../middleware/multer-config');
  router.put('/:id', auth, multer, publiCtrl.modifyPubli);
  router.delete('/:id', auth, publiCtrl.deletePubli);
  router.put('/:id/like', auth, publiCtrl.likeDislike);
+ router.post('/comments', auth, publiCtrl.createComment);
+ router.get('/comments/:id', auth, publiCtrl.getCommentsByPostId);
 
  module.exports = router;

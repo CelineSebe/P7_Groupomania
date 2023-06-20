@@ -10,7 +10,7 @@ const publiSchema = mongoose.Schema({
     dislikes: { type: Number, required: true, default: 0},
     usersLikes: { type: Array, required: true, default:[]},
     usersDislikes: { type: Array, required: true, default:[]},
-
+    comments: [{ type: String, required: false, default: '' }]
 });
 
 module.exports = mongoose.model("Publi", publiSchema);

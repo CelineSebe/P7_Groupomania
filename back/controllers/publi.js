@@ -1,4 +1,5 @@
 const Publi = require('../models/Publi');
+
 const fs = require('fs');
 
 
@@ -183,3 +184,39 @@ exports.likeDislike = (req, res, next) =>
                 })
             .catch((error) => res.status(500).json({ error }));
 }
+
+// Contrôleur POST pour créer un commentaire
+exports.createComment = async (req, res) => {
+  try {
+    const { postId, userId, content } = req.body;
+
+    const publi = await Publi.findOne({ _id: postId });
+
+    if (!publi) {
+      return res.status(404).json({ message: 'Publication not found' });
+    }
+    console.log("comment", content)
+    publi.comments.push(content);
+
+    await publi.save();
+
+    res.status(201).json({ message: 'Comment created' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+// Contrôleur pour récupérer tous les commentaires d'une publication
+exports.getCommentsByPostId = async (req, res) => {
+    try {
+      const postId = req.params.id;
+  
+      const comments = await Comment.find({ postId });
+  
+      res.status(200).json({ comments });
+    } catch (error) {
+    //   console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };

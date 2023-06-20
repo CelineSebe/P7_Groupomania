@@ -211,12 +211,17 @@ exports.createComment = async (req, res) => {
 exports.getCommentsByPostId = async (req, res) => {
     try {
       const postId = req.params.id;
+      const publi = await Publi.findOne({ _id: postId });
   
-      const comments = await Comment.find({ postId });
+      if (!publi || publi.comments.length === 0) {
+        return res.status(404).json({ message: 'Aucun commentaire trouvé' });
+      }
   
+      const comments = publi.comments;
+      console.log('comments', comments)
       res.status(200).json({ comments });
     } catch (error) {
-    //   console.error(error);
-      res.status(500).json({ message: 'Server Error' });
+      console.error(error);
+      res.status(500).json({ message: 'Erreur serveur' });
     }
   };

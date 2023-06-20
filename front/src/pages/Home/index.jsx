@@ -78,9 +78,9 @@ function Home(props) {
     <>
       <Header />
       <FeedContainer>
-        <ProfilContainer>
+        {/* <ProfilContainer>
           <ProfilInfo />
-        </ProfilContainer>
+        </ProfilContainer> */}
 
         <PostContainer>
           <Thread />

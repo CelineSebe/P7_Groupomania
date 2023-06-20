@@ -7,7 +7,7 @@ const ProfilContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   background-color: ${colors.secondary};
   width: 600px;
   border: solid 2px ${colors.secondary};
@@ -34,9 +34,10 @@ const Hide = styled.div`
   z-index: -1;
 `
 const FormPost = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
+
 `
 const ButtonAdd = styled.label`
   background-color: ${colors.primary};
@@ -70,7 +71,8 @@ const ButtonPush = styled.button`
   border-color: ${colors.primary};
   color: ${colors.secondary};
   height: 50px;
-  width: 100px;
+  width: 80px;
+  border-style: none;
   border-radius: 15px;
   font-size: 14px;
   margin-top: 10px;
@@ -82,12 +84,11 @@ const ButtonPush = styled.button`
 const PhotoContainer = styled.div`
   font-size: 11px;
   display: flex;
-  margin: 10px;
+justify-content: space-between;
+align-items: center;
 `
 const PseudoContainer = styled.div`
   font-size: 11px;
-  display: flex;
-  justify-content: space-between;
   margin: 10px;
 `
 
@@ -97,6 +98,11 @@ const UpdateProfil = () => {
 
   const [postImage, setPostImage] = useState('')
   const [postFile, setPostFile] = useState('')
+
+
+
+
+
   const handleImg = (e) => {
     var tgt = e.target,
       files = tgt.files
@@ -167,11 +173,6 @@ const UpdateProfil = () => {
           ></input>
           <ButtonPush
             type="submit"
-            style={{
-              height: 50,
-              width: 80,
-              borderStyle: 'none',
-            }}
           >
             <div>
               <i className="fa-solid fa-paper-plane"></i>
@@ -209,11 +210,6 @@ const UpdateProfil = () => {
               </ButtonAdd>
               <ButtonPush
                 type="submit"
-                style={{
-                  height: 50,
-                  width: 80,
-                  borderStyle: 'none',
-                }}
               >
                 <div>
                   <i className="fa-solid fa-paper-plane"></i>

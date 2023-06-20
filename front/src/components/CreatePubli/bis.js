@@ -73,11 +73,10 @@ const ContainerButtons = styled.div`
   height: 50px;
   padding-left: 500px; */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 50%;
-  width: 80%;
-  margin-left: 150px;
+  width: 90%;
 `
 
 const ButtonPost = styled.button`
@@ -142,7 +141,7 @@ const ButtonDelete = styled.button`
   margin-right: 20px;
   border-radius: 6px;
   font-size: larger;
-
+  
   &:hover {
     cursor: pointer;
     background-color: ${colors.secondary};
@@ -150,17 +149,16 @@ const ButtonDelete = styled.button`
 `
 // const PreviewImgContainer = styled.div``
 const Preview = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: absolute;
-
+display: flex;
+justify-content: center;
+align-items:center;
+position: absolute;
 `
 const ImgPreview = styled.div`
-  position: relative;
-  /* width: 45%;
-left: 200px; */
-  /* top: 0px; */
+position: relative;
+width: 45%;
+left: 500px;
+top: 0px;
 `
 
 const CreatePubli = () => {
@@ -262,49 +260,48 @@ const CreatePubli = () => {
 
           <ContainerButtons>
             {selectedImage && (
-              <Preview>
-                <ImgPreview>
-                  <img
-                    style={{ height: '50px', width: '50px' }}
-                    src={URL.createObjectURL(selectedImage)}
-                    alt="Aperçu"
-                  />
-                </ImgPreview>
-                <ButtonDelete
+                <Preview>
+                  <ImgPreview>
+                    <img
+                      style={{ height: '10%', width: '10%'}}
+                      src={URL.createObjectURL(selectedImage)}
+                      alt="Aperçu"
+                    />
+                  </ImgPreview>
+                  <ButtonDelete
                   id="removeImg"
                   onClick={() => {
                     removeSelectedImage()
                   }}
-                >
-                  <p style={{ fontSize: 12 }}>Delete</p>
-                </ButtonDelete>
-              </Preview>
-            )}
-            <label htmlFor="removeImg" alt="Dossier" src=""></label>
-            {/* </PreviewImgContainer> */}
-            <Hide>
-              <input
-                id="imgUrl"
-                type="file"
-                onChange={(e) => {
-                  const imageUrl = e.target.files[0]
-                  setImageUrl(imageUrl)
-                  imageChange(e)
-                }}
-              />
-            </Hide>
-            <label htmlFor="imgUrl" alt="Dossier" src=""></label>
-            <ButtonAdd htmlFor="imgUrl" type="addPicture" onClick={() => {}}>
-              <div>
-                <i className="fa-solid fa-camera"></i>
-              </div>
-            </ButtonAdd>
-            <ButtonPost type="submit" id="post" onClick={Post}>
-              <div>
-                <i className="fa-solid fa-paper-plane"></i>
-              </div>
-            </ButtonPost>
-            <label htmlFor="post"></label>
+                  >
+                    <p style={{ fontSize: 12 }}>Delete</p>
+                  </ButtonDelete>
+                <label htmlFor="removeImg" alt="Dossier" src=""></label>
+                </Preview>  )}
+              {/* </PreviewImgContainer> */}
+                <Hide>
+                  <input
+                    id="imgUrl"
+                    type="file"
+                    onChange={(e) => {
+                      const imageUrl = e.target.files[0]
+                      setImageUrl(imageUrl)
+                      imageChange(e)
+                    }}
+                  />
+                </Hide>
+                <label htmlFor="imgUrl" alt="Dossier" src=""></label>
+                <ButtonAdd htmlFor="imgUrl" type="addPicture" onClick={() => {}}>
+                  <div>
+                    <i className="fa-solid fa-camera"></i>
+                  </div>
+                </ButtonAdd>
+                <ButtonPost type="submit" id="post" onClick={Post}>
+                  <div>
+                    <i className="fa-solid fa-paper-plane"></i>
+                  </div>
+                </ButtonPost>
+                <label htmlFor="post"></label>
           </ContainerButtons>
         </FormPost>
       </ContainerCreatePubli>

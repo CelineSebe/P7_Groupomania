@@ -354,7 +354,7 @@ const Card = ({
                     e.preventDefault()
                   }}
                 />
-                <MDBBtn href="#" style={{ color: 'blueviolet', fontSize: 18 }}>
+                <div style={{ color: 'blueviolet', fontSize: 18 }}>
                   {/* {comments} */}
                   <ButtonComment
                     postId={id}
@@ -364,7 +364,7 @@ const Card = ({
                       e.preventDefault()
                     }}
                   />
-                </MDBBtn>
+                </div>
               </span>
             </MDBCardBody>
             <FormComment onSubmit={handleCommentSubmit}>

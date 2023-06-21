@@ -14,12 +14,14 @@ const ContainerCreatePubli = styled.div`
   width: 100%;
   border-radius: 20px;
   margin: 5px 0;
+  border-radius: 15px;
   /* border: solid 2px ${colors.secondary}; */
 `
 const FormPost = styled.form`
   height: 100%;
   width: 100%;
   background-color: white;
+  border-radius: 15px;
 `
 
 const ContainerPublication = styled.div`

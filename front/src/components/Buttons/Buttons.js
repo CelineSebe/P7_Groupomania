@@ -10,13 +10,23 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: '10px';
+  margin-top: 12px;
 `
 
 const FormComment = styled.form`
+display: flex;
+justify-content: center;
   width: 100%;
   height: 50px;
-  margin: 0px 8px;
-`
+  margin-top: 10px;
+  `
+const InputComment =styled.input`
+border: none;
+border-radius: 15px;
+  &:focus {
+    outline: 1px solid white;
+  }`
+
 const ContainerButton = styled.div`
   display: flex;
   justify-content: space-around;
@@ -51,38 +61,37 @@ const Buttons = ({
   }
 
   const handleCommentSubmit = (event) => {
-    event.preventDefault()
-
+    event.preventDefault();
+    const commentData = {
+        postId: postId,
+        userId: userId,
+        content: newComment,
+        pseudo: pseudo,
+        imageUrlUser: imageUrlUser,
+    };
+    console.log('pseudo imageUrlUser', commentData)
+  
     // Envoyer le nouveau commentaire au backend
-    // Utilisez une requête HTTP (par exemple, axios) pour envoyer le commentaire au serveur
-    console.log(newComment)
     axios
-      .post(
-        `http://localhost:5000/api/publis/comments`,
-        {
-          postId: postId,
-          userId: userId,
-          content: newComment,
+      .post('http://localhost:5000/api/publis/comments', commentData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+      })
       .then((response) => {
         // Gérer la réponse du serveur si nécessaire
-        console.log('Comment submitted:', response.data)
-
+        console.log('Comment submitted:', response.data);
+  
         // Réinitialiser l'état du nouveau commentaire
-        setNewComment('')
+        setNewComment('');
       })
       .catch((error) => {
         // Gérer les erreurs de requête s'il y en a
-        console.error('Error submitting comment:', error)
-      })
-  }
+        console.error('Error submitting comment:', error);
+      });
+  };
+  
 
   const toggleComments = () => {
     setShowComments(!showComments)
@@ -109,12 +118,13 @@ const Buttons = ({
             className="fa-regular fa-comment"
           ></CommentIcon>
         </ContainerButton>
-        {showComments && <Com postId={postId} comments={comments} />}
+        {showComments && <Com postId={postId} comments={comments} imageUrlUser={imageUrlUser}
+    pseudo={pseudo} />}
         <FormComment onSubmit={handleCommentSubmit}>
-          <input
+          <InputComment
             type="text"
             value={newComment}
-            style={{ border: 'none', width: '90%' }}
+            style={{ border: 'none', width: '100%', padding:'5px', margin:'3px' }}
             onChange={handleCommentChange}
             placeholder="Ajouter un commentaire..."
           />

@@ -43,8 +43,14 @@ const Com = ({ postId, imageUrlUser, pseudo }) => {
             },
           }
         );
-        setAllComments(response.data.comments);
-        console.log(response)
+        const commentsWithInfo = response.data.comments.map((comment) => ({
+          ...comment,
+          pseudo: pseudo,
+          imageUrlUser: imageUrlUser,
+        }));
+
+        setAllComments(commentsWithInfo);
+        console.log('commentInfo',response)
       } catch (error) {
         console.error('Error fetching comments:', error);
       }
@@ -59,7 +65,10 @@ const Com = ({ postId, imageUrlUser, pseudo }) => {
         <ComContainer>
           {allComments.map((comment) => (
             <Comment key={postId}>
-              {comment}
+             <div>UserId: {comment.userId}</div>
+              <div>Content: {comment.content}</div>
+              <div>Pseudo: {comment.pseudo}</div>
+              <div>ImageUrlUser: {comment.imageUrlUser}</div>
             </Comment>
           ))}
         </ComContainer>

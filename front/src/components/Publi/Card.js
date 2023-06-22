@@ -304,7 +304,9 @@ const Card = ({
                 dislikes={dislikes}
                 usersLikes={usersLikes}
                 usersDislikes={usersDislikes}
-                comments={comments} />
+                comments={comments}
+                pseudo={pseudo}
+                imageUrlUser={imageUrlUser} />
             </MDBCardBody>
             {/* <Com postId={id} comments={comments} /> */}
             

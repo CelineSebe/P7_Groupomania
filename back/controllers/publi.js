@@ -188,7 +188,7 @@ exports.likeDislike = (req, res, next) =>
 // Contrôleur POST pour créer un commentaire
 exports.createComment = async (req, res) => {
   try {
-    const { postId, userId, content } = req.body;
+    const { postId, userId, content, pseudo, imageUrlUser } = req.body;
 
     const publi = await Publi.findOne({ _id: postId });
 
@@ -196,7 +196,15 @@ exports.createComment = async (req, res) => {
       return res.status(404).json({ message: 'Publication not found' });
     }
     console.log("comment", content)
-    publi.comments.push(content);
+
+     // Créez un nouvel objet commentaire avec les informations de l'utilisateur
+     const newComment = {
+        userId: userId,
+        content: content,
+        pseudo: pseudo,
+        imageUrlUser: imageUrlUser
+      };
+    publi.comments.push(newComment);
 
     await publi.save();
 

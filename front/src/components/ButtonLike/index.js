@@ -23,19 +23,6 @@ function modifyLike({
 }) {
   const token = JSON.parse(localStorage.getItem('token'))
   const userId = JSON.parse(localStorage.getItem('userId'))
-  console.log('likes', countLike)
-  console.log('dislikes', countDislike)
-  console.log('usersLikes', usersLikes)
-  console.log('usersDislikes', usersDislikes)
-
-  // const dataPost = new FormData()
-
-  // dataPost.append('description', description)
-  // dataPost.append('imageUrl', imageUrl)
-  // dataPost.append('likes', countLike)
-  // dataPost.append('dislikes', countDislike)
-  // dataPost.append('usersLikes', userId)
-  // dataPost.append('usersDislikes', userId)
 
   axios({
     method: 'PUT',
@@ -113,22 +100,6 @@ const ButtonLike = ({
 
   const token = JSON.parse(localStorage.getItem('token'))
   const userId = JSON.parse(localStorage.getItem('userId'))
-
-  // for (var i = 0; i < usersLikes.length; i++) {
-  //   if (userId === usersLikes[i]) {
-  //     console.log('user a déjà liké')
-  //     setLiked(true)
-  //   }
-  // }
-  // for (var j = 0; j < usersDislikes.length; j++) {
-  //   if (userId === usersDislikes[j]) {
-  //     console.log('user a déjà disliké')
-  //     setDisliked(true)
-  //   }
-  // }
-  // initialisation des variables updatedUsersLikes et updatedUsersDislikes
-  console.log('usersLikes:', usersLikes)
-  console.log('usersDislikes:', usersDislikes)
 
   useEffect(() => {
     if (usersLikes.includes(userId)) {

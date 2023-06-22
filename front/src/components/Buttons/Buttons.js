@@ -47,13 +47,13 @@ const Buttons = ({
   usersLikes,
   usersDislikes,
   description,
-  imageUrlUser,
-  pseudo,
   comments,
 }) => {
   const [newComment, setNewComment] = useState('')
   const [showComments, setShowComments] = useState(false)
 
+  const pseudo = JSON.parse(localStorage.getItem('pseudo'));
+const imageUrlUser = JSON.parse(localStorage.getItem('imageUrlUser'));
   const token = JSON.parse(localStorage.getItem('token'))
 
   const handleCommentChange = (event) => {

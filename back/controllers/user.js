@@ -46,6 +46,7 @@ exports.login = (req, res, next) => {
                         ({
                             pseudo: user.pseudo,
                             userId: user._id,
+                            imageUrlUser: user.imageUrlUser,
                             token: jwt.sign
                             (
                                 { userId: user._id },

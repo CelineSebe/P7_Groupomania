@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+
 import Button from '../Button'
 import axios from 'axios'
 
@@ -66,6 +67,7 @@ const SignIn = () => {
           localStorage.setItem('userId', JSON.stringify(res.data.userId))
           localStorage.setItem('token', JSON.stringify(res.data.token))
           localStorage.setItem('role', JSON.stringify(res.data.role))
+          localStorage.setItem('imageUrlUser', JSON.stringify(res.data.imageUrlUser));
           console.log('role', res.data)
           window.location = './Home'
         })

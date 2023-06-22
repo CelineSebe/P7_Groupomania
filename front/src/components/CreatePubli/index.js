@@ -13,9 +13,9 @@ const ContainerCreatePubli = styled.div`
   height: 100px;
   width: 100%;
   border-radius: 20px;
-  margin: 5px 0;
-  border-radius: 15px;
-  /* border: solid 2px ${colors.secondary}; */
+  margin: 5px 0px;
+  border: solid 3px ${colors.secondary};
+  padding: 2px;
 `
 const FormPost = styled.form`
   height: 100%;
@@ -59,7 +59,7 @@ const ProfilImgContainer = styled.div`
   border: solid;
   width: 70px;
   height: 70px;
-  margin: 45px 0px 0px 20px;
+  margin: 35px 0px 0px 20px;
 `
 
 const LabelPostImg = styled.img`
@@ -136,14 +136,12 @@ const ButtonAdd = styled.label`
 `
 
 const ButtonDelete = styled.button`
-  background-color: white;
-  border-color: ${colors.primary};
-  color: ${colors.primary};
-  height: 35px;
-  width: 60px;
-  margin-right: 20px;
+  background-color: ${colors.tertiary};
+  color: white;
+  height: 25px;
+  width: 25px;
   border-radius: 6px;
-  font-size: larger;
+  margin:2px;
 
   &:hover {
     cursor: pointer;
@@ -153,26 +151,29 @@ const ButtonDelete = styled.button`
 // const PreviewImgContainer = styled.div``
 const Preview = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  position: absolute;
+  background-color: ${colors.secondary};
+  margin:2px;
+  height:40px;
+  width: 80px;
+  border-radius: 5px;
 
 `
 const ImgPreview = styled.div`
-  position: relative;
-  /* width: 45%;
-left: 200px; */
-  /* top: 0px; */
+  margin: 2px;
+  height: 100%;
+  border-radius: 5px;
 `
 
-const CreatePubli = ({ImageUrlUser}) => {
+const CreatePubli = ({ ImageUrlUser }) => {
   const [description, setDescription] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [isImageValid, setImageValid] = useState(true)
 
   const token = JSON.parse(localStorage.getItem('token'))
   // const ImageUrlUser = JSON.parse(localStorage.getItem('imageUrlUser'))
-console.log("imageUser", ImageUrlUser)
+  console.log('imageUser', ImageUrlUser)
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0]
@@ -266,7 +267,7 @@ console.log("imageUser", ImageUrlUser)
               <Preview>
                 <ImgPreview>
                   <img
-                    style={{ height: '50px', width: '50px' }}
+                    style={{ height: '40px', width: '40px', margin: '0px', borderRadius:'5px'}}
                     src={URL.createObjectURL(selectedImage)}
                     alt="Aperçu"
                   />
@@ -277,7 +278,7 @@ console.log("imageUser", ImageUrlUser)
                     removeSelectedImage()
                   }}
                 >
-                  <p style={{ fontSize: 12 }}>Delete</p>
+                  <i className="fa-solid fa-xmark" style={{fontSize:'15px', color:'white'}}></i>
                 </ButtonDelete>
               </Preview>
             )}

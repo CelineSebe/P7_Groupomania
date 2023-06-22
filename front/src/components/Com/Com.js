@@ -8,6 +8,7 @@ const Comment = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 8px;
+  margin-right: 200px;
   padding-right: 8px;
   font-size: 15px;
   border-radius: 50px;
@@ -43,7 +44,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Com = ({ postId, imageUrlUser, pseudo }) => {
+const Com = ({ postId }) => {
   const [allComments, setAllComments] = useState([]);
   const role = JSON.parse(localStorage.getItem('role'))
 
@@ -63,12 +64,14 @@ const Com = ({ postId, imageUrlUser, pseudo }) => {
         );
         const commentsWithInfo = response.data.comments.map((comment) => ({
           ...comment,
-          pseudo: pseudo,
-          imageUrlUser: imageUrlUser,
+          pseudo: comment.pseudo,
+          imageUrlUser: comment.imageUrlUser,
         }));
 
         setAllComments(commentsWithInfo);
         console.log('commentInfo', response);
+        console.log('commentWithInfo', commentsWithInfo);
+
       } catch (error) {
         console.error('Error fetching comments:', error);
       }
@@ -104,7 +107,7 @@ const Com = ({ postId, imageUrlUser, pseudo }) => {
       {allComments && allComments.length > 0 && (
         <>
           {allComments.map((comment) => (
-            <Comment key={comment.postId}>
+            <Comment key={comment._id}>
               <ProfilImgContainer>
                 <UserImg alt="image profil" src={comment.imageUrlUser} />
                 <div style={{margin: "4px"}}>{comment.pseudo}</div>

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import ButtonLike from '../ButtonLike'
-import Com from '../Comm/Com'
+import Com from '../Com/Com'
 
 const Container = styled.div`
   width: 100%;

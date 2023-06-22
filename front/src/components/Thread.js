@@ -25,7 +25,7 @@ const H1Thread = styled.h1`
     display: none;
   }
 `
-const MapData = () => {
+const MapData = ({usersData}) => {
   let token = JSON.parse(localStorage.getItem('token'))
 
   // se connecter pour récupérer l'userId et le token
@@ -55,26 +55,7 @@ const MapData = () => {
     // setInterval(MapData, 100)
   }, [])
 
-  const [usersData, setUsersData] = useState()
-
-  useEffect(() => {
-    axios({
-      method: 'get',
-      url: 'http://localhost:5000/api/auth/user',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        setUsersData(res.data)
-      })
-
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
-  //   console.log(postData)
+ 
   if (postsData && usersData)
     return (
       <>
@@ -112,12 +93,37 @@ const MapData = () => {
 }
 
 function Thread() {
+  let token = JSON.parse(localStorage.getItem('token'))
+  let userId = JSON.parse(localStorage.getItem('userId'))
+
+  const [usersData, setUsersData] = useState()
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://localhost:5000/api/auth/user',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        setUsersData(res.data)
+      })
+
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+  const imageUrlUser = usersData?.find((user) => user._id === userId).imageUrlUser
+  console.log('imageUrlUser',imageUrlUser)
+  console.log('usersData',usersData)
   return (
     <ThreadContainer>
       {/* <H1Thread> News</H1Thread> */}
-      <CreatePubli />
-      <div style={{ height: '900px', overflow: 'auto', width: '100%' }}>
-        <MapData />
+      <CreatePubli ImageUrlUser={imageUrlUser} />
+      <div style={{ maxHeight: "700px", overflow: 'auto', width: '100%', marginBottom: "40px" }}>
+        <MapData usersData={usersData}/>
       </div>
     </ThreadContainer>
   )

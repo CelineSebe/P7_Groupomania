@@ -1,57 +1,41 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import './index.css'
-import logo from '../../assets/Logos/icon-left-font-monochrome-black.png'
+import logo from '../../assets/Logos/icon-left-font.png'
 import colors from '../../utils/style/colors'
 import SignUp from '../../components/SignForm/SignUp'
 import SignIn from '../../components/SignForm/SignIn'
-import bg from './bg.jpeg'
 
-const Bg = styled.div`
+
+const Container = styled.div`
   width: 100%;
-  height: 100%;
 `
-const BgLeft = styled.img`
-  /* max-width: 1512px; */
-  /* display: flex; */
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  position: absolute;
-`
+
 const Connection = styled.div`
   display: flex;
   justify-content: center;
-
-  /* flex-direction: column; */
-  /* background-color: ${colors.secondary}; */
-  /* position: relative; */
-  /* top: 50%; */
-  /* left: 50%; */
-
-  /* color: transparent; */
 `
 const LogoContainer = styled.div`
   position: absolute;
   opacity: 0.9;
 `
 const Logo = styled.img`
-  width: 170px;
-  padding: 10px 0px;
+  width: 200px;
   position: relative;
-  left: 30px;
+  left: 20px;
+  top: 70px;
 `
 const ConnectContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: ${colors.seco};
   border-radius: 8px;
   color: black;
   height: 550px;
   width: 500px;
+  border: 2px solid ${colors.primary};
+  margin-top:70px;
 `
 
 function SignupLogin(props) {
@@ -69,8 +53,7 @@ function SignupLogin(props) {
   }
   return (
     <>
-      <Bg>
-        <BgLeft src={bg} />
+      <Container>
         <Connection>
           <LogoContainer>
             <Logo src={logo} alt="logo entreprise" />
@@ -96,7 +79,7 @@ function SignupLogin(props) {
             </ConnectContent>
           </LogoContainer>
         </Connection>
-      </Bg>
+      </Container>
     </>
   )
 }

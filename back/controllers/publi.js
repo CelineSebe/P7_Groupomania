@@ -233,3 +233,27 @@ exports.getCommentsByPostId = async (req, res) => {
       res.status(500).json({ message: 'Erreur serveur' });
     }
   };
+
+  // Contrôleur DELETE pour supprimer un commentaire
+  exports.deleteComment = async (req, res) => {
+    try {
+      const { commentId } = req.params;
+  
+      const publi = await Publi.findOne({ 'comments._id': commentId });
+  
+      if (!publi) {
+        return res.status(404).json({ message: 'Comment not found' });
+      }
+  
+      publi.comments = publi.comments.filter((comment) => comment._id.toString() !== commentId);
+  
+      await publi.save();
+  
+      res.status(200).json({ message: 'Comment deleted' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
+  
+  

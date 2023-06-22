@@ -165,15 +165,14 @@ left: 200px; */
   /* top: 0px; */
 `
 
-const CreatePubli = () => {
+const CreatePubli = ({ImageUrlUser}) => {
   const [description, setDescription] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [isImageValid, setImageValid] = useState(true)
 
   const token = JSON.parse(localStorage.getItem('token'))
-  const userId = JSON.parse(localStorage.getItem('userId'))
-  const ImageUrlUser = JSON.parse(localStorage.getItem('imageUrlUser'))
-
+  // const ImageUrlUser = JSON.parse(localStorage.getItem('imageUrlUser'))
+console.log("imageUser", ImageUrlUser)
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0]

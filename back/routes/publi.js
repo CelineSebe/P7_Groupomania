@@ -17,5 +17,5 @@ const multer = require('../middleware/multer-config');
  router.put('/:id/like', auth, publiCtrl.likeDislike);
  router.post('/comments', auth, publiCtrl.createComment);
  router.get('/comments/:id', auth, publiCtrl.getCommentsByPostId);
-
+ router.delete('/comments/:commentId', auth, publiCtrl.deleteComment);
  module.exports = router;

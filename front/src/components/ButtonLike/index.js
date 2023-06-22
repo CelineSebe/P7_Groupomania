@@ -22,7 +22,6 @@ function modifyLike({
   usersDislikes,
 }) {
   const token = JSON.parse(localStorage.getItem('token'))
-  const userId = JSON.parse(localStorage.getItem('userId'))
 
   axios({
     method: 'PUT',
@@ -42,12 +41,12 @@ function modifyLike({
       if (res.ok) {
         return res.json()
       }
-      alert('vos likes ont bien été modifié')
+      // alert('vos likes ont bien été modifié')
     })
 
     .catch((err) => {
       console.log(err)
-      window.alert("Vos likes n'ont pas été modifié. Veuillez recommencer!")
+      // window.alert("Vos likes n'ont pas été modifié. Veuillez recommencer!")
     })
 }
 
@@ -63,10 +62,10 @@ function handleLike({
   description,
   imageUrl,
 }) {
-  let res = window.confirm(
-    'Votre publication va être likée/dislikée. Confirmation?'
-  )
-  if (res) {
+  // let res = window.confirm(
+    // 'Votre publication va être likée/dislikée. Confirmation?'
+  // )
+  // if (res) {
     console.log('handleLiked')
     modifyLike({
       postId,
@@ -81,7 +80,7 @@ function handleLike({
       imageUrl,
     })
   }
-}
+// }
 const ButtonLike = ({
   postId,
   likes,
@@ -100,6 +99,9 @@ const ButtonLike = ({
 
   const token = JSON.parse(localStorage.getItem('token'))
   const userId = JSON.parse(localStorage.getItem('userId'))
+
+  
+  // initialisation des variables updatedUsersLikes et updatedUsersDislikes
 
   useEffect(() => {
     if (usersLikes.includes(userId)) {

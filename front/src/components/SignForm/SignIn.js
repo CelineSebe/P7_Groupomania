@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-// import AuthContext from '../../store/authContext';
-// import Test from '../Test';
 import Button from '../Button'
 import axios from 'axios'
 

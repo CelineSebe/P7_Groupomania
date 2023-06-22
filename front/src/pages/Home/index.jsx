@@ -8,7 +8,7 @@ import Thread from '../../components/Thread'
 import AuthContext from '../../store/authContext'
 import { useContext } from 'react'
 
-// import PropTypes from 'prop-types'
+
 
 const FeedContainer = styled.div`
   display: flex;
@@ -38,7 +38,6 @@ const ProfilContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 20%;
   margin-top: 40px;
   /* width: 300px;
   height: 60vh; */

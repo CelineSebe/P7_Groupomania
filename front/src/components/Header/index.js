@@ -19,7 +19,7 @@ const NavLink = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: linear-gradient(to right top, #4e5166, white);
+  background: linear-gradient(to right top, black, white);
   height: 60px;
   box-shadow: 0px 8px 3px 2px grey 0.5;
   opacity: 70%;

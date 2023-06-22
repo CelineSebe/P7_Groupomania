@@ -1,10 +1,9 @@
 import React from 'react';
 import { useState, useContext } from 'react';
 import styled from 'styled-components';
-// import colors from '../../utils/style/colors';
 import axios from 'axios';
-import Button from '../Button';
 import AuthContext from '../../store/authContext';
+import Button from '../Button'
 
 
 const Signup = styled.div`

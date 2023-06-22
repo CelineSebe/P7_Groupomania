@@ -230,10 +230,6 @@ const Card = ({
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
   const [isImageModif, setIsImageModif] = useState(imageUrl)
 
-
-
-  
-
   return (
     <CardContainer>
       <Main>

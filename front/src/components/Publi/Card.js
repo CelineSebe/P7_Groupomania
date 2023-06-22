@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import assets from '../../assets/user-solid.svg'
 import { dateFormat } from '../../utils/DateFormat'
+import Buttons from '../Buttons/Buttons'
+
 import {
   MDBCard,
   MDBCardBody,
@@ -15,8 +17,7 @@ import {
 } from 'mdb-react-ui-kit'
 import ButtonSuppr from '../ButtonSuppr'
 import ButtonModify from '../ButtonModify'
-import ButtonLike from '../ButtonLike'
-import ButtonComment from '../ButtonComment'
+
 
 const CardContainer = styled.ul`
   display: flex;
@@ -170,11 +171,7 @@ const Close = styled.div`
   margin-right: 25px;
   font-size: larger;
 `
-const FormComment = styled.form`
-  width: 100%;
-  height: 50px;
-  margin: 0px 8px;
-`
+
 
 function modifyOnePost({ id, isDescriptionModif, isImageModif, isLiked }) {
   const token = JSON.parse(localStorage.getItem('token'))
@@ -232,43 +229,10 @@ const Card = ({
   const [isModif, setIsModif] = useState(false)
   const [isDescriptionModif, setIsDescriptionModif] = useState(description)
   const [isImageModif, setIsImageModif] = useState(imageUrl)
-  const [newComment, setNewComment] = useState('')
-  console.log(newComment)
 
-  const token = JSON.parse(localStorage.getItem('token'))
 
-  const handleCommentChange = (event) => {
-    setNewComment(event.target.value)
-  }
-  const handleCommentSubmit = (event) => {
-    event.preventDefault()
 
-    // Envoyer le nouveau commentaire au backend
-    // Utilisez une requête HTTP (par exemple, axios) pour envoyer le commentaire au serveur
-   
-    axios
-      .post(`http://localhost:5000/api/publis/comments`, {
-        postId: id,
-        userId: userId,
-        content: newComment,
-      },{
-        headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        // Gérer la réponse du serveur si nécessaire
-        console.log('Comment submitted:', response.data)
-
-        // Réinitialiser l'état du nouveau commentaire
-        setNewComment('')
-      })
-      .catch((error) => {
-        // Gérer les erreurs de requête s'il y en a
-        console.error('Error submitting comment:', error)
-      })
-  }
+  
 
   return (
     <CardContainer>
@@ -333,49 +297,17 @@ const Card = ({
                   </PostCreation>
                 </MDBCardText>
               </div>
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-around',
-                  alignItems: 'center',
-                  padding: '10px',
-                }}
-              >
-                <ButtonLike
-                  postId={id}
-                  userId={userId}
-                  likes={likes}
-                  dislikes={dislikes}
-                  usersLikes={usersLikes}
-                  usersDislikes={usersDislikes}
-                  description={description}
-                  imageUrl={imageUrl}
-                  onClick={(e) => {
-                    e.preventDefault()
-                  }}
-                />
-                <div style={{ color: 'blueviolet', fontSize: 18 }}>
-                  {/* {comments} */}
-                  <ButtonComment
-                    postId={id}
-                    userId={userId}
-                    comments={comments}
-                    onClick={(e) => {
-                      e.preventDefault()
-                    }}
-                  />
-                </div>
-              </span>
+              <Buttons  
+                userId={userId}
+                postId={id}
+                likes={likes}
+                dislikes={dislikes}
+                usersLikes={usersLikes}
+                usersDislikes={usersDislikes}
+                comments={comments} />
             </MDBCardBody>
-            <FormComment onSubmit={handleCommentSubmit}>
-              <input
-                type="text"
-                value={newComment}
-                style={{ border: 'none', width: '90%' }}
-                onChange={handleCommentChange}
-                placeholder="Ajouter un commentaire..."
-              />
-            </FormComment>
+            {/* <Com postId={id} comments={comments} /> */}
+            
           </MDBCard>
         ) : (
           <MDBCard>

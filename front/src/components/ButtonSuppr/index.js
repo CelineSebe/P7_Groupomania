@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import { useState } from 'react'
-import Card from '../Publi/Card'
+
 
 const Suppr = styled.div`
   &:hover {

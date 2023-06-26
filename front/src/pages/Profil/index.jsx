@@ -33,7 +33,6 @@ const ProfilPage = styled.div`
 function Profil(props) {
   let pseudo = JSON.parse(localStorage.getItem('pseudo'))
   let userId = JSON.parse(localStorage.getItem('userId'))
-  // let token= JSON.parse(localStorage.getItem('token'))
 
   return (
     <>
@@ -42,7 +41,7 @@ function Profil(props) {
         <h1 style={{ marginTop: "80px"}}> Bienvenue !</h1>
         <ProfilInfoContainer>
           <UpdateProfil />
-          <ProfilInfo userId={userId} />
+          <ProfilInfo userId={userId} pseudo={pseudo}/>
         </ProfilInfoContainer>
       </ProfilPage>
     </>

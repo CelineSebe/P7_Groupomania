@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
 import Button from '../Button'
 import axios from 'axios'
 
@@ -22,7 +21,7 @@ const Checkbox = styled.div`
 `
 
 const SignIn = () => {
-  const [pseudo, setPseudo] = useState('')
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -30,7 +29,6 @@ const SignIn = () => {
   // const authCont = useContext(AuthContext);
   // console.log("authCont");
   // console.log(AuthContext);
-  console.log(email, password)
 
   async function handleLogin(e) {
     e.preventDefault()
@@ -68,7 +66,6 @@ const SignIn = () => {
           localStorage.setItem('token', JSON.stringify(res.data.token))
           localStorage.setItem('role', JSON.stringify(res.data.role))
           localStorage.setItem('imageUrlUser', JSON.stringify(res.data.imageUrlUser));
-          console.log('role', res.data)
           window.location = './Home'
         })
         .catch((error) => {
@@ -161,7 +158,7 @@ const SignIn = () => {
             }}
           ></div>
           <br />
-          <Button type={'submit'} onClick={() => {}}>
+          <Button type={'submit'} onSubmit={handleLogin}>
             Se connecter
           </Button>
         </form>

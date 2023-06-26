@@ -24,12 +24,6 @@ const NavLink = styled.nav`
   opacity: 70%;
   font-style: 'Lato';
   padding: 3px;
-  /* @media screen and (max-width: 1023px)
-    {
-        display: flex;
-        justify-content: center;
-        align-items: space-between;
-    } */
   @media screen and (max-width: 730px) {
     justify-content: flex-start;
   }

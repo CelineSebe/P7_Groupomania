@@ -47,7 +47,6 @@ function UserList() {
         setUsers(response.data)
         setIsLoading(false)
         setError(null)
-        // console.log(response.data)
       })
       .catch((error) => {
         setError(error.message)
@@ -69,7 +68,6 @@ function UserList() {
       .then((response) => {
         // Mettez à jour la liste des utilisateurs en supprimant l'utilisateur supprimé
         setUsers(users.filter((user) => user._id !== userId))
-        // console.log(response)
       })
       .catch((error) => {
         setError(error.message)

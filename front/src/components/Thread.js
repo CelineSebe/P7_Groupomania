@@ -2,8 +2,6 @@ import React, { useEffect } from 'react'
 import Card from '../components/Publi/Card'
 import styled from 'styled-components'
 import CreatePubli from './CreatePubli'
-// import InfiniteScroll from 'react-infinite-scroller';
-// import Loading from '../components/Loading'
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -24,7 +22,7 @@ const H1Thread = styled.h1`
     display: none;
   }
 `
-const MapData = ({usersData}) => {
+const MapData = ({ usersData }) => {
   let token = JSON.parse(localStorage.getItem('token'))
 
   // se connecter pour récupérer l'userId et le token
@@ -50,19 +48,17 @@ const MapData = ({usersData}) => {
           'Toutes nos excuses, impossible de se connecter à la base de données'
         )
       })
+  }, [postsData])
 
-  }, [])
-
- 
   if (postsData && usersData)
     return (
       <>
         {postsData
           .map(function (post) {
             let user = usersData.find((user) => post.userId === user._id)
-            
-            const usersLikes = post.usersLikes || []; // Utiliser un tableau vide si post.usersLikes est undefined
-            const usersDislikes = post.usersDislikes || []; // Utiliser un tableau vide si post.usersDislikes est undefined
+
+            const usersLikes = post.usersLikes || [] // Utiliser un tableau vide si post.usersLikes est undefined
+            const usersDislikes = post.usersDislikes || [] // Utiliser un tableau vide si post.usersDislikes est undefined
             return (
               <Card
                 key={post.id}
@@ -109,14 +105,23 @@ function Thread() {
         console.log(error)
       })
   }, [])
-  const imageUrlUser = usersData?.find((user) => user._id === userId).imageUrlUser
-  console.log('imageUrlUser',imageUrlUser)
-  console.log('usersData',usersData)
+  const imageUrlUser = usersData?.find(
+    (user) => user._id === userId
+  ).imageUrlUser
+  console.log('imageUrlUser', imageUrlUser)
+  console.log('usersData', usersData)
   return (
     <ThreadContainer>
       <CreatePubli ImageUrlUser={imageUrlUser} />
-      <div style={{ maxHeight: "700px", overflow: 'auto', width: '100%', marginBottom: "40px" }}>
-        <MapData usersData={usersData}/>
+      <div
+        style={{
+          maxHeight: '700px',
+          overflow: 'auto',
+          width: '100%',
+          marginBottom: '40px',
+        }}
+      >
+        <MapData usersData={usersData} />
       </div>
     </ThreadContainer>
   )

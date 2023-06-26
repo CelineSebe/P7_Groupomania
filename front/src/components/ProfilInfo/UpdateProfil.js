@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import axios from 'axios'
@@ -97,10 +97,24 @@ const PseudoContainer = styled.div`
 const UpdateProfil = () => {
   const token = JSON.parse(localStorage.getItem('token'))
   const userId = JSON.parse(localStorage.getItem('userId'))
+  const pseudo = JSON.parse(localStorage.getItem('pseudo'))
+
+  const [refreshPage, setRefreshPage] = useState(false) // Nouvelle variable d'état
 
   const [postImage, setPostImage] = useState('')
   const [postFile, setPostFile] = useState('')
 
+  const [userPseudo, setUserPseudo] = useState('')
+ 
+  useEffect(() => {
+    setUserPseudo(pseudo); // Mettre à jour userPseudo avec la valeur initiale de pseudo
+  }, [pseudo]);
+
+  useEffect(() => {
+    if (refreshPage) {
+      window.location.reload() // Rafraîchir la page
+    }
+  }, [refreshPage])
 
   const handleImg = (e) => {
     var tgt = e.target,
@@ -133,12 +147,17 @@ const UpdateProfil = () => {
       },
       data: userData,
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+      .then((res) => {
+        alert('Votre image a bien été modifié')
+        setRefreshPage(true)})
+      .catch((err) => 
+      
+      console.log(err))
   }
   const handlePseudo = (e) => {
     e.preventDefault()
     const newPseudo = document.getElementById('pseudoInput').value
+    alert("Votre pseudo a bien été modifié")
     // const userData = new FormData()
     // console.log(newPseudo)
     // userData.append('pseudo', newPseudo)
@@ -153,7 +172,10 @@ const UpdateProfil = () => {
       },
       data: { pseudo: newPseudo },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res)
+        setRefreshPage(true)
+      })
       .catch((err) => console.log(err))
   }
 
@@ -168,7 +190,7 @@ const UpdateProfil = () => {
           <input
             id="pseudoInput"
             style={{ height: '40px', padding: '4px' }}
-            placeholder={storedPseudo}
+            placeholder={userPseudo}
           ></input>
           <ButtonPush
             type="submit"

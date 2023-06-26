@@ -3,7 +3,6 @@ import React from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-// import Button from '../../components/Button/index';
 import assets from '../../assets/user-solid.svg'
 
 const ContainerCreatePubli = styled.div`
@@ -31,7 +30,6 @@ const ContainerPublication = styled.div`
   align-items: center;
   height: 50%;
   width: 90%;
-
 `
 
 const FormStyle = styled.div`
@@ -66,15 +64,11 @@ const ProfilImgContainer = styled.div`
 const LabelPostImg = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 50px;
 `
 
 const ContainerButtons = styled.div`
-  /* display: flex;
-  align-items: flex-end;
-  justify-content:left;
-  height: 50px;
-  padding-left: 500px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,10 +103,6 @@ const Hide = styled.div`
   position: absolute;
   z-index: -1;
 `
-// const AddButton = styled.div`
-// width: 10%;
-// height: 50%;
-// `
 
 const ButtonAdd = styled.label`
   background-color: ${colors.secondary};
@@ -149,7 +139,6 @@ const ButtonDelete = styled.button`
     background-color: ${colors.secondary};
   }
 `
-// const PreviewImgContainer = styled.div``
 const Preview = styled.div`
   display: flex;
   justify-content: space-between;

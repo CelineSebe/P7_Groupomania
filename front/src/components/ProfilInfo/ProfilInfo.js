@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import { useContext } from 'react'
 // import AuthContext from '../../store/authContext'
 
@@ -16,7 +16,6 @@ const ProfilContainer = styled.div`
   border: solid 2px ${colors.secondary};
   border-radius: 5px;
   margin-top: 40px;
-  /* margin: 10px; */
   padding: 20px;
   &:hover {
     background-color: white;
@@ -29,34 +28,43 @@ const ProfilContainer = styled.div`
   }
 `
 
-function ProfilInfo({ userId }) {
+function ProfilInfo({ pseudo }) {
   const [userData, setUserData] = useState('')
-  let pseudo = JSON.parse(localStorage.getItem('pseudo'))
+  const [userPseudo, setUserPseudo] = useState('')
+
   let token = JSON.parse(localStorage.getItem('token'))
   // const AuthCont = useContext(AuthContext)
 
-  axios({
-    method: 'get',
-    url: `http://localhost:5000/api/auth/oneuser/`,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => {
-      // console.log(res.data.imageUrlUser)
-      setUserData(res.data.imageUrlUser)
-      localStorage.setItem(
-        'imageUrlUser',
-        JSON.stringify(res.data.imageUrlUser)
-      )
+  useEffect(() => {
+    setUserPseudo(pseudo); // Mettre à jour userPseudo avec la valeur initiale de pseudo
+  }, [pseudo]);
 
-      // console.log(res.data)
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/api/auth/oneuser/`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     })
+      .then((res) => {
+        setUserData(res.data.imageUrlUser)
+        setUserPseudo(res.data.pseudo)
+        localStorage.setItem(
+          'imageUrlUser',
+          JSON.stringify(res.data.imageUrlUser)
+        )
+        localStorage.setItem(
+          'pseudo',
+          JSON.stringify(res.data.pseudo)
+        )
+      })
 
-    .catch((error) => {
-      console.log(error)
-    })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [userData])
   return (
     <>
       <ProfilContainer>
@@ -68,13 +76,13 @@ function ProfilInfo({ userId }) {
           }}
         >
           {' '}
-          Profil de {pseudo}
+          Profil de {userPseudo}
         </h1>
-          <img
-            src={userData}
-            style={{ height:'50%', width:'50%' }}
-            alt="photo de profil"
-            ></img>
+        <img
+          src={userData}
+          style={{ height: '50%', width: '50%' }}
+          alt="photo de profil"
+        ></img>
       </ProfilContainer>
     </>
   )

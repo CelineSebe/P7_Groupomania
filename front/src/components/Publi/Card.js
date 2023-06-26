@@ -56,6 +56,7 @@ const UserImg = styled.img`
   height: 42px;
   border-radius: 50%;
   border: solid;
+  object-fit: cover;
 `
 const Main = styled.div`
   width: 100%;
@@ -174,8 +175,8 @@ const Close = styled.div`
 
 
 function modifyOnePost({ id, isDescriptionModif, isImageModif, isLiked }) {
+  
   const token = JSON.parse(localStorage.getItem('token'))
-  console.log(isDescriptionModif, isImageModif, isLiked)
   const dataPost = new FormData()
   dataPost.append('description', isDescriptionModif)
   dataPost.append('imageUrl', isImageModif)
@@ -193,7 +194,6 @@ function modifyOnePost({ id, isDescriptionModif, isImageModif, isLiked }) {
       if (res.ok) {
         return res.json
       }
-      console.log(res.data)
       alert('votre post a bien été modifié')
     })
 
@@ -206,7 +206,6 @@ function modifyOnePost({ id, isDescriptionModif, isImageModif, isLiked }) {
 function handleModify({ id, isDescriptionModif, isImageModif }) {
   let res = window.confirm('Votre publication va être modifiée. Confirmation?')
   if (res) {
-    console.log(isDescriptionModif, isImageModif)
     modifyOnePost({ id, isDescriptionModif, isImageModif })
   }
 }
@@ -301,8 +300,6 @@ const Card = ({
                 pseudo={pseudo}
                 imageUrlUser={imageUrlUser} />
             </MDBCardBody>
-
-            
           </MDBCard>
         ) : (
           <MDBCard>
@@ -370,9 +367,7 @@ const Card = ({
                     setIsModif(false)
                   }}
                 >
-                  {/* <ButtonPlane> */}
                   <i className="fa-solid fa-paper-plane"></i>
-                  {/* </ButtonPlane> */}
                 </ButtonPost>
                 <label htmlFor="post"></label>
               </ContainerButtons>

@@ -25,7 +25,7 @@ const adminLocalStorage =
     ? Number(localStorage.getItem('role'))
     : null
 const pseudoLocalStorage = localStorage.getItem('pseudo')
-// const profilLocalStorage = localStorage.getItem('profil')
+
 
 //le context provider pour wrapper app.js
 export const AuthContextProvider = (props) => {
@@ -34,7 +34,7 @@ export const AuthContextProvider = (props) => {
   const [userId, setUserId] = useState(userIdLocalStorage)
   const [admin, setAdmin] = useState(adminLocalStorage)
   const [pseudo, setPseudo] = useState(pseudoLocalStorage)
-  // const [profil, setProfile] = useState(profilLocalStorage)
+
 
   //fonction pour mettre à jour le token
   const loginHandler = (token, userId, pseudo) => {
@@ -42,12 +42,11 @@ export const AuthContextProvider = (props) => {
     setUserId(userId)
     setAdmin(adminLocalStorage)
     setPseudo(pseudo)
-    // setProfile(profilLocalStorage)
+
     // localStorage.setItem('token', token)
     localStorage.setItem('userId', userId)
     localStorage.setItem('role', adminLocalStorage)
     localStorage.setItem('pseudo', pseudo)
-    // localStorage.setItem('profil', profilLocalStorage)
   }
 
   //pour se déconnecter (faire passer le token à null)
@@ -74,12 +73,10 @@ export const AuthContextProvider = (props) => {
     token: token,
     userId: userId,
     admin: admin,
-    // profil: profil,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
   }
-  // console.log(contextValue);
 
   return (
     <AuthContext.Provider value={contextValue}>

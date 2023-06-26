@@ -18,8 +18,6 @@ margin: 20px;
 }
 `
 
-
-
 function TrendingInfo () {
     return (
         <TrendingContainer>

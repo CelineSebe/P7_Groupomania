@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-// import colors from '../utils/style/colors';
 import Card from '../components/Publi/Card'
 import styled from 'styled-components'
 import CreatePubli from './CreatePubli'
@@ -52,7 +51,6 @@ const MapData = ({usersData}) => {
         )
       })
 
-    // setInterval(MapData, 100)
   }, [])
 
  
@@ -62,10 +60,6 @@ const MapData = ({usersData}) => {
         {postsData
           .map(function (post) {
             let user = usersData.find((user) => post.userId === user._id)
-            // console.log('USD', usersData)
-            // console.log('usersLikes', post.usersLikes)
-            // console.log('usersDislikes', post.usersDislikes)
-            // console.log('description', post.description)
             
             const usersLikes = post.usersLikes || []; // Utiliser un tableau vide si post.usersLikes est undefined
             const usersDislikes = post.usersDislikes || []; // Utiliser un tableau vide si post.usersDislikes est undefined
@@ -120,7 +114,6 @@ function Thread() {
   console.log('usersData',usersData)
   return (
     <ThreadContainer>
-      {/* <H1Thread> News</H1Thread> */}
       <CreatePubli ImageUrlUser={imageUrlUser} />
       <div style={{ maxHeight: "700px", overflow: 'auto', width: '100%', marginBottom: "40px" }}>
         <MapData usersData={usersData}/>

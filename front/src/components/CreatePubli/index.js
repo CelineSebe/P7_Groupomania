@@ -27,10 +27,11 @@ const FormPost = styled.form`
 const ContainerPublication = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: white;
+  background-color: transparent;
   align-items: center;
   height: 50%;
   width: 90%;
+
 `
 
 const FormStyle = styled.div`

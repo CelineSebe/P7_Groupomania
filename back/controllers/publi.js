@@ -131,6 +131,7 @@ exports.likeDislike = (req, res, next) =>
     
     const publiObject = { ...req.body};
     let likes = publiObject.likes;
+    let dislikes = publiObject.dislikes;
     let userId = req.auth.userId;
     let publiId = req.params.id;
     
@@ -148,6 +149,7 @@ exports.likeDislike = (req, res, next) =>
         };
         console.log('userId', req.auth.userId)
         console.log('likes', likes)
+        console.log('dislikes', dislikes)
         
         if (typeof userId !== 'undefined') {
             if (publiObject.likes === 1) {
@@ -159,7 +161,7 @@ exports.likeDislike = (req, res, next) =>
                 const index = countUsers.usersDislikes.indexOf(userId);
                 countUsers.usersDislikes.splice(index, 1);
               }
-            } else if (publiObject.likes === -1) {
+            } else if (publiObject.dislikes === 1) {
               if (!publi.usersDislikes.includes(userId)) {
                 countUsers.usersDislikes.push(userId);
               }

@@ -1,8 +1,5 @@
 import React from 'react'
-// import DefaultImage from '../../assets/profile.jpg'
 import styled from 'styled-components'
-// import Publi from '../../components/Publi/index'
-import ProfilInfo from '../../components/ProfilInfo/ProfilInfo'
 import Header from '../../components/Header'
 import Thread from '../../components/Thread'
 import AuthContext from '../../store/authContext'
@@ -34,24 +31,7 @@ const FeedContainer = styled.div`
     align-items: center;
   }
 `
-const ProfilContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 40px;
-  /* width: 300px;
-  height: 60vh; */
-  /* margin: 25px 10px; */
-  @media screen and (max-width: 1023px) {
-    display: none;
-    height: 12%;
-    font-size: 8px;
-    margin: 0px;
-    &:nth-child(1) {
-      order: 1;
-    }
-  }
-`
+
 
 const PostContainer = styled.div`
   display: flex;

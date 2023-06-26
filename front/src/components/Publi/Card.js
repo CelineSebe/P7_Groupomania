@@ -250,7 +250,6 @@ const Card = ({
                 description={description}
                 imageUrl={imageUrl}
                 setIsModif={setIsModif}
-                // setApiCalled={setApiCalled}
                 alt="Crayon noir qui écrit"
                 onClick={(e) => {
                   e.preventDefault()
@@ -288,8 +287,6 @@ const Card = ({
                   <div>{description}</div>
                   <PostCreation>
                     Créé il y a {date && dateFormat(new Date(date))}
-                    {/* {Date.now() - date} minutes */}
-                    {/* {dateFormat(new Date(), 'MMM dd yyyy')} */}
                   </PostCreation>
                 </MDBCardText>
               </div>
@@ -304,7 +301,7 @@ const Card = ({
                 pseudo={pseudo}
                 imageUrlUser={imageUrlUser} />
             </MDBCardBody>
-            {/* <Com postId={id} comments={comments} /> */}
+
             
           </MDBCard>
         ) : (

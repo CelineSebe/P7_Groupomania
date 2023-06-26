@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Login from '../../pages/Login';
-import Trending from '../../pages/Trending';
+import Settings from '../../pages/Settings';
 import Error from '../../components/Error/index'
 import AuthContext from '../../store/authContext';
 
@@ -46,9 +46,9 @@ function Routing () {
               />
               }
               {isLoggedIn &&
-              <Route exact path="/Trending"
+              <Route exact path="/Settings"
                 element= {
-                    <Trending />
+                    <Settings />
                   }
               />
               }

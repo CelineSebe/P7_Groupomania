@@ -13,6 +13,7 @@ const Comment = styled.div`
   font-size: 15px;
   border-radius: 50px;
   width: 100%;
+  height: 43px;
   border: solid 2px ${colors.secondary};
 `;
 
@@ -21,6 +22,7 @@ display: flex;
 align-items: center
   border-radius: 12px;
   width: 40px;
+  height:100%;
   font-size: 10px;
   text-align: center;
 `;

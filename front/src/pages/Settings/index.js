@@ -115,8 +115,8 @@ function UserList() {
                 <th className="roleColumn">
                   <select
                     value={user.role}
-                    onChange={(e) => updateUserRole(user._id, e.target.value)}
-                  >
+                    onChange={(e) => updateUserRole({ userId: user._id, newRole: e.target.value })}
+                    >
                     <option value="administrateur">Administrateur</option>
                     <option value="utilisateur">Utilisateur</option>
                   </select>

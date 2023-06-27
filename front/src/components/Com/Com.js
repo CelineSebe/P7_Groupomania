@@ -50,6 +50,13 @@ const Com = ({ postId }) => {
   const [allComments, setAllComments] = useState([]);
   const role = JSON.parse(localStorage.getItem('role'))
 
+  function resetCom() {
+    setAllComments([]);
+  }
+  useEffect(() => {
+    resetCom();
+  }, [postId]);
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
 

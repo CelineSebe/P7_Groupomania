@@ -97,6 +97,13 @@ function UserList() {
       })
     
   }
+
+  function handleSuppr({userId}) {
+    let res = window.confirm(`Êtes-vous sûr de vouloir supprimer cet utilisateur?`)
+    if (res) {
+      deleteUser({userId})
+    }
+  }
   return (
     <>
       <Header />
@@ -124,7 +131,7 @@ function UserList() {
                 <th className='emailColumn'>{user.email}</th>
                 <Close
                   style={{ width: '5px' }}
-                  onClick={() => deleteUser(user._id)}
+                  onClick={() => handleSuppr({userId: user._id})}
                 >
                   <i className="fa-solid fa-xmark"></i>
                 </Close>
